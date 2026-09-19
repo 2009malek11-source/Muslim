@@ -300,17 +300,13 @@ function extractHeading(e){
 }
 function handleOrientation(e){
   const raw=extractHeading(e);if(raw==null||qiblaBearing==null)return;
-  // Smooth the compass and avoid the 359° -> 0° jump.
   if(qiblaLastHeading==null)qiblaLastHeading=raw;
   qiblaLastHeading=normalizeDeg(qiblaLastHeading+shortestDelta(qiblaLastHeading,raw)*0.22);
   qiblaHeading=qiblaLastHeading;
   const rel=shortestDelta(qiblaHeading,qiblaBearing);
-  const pointer=document.getElementById('qiblaPointer');
-  if(pointer)pointer.style.transform=`translate(-50%,-100%) rotate(${rel}deg)`;
-  const dial=document.getElementById('qiblaDial');
-  // Rotate the compass face with the real heading, as on physical compass apps.
-  if(dial)dial.style.transform=`rotate(${-qiblaHeading}deg)`;
-  const qt=document.getElementById('qiblaText');if(qt)qt.textContent=`القبلة أمامك بزاوية ${Math.round(normalizeDeg(qiblaBearing-qiblaHeading))}°`;
+  const arrow=document.getElementById('qiblaArrow')||document.getElementById('qiblaPointer');
+  if(arrow)arrow.style.transform=`translate(-50%,-50%) rotate(${rel}deg)`;
+  const qt=document.getElementById('qiblaText');if(qt)qt.textContent=`السهم يشير إلى القبلة • ${Math.round(normalizeDeg(qiblaBearing-qiblaHeading))}°`;
   const qh=document.getElementById('qiblaHeading');if(qh)qh.textContent=`اتجاه الهاتف: ${Math.round(qiblaHeading)}° • اتجاه مكة: ${Math.round(qiblaBearing)}°`;
 }
 async function locateQibla(){
@@ -500,113 +496,8 @@ async function convertHijriToday(){try{const d=new Date(),g=`${String(d.getDate(
 function renderNightInfo(){const box=document.getElementById('nightInfo');const t=window._prayerTimes;if(!box||!t){if(box)box.innerHTML='<div class="extraCard">حمّل مواقيت الصلاة أولًا.</div>';return}const mag=minsFromHHMM(t.Maghrib),faj=minsFromHHMM(t.Fajr);if(mag==null||faj==null){box.innerHTML='<div class="extraCard">لا تتوفر بيانات الليل.</div>';return}let nextF=faj;if(nextF<=mag)nextF+=1440;const dur=nextF-mag,mid=mag+dur/2,last=nextF-dur/3;const fmt=m=>{m=((m%1440)+1440)%1440;const h=Math.floor(m/60),mm=Math.floor(m%60),ap=h>=12?'م':'ص';return `${h%12||12}:${String(mm).padStart(2,'0')} ${ap}`};box.innerHTML=`<div class="extraCard"><h3>منتصف الليل</h3><b>${fmt(mid)}</b><p class="mini">بين المغرب والفجر.</p></div><div class="extraCard"><h3>الثلث الأخير</h3><b>يبدأ ${fmt(last)}</b><p class="mini">ينتهي عند الفجر.</p></div>`}
 function sharePrayerCard(){const t=window._prayerTimes;if(!t){alert('حمّل مواقيت الصلاة أولًا.');return}const fmt=v=>{const [h,m]=String(v).split(':').map(Number);const ap=h>=12?'م':'ص';return `${h%12||12}:${String(m).padStart(2,'0')} ${ap}`};const text=`🕌 مواقيت الصلاة اليوم\nالفجر ${fmt(t.Fajr)}\nالظهر ${fmt(t.Dhuhr)}\nالعصر ${fmt(t.Asr)}\nالمغرب ${fmt(t.Maghrib)}\nالعشاء ${fmt(t.Isha)}\n\nQuran M09alaroud`;if(navigator.share)navigator.share({title:'مواقيت الصلاة',text}).catch(()=>{});else navigator.clipboard?.writeText(text).then(()=>alert('تم نسخ بطاقة المواقيت.'))}
 
-const FATWA_API_URL="https://late-salad-73d2.2009malek11.workers.dev/api/fatwa";
-async function askFatwaAI(){
-  const q=(document.getElementById('fatwaQuestion')?.value||'').trim();
-  const box=document.getElementById('fatwaAnswer');
-
-  if(!q){
-    box.textContent='اكتب السؤال أولًا.';
-    return;
-  }
-
-  box.innerHTML='⏳ جارٍ البحث عن الفتوى الموثوقة…';
-
-  const FATWA_URL =
-    'https://late-salad-73d2.2009malek11.workers.dev/api/fatwa';
-
-  try{
-    const r=await fetch(FATWA_URL,{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        question:q
-      }),
-      cache:'no-store'
-    });
-
-    const text=await r.text();
-
-    let j={};
-
-    try{
-      j=JSON.parse(text);
-    }catch{
-      throw new Error('استجابة غير صالحة من خادم الفتوى.');
-    }
-
-    if(!r.ok){
-      throw new Error(j.error||'تعذر الوصول إلى خادم الفتوى.');
-    }
-
-    const answer=xSafe(
-      j.answer||'لم يصل نص الفتوى.'
-    );
-
-    const sources=
-      Array.isArray(j.sources)
-        ? j.sources
-        : [];
-
-    box.innerHTML=`
-      <div class="fatwaBadge">
-        🔎 فتوى من مصدر موثوق
-      </div>
-
-      <div style="white-space:pre-wrap;line-height:1.9;margin-top:8px">
-        ${answer}
-      </div>
-
-      ${
-        sources.length
-        ? `
-          <hr>
-          <b>المصدر:</b>
-          <ul>
-            ${
-              sources.map(x=>`
-                <li>
-                  <a
-                    href="${xSafe(x.url||'#')}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    ${xSafe(x.title||'عرض المصدر الأصلي')}
-                  </a>
-                </li>
-              `).join('')
-            }
-          </ul>
-        `
-        : `
-          <p class="mini">
-            لم يُرفق مصدر مباشر لهذه الإجابة.
-          </p>
-        `
-      }
-
-      <div class="fatwaWarning">
-        تنبيه: هذا مساعد للبحث في المصادر وليس مفتيًا.
-        راجع المصدر الأصلي وأهل العلم في المسائل المهمة.
-      </div>
-    `;
-
-  }catch(e){
-
-    console.error('FATWA ERROR:',e);
-
-    box.innerHTML=`
-      <div class="fatwaWarning">
-        تعذر جلب الفتوى حاليًا.
-        تأكد من اتصال الإنترنت ثم حاول مرة أخرى.
-      </div>
-    `;
-  }
-}
-  box.innerHTML='حدث خطأ: ' + xSafe(e?.message || String(e));
-}
+const FATWA_API_URL=localStorage.getItem('quran-m09-fatwa-api')||(window.QM09_AI_ENDPOINT||'/api/fatwa');
+async function askFatwaAI(){const q=(document.getElementById('fatwaQuestion')?.value||'').trim();const box=document.getElementById('fatwaAnswer');if(!q){box.textContent='اكتب السؤال أولًا.';return}box.innerHTML='⏳ جارٍ تشغيل مدير الفتوى…';try{const r=await fetch(FATWA_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();if(!r.ok)throw new Error(j.error||'api');const answer=xSafe(j.answer||'لم يصل جواب.');const sources=Array.isArray(j.sources)?j.sources:[];const mode=xSafe(j.mode||'search');const badge=mode==='ai'?'🤖 جواب بمساعدة الذكاء الاصطناعي':'🔎 بحث مساعد في المصادر';box.innerHTML=`<div class="fatwaBadge">${badge}</div><div style="white-space:pre-wrap;line-height:1.9;margin-top:8px">${answer}</div>${sources.length?`<hr><b>المصادر:</b><ul>${sources.map(x=>`<li><a href="${xSafe(x.url)}" target="_blank" rel="noopener">${xSafe(x.title||x.url)}</a></li>`).join('')}</ul>`:'<p class="mini">لم تُرفق مصادر؛ لا تعتمد على الجواب حتى تتوفر إحالة موثوقة.</p>'}<div class="fatwaWarning">تنبيه: هذا ليس مفتيًا، ولكنه مساعد يساعدك على البحث عن الفتوى ومصادرها. راجع المصدر الأصلي وأهل العلم في المسائل المهمة.</div>`}catch(e){box.innerHTML='تعذر الاتصال بمدير الفتوى الآن. تأكد من تشغيل خادم الفتوى ثم جرّب مرة أخرى.'}}
 
 function saveLocalSetting(k,v){localStorage.setItem('quran-m09-setting-'+k,v?'1':'0')}
 function setFontScale(v){document.documentElement.style.setProperty('--font-scale',String(v));localStorage.setItem('quran-m09-font-scale',String(v))}
@@ -633,3 +524,153 @@ const RUQYAH_READERS=[
 function renderRuqyah(q=''){const box=document.getElementById('ruqyahList');if(!box)return;const x=(q||document.getElementById('ruqyahSearch')?.value||'').trim();const arr=RUQYAH_READERS.filter(r=>!x||r.name.includes(x));box.innerHTML=arr.map((r,i)=>`<div class="ruqyahCard"><div class="title">🎙️ ${xSafe(r.name)}</div><div class="ruqyahMeta">${xSafe(r.desc)}</div><div class="ruqyahMeta">المصدر: ${xSafe(r.source)}</div><div class="controls"><button class="primary" onclick="openRuqyah(${i})">فتح والاستماع</button><a class="sourceLink" href="${r.url}" target="_blank" rel="noopener">المصدر</a></div></div>`).join('')||'<div class="card favEmpty">لا توجد نتائج.</div>';}
 function openRuqyah(i){const r=RUQYAH_READERS[i];if(!r)return;const box=document.getElementById('ruqyahPlayer');box.style.display='block';box.innerHTML=`<div class="detailHero"><h3>🕋 الرقية الشرعية — ${xSafe(r.name)}</h3><p class="mini">${xSafe(r.desc)}</p><div class="notice" style="margin-top:12px">🎙️ هذا تسجيل بشري. سيتم فتح صفحة المصدر الأصلية للاستماع، لأننا لا نضع تسجيلات صوتية منسوخة داخل التطبيق دون التحقق من حقوق استخدامها.</div><div class="controls"><a class="primary" href="${r.url}" target="_blank" rel="noopener">▶ فتح التسجيل والاستماع</a></div></div>`;box.scrollIntoView({behavior:'smooth',block:'start'});}
 const rqSearch=document.getElementById('ruqyahSearch');if(rqSearch)rqSearch.oninput=e=>renderRuqyah(e.target.value);
+
+
+/* ===== V27 additions ===== */
+const QP_V27_BASE='https://api.quranpedia.net/v1';
+const V27_ADHKAR_JSON='https://raw.githubusercontent.com/rn0x/Adhkar-json/master/adhkar.json';
+const V27_ADHKAR_AUDIO_BASE='https://raw.githubusercontent.com/rn0x/Adhkar-json/master';
+
+function v27Escape(v){return xSafe(String(v??''))}
+function v27SourceLink(url,title){return `<a class="sourceLink" href="${v27Escape(url)}" target="_blank" rel="noopener noreferrer">${v27Escape(title||url)}</a>`}
+
+function initTafsir(){
+  const s=document.getElementById('tafsirSurah'); if(!s||s.options.length)return;
+  s.innerHTML=S.map((n,i)=>`<option value="${i+1}">${i+1}. ${v27Escape(n)}</option>`).join('');
+  s.value='2';
+  loadTafsirBooks();
+}
+async function loadTafsirBooks(){
+  const s=document.getElementById('tafsirSurah'),box=document.getElementById('tafsirSources'); if(!s||!box)return;
+  box.innerHTML='⏳ جارٍ تحميل مصادر التفسير…';
+  try{
+    const r=await fetch(`${QP_V27_BASE}/surah/tafsirs/${encodeURIComponent(s.value)}`,{cache:'no-store'});
+    const a=await r.json();
+    const arr=Array.isArray(a)?a:[];
+    box.innerHTML=arr.length?arr.map((b,i)=>`<button class="sourceChip ${i===0?'active':''}" onclick="loadTafsir(${Number(b.id)})">${v27Escape(b.name||'تفسير')} — ${v27Escape(b.author||'')}</button>`).join(''):'<span class="mini">لا توجد قائمة مصادر متاحة لهذه السورة حاليًا.</span>';
+  }catch(e){box.innerHTML='<span class="mini">تعذر تحميل قائمة المصادر الآن.</span>'}
+}
+async function loadTafsir(bookId){
+  const s=document.getElementById('tafsirSurah'),a=document.getElementById('tafsirAyah'),box=document.getElementById('tafsirBox'); if(!s||!a||!box)return;
+  const sn=Number(s.value),an=Math.max(1,Number(a.value||1));
+  box.innerHTML='⏳ جارٍ جلب التفسير…';
+  try{
+    if(bookId){
+      const r=await fetch(`${QP_V27_BASE}/ayah/${sn}/${an}/book/${encodeURIComponent(bookId)}`,{cache:'no-store'});
+      const j=await r.json();
+      const b=j?.book||{}; const parts=Array.isArray(j?.content)?j.content:[];
+      box.innerHTML=`<div class="detailHero"><h3>📖 ${v27Escape(b.name||'التفسير')}</h3><p class="mini">المؤلف: ${v27Escape(b.author?.ar_name||b.author||'غير مذكور')}</p></div>${parts.map(x=>`<div class="detailText">${v27Escape(x.text||'')}</div>`).join('')||'<div class="notice">لا يوجد نص لهذا الموضع في هذا المصدر.</div>'}<div class="v27Source">المصدر: ${v27SourceLink('https://quranpedia.net','Quranpedia')}</div>`;
+      return;
+    }
+    const url=`https://quranpedia.net/embed?surah=${sn}&ayah=${an}&type=tafsir`;
+    box.innerHTML=`<div class="notice">التفسير من موسوعة القرآن الإلكترونية، ويمكنك اختيار ما هو متاح من المصادر داخل البطاقة.</div><iframe src="${url}" title="تفسير الآية" style="width:100%;height:620px;border:0;border-radius:16px;background:var(--card)" loading="lazy"></iframe><div class="v27Source">المصدر: ${v27SourceLink('https://quranpedia.net','Quranpedia')}</div>`;
+  }catch(e){box.innerHTML='<div class="notice">تعذر جلب التفسير الآن. حاول مرة أخرى.</div>'}
+}
+
+function initFatwaCenter(){
+ const q=document.getElementById('fatwaCenterSearch'); if(q&&!q.value)q.focus();
+}
+async function searchFatwaCenter(){
+ const q=(document.getElementById('fatwaCenterSearch')?.value||'').trim(),box=document.getElementById('fatwaCenterResults'); if(!box)return;
+ if(!q){box.innerHTML='<div class="notice">اكتب موضوع الفتوى أولًا.</div>';return}
+ box.innerHTML='⏳ جارٍ البحث في مصادر الفتاوى…';
+ try{
+  const r=await fetch(`${QP_V27_BASE}/search/${encodeURIComponent(q)}/fatwas`,{cache:'no-store'}); const j=await r.json(); const arr=Array.isArray(j?.items)?j.items:[];
+  if(!arr.length){box.innerHTML='<div class="card">لم أجد نتائج مناسبة. جرّب صياغة أخرى.</div>';return}
+  const details=await Promise.all(arr.slice(0,8).map(async x=>{
+    const id=x?.fatwa_info?.id??x?.id; if(!id)return null;
+    try{return await fetch(`${QP_V27_BASE}/fatwa/${encodeURIComponent(id)}`,{cache:'no-store'}).then(r=>r.json())}catch(e){return null}
+  }));
+  box.innerHTML=details.filter(Boolean).map(f=>`<div class="card v27Result"><h3>${v27Escape(f.ar_title||'فتوى')}</h3><p>${v27Escape(f.ar_answer||'')}</p><p class="v27Source">المصدر: ${v27Escape(f.mufti||'غير مذكور')} — ${v27SourceLink(f.ar_source_url||`https://quranpedia.net/fatwa/${f.id}`,'فتح المصدر الأصلي')}</p></div>`).join('');
+ }catch(e){box.innerHTML='<div class="notice">تعذر الوصول إلى مصدر الفتاوى الآن.</div>'}
+}
+
+let V27_ADHKAR_CACHE=null;
+async function initAdhkarHub(){
+ const cat=document.getElementById('adhkarHubCategories'),list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch'); if(!cat||!list)return;
+ if(!V27_ADHKAR_CACHE){
+  list.innerHTML='⏳ جارٍ تحميل الأذكار والتسجيلات البشرية…';
+  try{V27_ADHKAR_CACHE=await fetch(V27_ADHKAR_JSON,{cache:'no-store'}).then(r=>r.json())}catch(e){list.innerHTML='<div class="notice">تعذر تحميل مصدر الأذكار الآن.</div>';return}
+ }
+ const cats=V27_ADHKAR_CACHE.map(x=>x.category).filter(Boolean);
+ cat.innerHTML=cats.slice(0,24).map((c,i)=>`<button class="sourceChip ${i===0?'active':''}" onclick="renderAdhkarHub(${JSON.stringify(c)})">${v27Escape(c)}</button>`).join('');
+ if(search&&!search.dataset.v27){search.dataset.v27='1';search.oninput=()=>renderAdhkarHub(search.value)}
+ renderAdhkarHub('');
+}
+function renderAdhkarHub(filter){
+ const list=document.getElementById('adhkarHubList'),q=(document.getElementById('adhkarHubSearch')?.value||'').trim();
+ if(!list||!Array.isArray(V27_ADHKAR_CACHE))return;
+ let rows=[];
+ for(const group of V27_ADHKAR_CACHE){if(filter&&group.category!==filter)continue; for(const z of (group.array||[])){if(!q||String(z.text||'').includes(q)||String(group.category||'').includes(q))rows.push({...z,category:group.category})}}
+ rows=rows.slice(0,80);
+ list.innerHTML=rows.length?rows.map((z,i)=>{
+  const audio=z.audio?V27_ADHKAR_AUDIO_BASE+z.audio:'';
+  return `<div class="card v27Result"><b>${v27Escape(z.text)}</b><p class="mini">${v27Escape(z.category)} • ${Number(z.count||1)} مرات</p><div class="audioRow">${audio?`<audio controls preload="none" src="${v27Escape(audio)}"></audio><span class="v27Source">تسجيل بشري: حمد الدريهم</span>`:'<span class="mini">لا يوجد تسجيل مطابق لهذا الذكر.</span>'}</div><div class="v27Source">المصدر النصي: حصن المسلم — مصدر البيانات والتسجيل: Adhkar-json</div></div>`
+ }).join(''):'<div class="card">لا توجد نتائج.</div>';
+}
+
+const V27_HADITH_AUDIO={
+  'إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى.':{url:'https://hedaya-international-academy.com/wp-content/uploads/2020/09/الحديث-1-إنما-الأعمال-بالنيات.mp3',source:'أكاديمية هداية الدولية'},
+  'من كان يؤمن بالله واليوم الآخر فليقل خيرًا أو ليصمت.':{url:'https://omtameem.com/wp-content/uploads/فضيلة-الصمت.mp3',source:'الموقع الرسمي للدكتورة عزة محمد رشاد'}
+};
+function playHumanHadith(i){
+ const h=(HADITHS||[])[Number(i)],n=document.getElementById('humanHadithNotice'); if(!h||!n)return;
+ const a=V27_HADITH_AUDIO[h.text];
+ if(!a){n.style.display='block';n.innerHTML=`<b>🎙️ التسجيل البشري</b><p class="mini">لا يوجد لدينا حاليًا تسجيل بشري مطابق لهذا الحديث بالذات، لذلك لن نشغل تسجيلًا لحديث آخر.</p><p class="v27Source">المصدر: ${v27Escape(h.source||'')}</p>`;window.scrollTo({top:0,behavior:'smooth'});return}
+ n.style.display='block';n.innerHTML=`<b>🎙️ الاستماع بصوت بشري</b><div class="audioRow"><audio controls autoplay src="${a.url}"></audio></div><p class="v27Source">التسجيل: ${v27Escape(a.source)} — الحديث: ${v27Escape(h.source||'')}</p>`;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const V27_SCHOLARS=['عبد العزيز بن باز','محمد بن صالح العثيمين','ابن تيمية','ابن كثير','صالح الفوزان','عبد الرزاق البدر'];
+function initScholars(){
+ const box=document.getElementById('scholarsList'); if(!box)return;
+ box.innerHTML=V27_SCHOLARS.map((n,i)=>`<button class="scholarCard" onclick="loadScholar(${i})"><b>👳 ${v27Escape(n)}</b><small>بحث المواد المنسوبة إليه في المصادر</small></button>`).join('');
+}
+async function loadScholar(i){
+ const n=V27_SCHOLARS[Number(i)],box=document.getElementById('scholarResults'); if(!n||!box)return;
+ box.innerHTML='⏳ جارٍ البحث عن المواد المنسوبة…';
+ try{
+  const r=await fetch(`${QP_V27_BASE}/search/${encodeURIComponent(n)}`,{cache:'no-store'}),j=await r.json();
+  const groups=[...(Array.isArray(j?.fatwas?.items)?j.fatwas.items:[]),...(Array.isArray(j?.notes?.items)?j.notes.items:[]),...(Array.isArray(j?.books?.items)?j.books.items:[])].slice(0,15);
+  box.innerHTML=`<div class="card"><h3>مواد مرتبطة بـ ${v27Escape(n)}</h3>${groups.length?groups.map(x=>`<div class="v27Result"><b>${v27Escape(x.fatwa_info?.ar_title||x.note_info?.title||x.book_info?.name||x.ar_title||x.name||'مادة')}</b><p class="mini">${v27Escape(x.fatwa_info?.mufti||x.fatwa_info?.author||x.book_info?.author||x.author||'المصدر لم يحدد المؤلف هنا')}</p></div>`).join(''):'<p class="mini">لم تظهر نتائج كافية من واجهة البحث.</p>'}<p class="v27Source">المصدر: ${v27SourceLink('https://quranpedia.net','Quranpedia')} — لا ننسب مادة للعالم إلا إذا أظهر المصدر نسبتها إليه.</p></div>`;
+ }catch(e){box.innerHTML='<div class="notice">تعذر البحث عن المواد الآن.</div>'}
+}
+
+const V27_ASMA=[['الرحمن','واسع الرحمة'],['الرحيم','كثير الرحمة بعباده المؤمنين'],['الملك','المالك المتصرف'],['القدوس','المنزه عن كل نقص'],['السلام','السالم من كل عيب ونقص'],['المؤمن','الذي يؤمّن عباده'],['المهيمن','الرقيب الحافظ'],['العزيز','الغالب الذي لا يُغلب'],['الحكيم','ذو الحكمة البالغة'],['الغفور','كثير المغفرة']];
+function renderAsma(){
+ const box=document.getElementById('asmaList'),q=(document.getElementById('asmaSearch')?.value||'').trim(); if(!box)return;
+ box.innerHTML=V27_ASMA.filter(x=>!q||x[0].includes(q)||x[1].includes(q)).map(x=>`<div class="asmaCard"><b>ﷲ ${v27Escape(x[0])}</b><small>${v27Escape(x[1])}</small></div>`).join('')||'<div class="card">لا توجد نتائج.</div>';
+}
+document.getElementById('asmaSearch')?.addEventListener('input',renderAsma);
+
+function renderKhatmah(){
+ const s=document.getElementById('khatmahSurah'); if(!s)return;
+ if(!s.options.length)s.innerHTML=S.map((n,i)=>`<option value="${i+1}">${i+1}. ${v27Escape(n)}</option>`).join('');
+ const saved=JSON.parse(localStorage.getItem('quran-m09-v27-khatmah')||'null')||{surah:1,ayah:0};
+ s.value=String(saved.surah||1);document.getElementById('khatmahAyah').value=String(saved.ayah||0);
+ const done=(Number(SURAH_AYAH_OFFSETS?.[Number(saved.surah)-1]||0)+Number(saved.ayah||0)),total=6236,p=Math.min(100,Math.round(done/total*100));
+ document.getElementById('khatmahPercent').textContent=p+'%';document.getElementById('khatmahText').textContent=p?`تقدمك التقريبي: ${p}%`:'لم تبدأ الختمة بعد';
+}
+function saveKhatmah(){
+ const surah=Number(document.getElementById('khatmahSurah')?.value||1),ayah=Math.max(0,Number(document.getElementById('khatmahAyah')?.value||0));
+ localStorage.setItem('quran-m09-v27-khatmah',JSON.stringify({surah,ayah}));
+ renderKhatmah();
+}
+function resetKhatmah(){localStorage.removeItem('quran-m09-v27-khatmah');renderKhatmah()}
+
+function renderNotes(){
+ const box=document.getElementById('notesList');if(!box)return;const arr=JSON.parse(localStorage.getItem('quran-m09-v27-notes')||'[]');
+ box.innerHTML=arr.length?arr.map((n,i)=>`<div class="card v27Result"><div>${v27Escape(n.text)}</div><small class="mini">${v27Escape(n.date)}</small><button class="danger" onclick="deleteNote(${i})">حذف</button></div>`).join(''):'<div class="card">لا توجد ملاحظات بعد.</div>';
+}
+function addNote(){const el=document.getElementById('noteInput'),t=(el?.value||'').trim();if(!t)return;const arr=JSON.parse(localStorage.getItem('quran-m09-v27-notes')||'[]');arr.unshift({text:t,date:new Date().toLocaleString('ar-LY')});localStorage.setItem('quran-m09-v27-notes',JSON.stringify(arr));el.value='';renderNotes()}
+function deleteNote(i){const arr=JSON.parse(localStorage.getItem('quran-m09-v27-notes')||'[]');arr.splice(i,1);localStorage.setItem('quran-m09-v27-notes',JSON.stringify(arr));renderNotes()}
+function renderFeedback(){
+ const box=document.getElementById('feedbackList');if(!box)return;const arr=JSON.parse(localStorage.getItem('quran-m09-v27-feedback')||'[]');
+ box.innerHTML=arr.length?arr.map(x=>`<div class="card v27Result"><b>${v27Escape(x.type)}</b><div>${v27Escape(x.text)}</div><small class="mini">${v27Escape(x.date)}</small></div>`).join(''):'<div class="card">لم تحفظ آراء على هذا الجهاز بعد.</div>';
+}
+function saveFeedback(){const t=(document.getElementById('feedbackText')?.value||'').trim();if(!t)return;const type=document.getElementById('feedbackType')?.value||'رأي';const arr=JSON.parse(localStorage.getItem('quran-m09-v27-feedback')||'[]');arr.unshift({type,text:t,date:new Date().toLocaleString('ar-LY')});localStorage.setItem('quran-m09-v27-feedback',JSON.stringify(arr));document.getElementById('feedbackText').value='';const st=document.getElementById('feedbackStatus');if(st){st.style.display='block';st.textContent='تم حفظ رأيك على هذا الجهاز. لإرساله لنا فعليًا سنضيف خادم الملاحظات لاحقًا.'}renderFeedback()}
+
+function initV27(){
+ try{renderAsma();renderKhatmah()}catch(e){}
+}
+initV27();
+
