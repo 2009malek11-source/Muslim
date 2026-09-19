@@ -501,8 +501,110 @@ function renderNightInfo(){const box=document.getElementById('nightInfo');const 
 function sharePrayerCard(){const t=window._prayerTimes;if(!t){alert('حمّل مواقيت الصلاة أولًا.');return}const fmt=v=>{const [h,m]=String(v).split(':').map(Number);const ap=h>=12?'م':'ص';return `${h%12||12}:${String(m).padStart(2,'0')} ${ap}`};const text=`🕌 مواقيت الصلاة اليوم\nالفجر ${fmt(t.Fajr)}\nالظهر ${fmt(t.Dhuhr)}\nالعصر ${fmt(t.Asr)}\nالمغرب ${fmt(t.Maghrib)}\nالعشاء ${fmt(t.Isha)}\n\nQuran M09alaroud`;if(navigator.share)navigator.share({title:'مواقيت الصلاة',text}).catch(()=>{});else navigator.clipboard?.writeText(text).then(()=>alert('تم نسخ بطاقة المواقيت.'))}
 
 const FATWA_API_URL="https://late-salad-73d2.2009malek11.workers.dev/api/fatwa";
-async function askFatwaAI(){const q=(document.getElementById('fatwaQuestion')?.value||'').trim();const box=document.getElementById('fatwaAnswer');if(!q){box.textContent='اكتب السؤال أولًا.';return}box.innerHTML='⏳ جارٍ تشغيل مدير الفتوى…';try{const r=await fetch(FATWA_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const j=await r.json();if(!r.ok)throw new Error(j.error||'api');const answer=xSafe(j.answer||'لم يصل جواب.');const sources=Array.isArray(j.sources)?j.sources:[];const mode=xSafe(j.mode||'search');const badge=mode==='ai'?'🤖 جواب بمساعدة الذكاء الاصطناعي':'🔎 بحث مساعد في المصادر';box.innerHTML=`<div class="fatwaBadge">${badge}</div><div style="white-space:pre-wrap;line-height:1.9;margin-top:8px">${answer}</div>${sources.length?`<hr><b>المصادر:</b><ul>${sources.map(x=>`<li><a href="${xSafe(x.url)}" target="_blank" rel="noopener">${xSafe(x.title||x.url)}</a></li>`).join('')}</ul>`:'<p class="mini">لم تُرفق مصادر؛ لا تعتمد على الجواب حتى تتوفر إحالة موثوقة.</p>'}<div class="fatwaWarning">تنبيه: هذا ليس مفتيًا، ولكنه مساعد يساعدك على البحث عن الفتوى ومصادرها. راجع المصدر الأصلي وأهل العلم في المسائل المهمة.</div>`}catch(e){
-  console.error('FATWA ERROR:', e);
+async function askFatwaAI(){
+  const q=(document.getElementById('fatwaQuestion')?.value||'').trim();
+  const box=document.getElementById('fatwaAnswer');
+
+  if(!q){
+    box.textContent='اكتب السؤال أولًا.';
+    return;
+  }
+
+  box.innerHTML='⏳ جارٍ البحث عن الفتوى الموثوقة…';
+
+  const FATWA_URL =
+    'https://late-salad-73d2.2009malek11.workers.dev/api/fatwa';
+
+  try{
+    const r=await fetch(FATWA_URL,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        question:q
+      }),
+      cache:'no-store'
+    });
+
+    const text=await r.text();
+
+    let j={};
+
+    try{
+      j=JSON.parse(text);
+    }catch{
+      throw new Error('استجابة غير صالحة من خادم الفتوى.');
+    }
+
+    if(!r.ok){
+      throw new Error(j.error||'تعذر الوصول إلى خادم الفتوى.');
+    }
+
+    const answer=xSafe(
+      j.answer||'لم يصل نص الفتوى.'
+    );
+
+    const sources=
+      Array.isArray(j.sources)
+        ? j.sources
+        : [];
+
+    box.innerHTML=`
+      <div class="fatwaBadge">
+        🔎 فتوى من مصدر موثوق
+      </div>
+
+      <div style="white-space:pre-wrap;line-height:1.9;margin-top:8px">
+        ${answer}
+      </div>
+
+      ${
+        sources.length
+        ? `
+          <hr>
+          <b>المصدر:</b>
+          <ul>
+            ${
+              sources.map(x=>`
+                <li>
+                  <a
+                    href="${xSafe(x.url||'#')}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ${xSafe(x.title||'عرض المصدر الأصلي')}
+                  </a>
+                </li>
+              `).join('')
+            }
+          </ul>
+        `
+        : `
+          <p class="mini">
+            لم يُرفق مصدر مباشر لهذه الإجابة.
+          </p>
+        `
+      }
+
+      <div class="fatwaWarning">
+        تنبيه: هذا مساعد للبحث في المصادر وليس مفتيًا.
+        راجع المصدر الأصلي وأهل العلم في المسائل المهمة.
+      </div>
+    `;
+
+  }catch(e){
+
+    console.error('FATWA ERROR:',e);
+
+    box.innerHTML=`
+      <div class="fatwaWarning">
+        تعذر جلب الفتوى حاليًا.
+        تأكد من اتصال الإنترنت ثم حاول مرة أخرى.
+      </div>
+    `;
+  }
+}
   box.innerHTML='حدث خطأ: ' + xSafe(e?.message || String(e));
 }
 
