@@ -1,4 +1,4 @@
-Quran M09alaroud V26 MOBILE TEST
+المسلم V26 MOBILE TEST
 
 هذه نسخة اختبار للهاتف أولاً.
 - افتح index.html عبر خادم محلي ثم افتحه من iPhone على نفس Wi-Fi.
