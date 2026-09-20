@@ -558,7 +558,7 @@ async function locateQibla(){
     let p;
     if(selected){p={coords:{latitude:selected.lat,longitude:selected.lon}}}
     else{p=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{enableHighAccuracy:true,timeout:15000,maximumAge:0}));setSelectedLocation(p.coords.latitude,p.coords.longitude,'موقع الجهاز • دقة '+Math.round(p.coords.accuracy||0)+'م');updateLocationLabels()}
-    const lat=p.coords.latitude,lon=p.coords.longitude,kaabaLat=21.422487,kaabaLon=39.826206,rad=Math.PI/180;
+    // const lat=p.coords.latitude,lon=p.coords.longitude,kaabaLat=21.422487,kaabaLon=39.826206,rad=Math.PI/180;
     const y=Math.sin((kaabaLon-lon)*rad)*Math.cos(kaabaLat*rad);
     const x=Math.cos(lat*rad)*Math.sin(kaabaLat*rad)-Math.sin(lat*rad)*Math.cos(kaabaLat*rad)*Math.cos((kaabaLon-lon)*rad);
     qiblaBearing=normalizeDeg(Math.atan2(y,x)/rad);qiblaLastHeading=null;
