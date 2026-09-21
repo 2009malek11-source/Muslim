@@ -1,13 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="description" content="المسلم — موقع إسلامي متكامل للقرآن الكريم، الأذكار والأدعية، الأحاديث، القراء، مواقيت الصلاة والقبلة.">
-<meta name="keywords" content="القرآن الكريم, قرآن, أذكار, أدعية, أحاديث, قراء القرآن, مواقيت الصلاة, القبلة, إسلام">
-<meta name="author" content="المسلم">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="المسلم — القرآن الكريم">
-<meta property="og:description" content="موقع إسلامي متكامل للقرآن الكريم والأذكار والأدعية والأحاديث ومواقيت الصلاة والقبلة.">
-<meta property="og:type" content="website">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1d624f"><link rel="manifest" href="manifest.webmanifest">
 <title>المسلم</title>
@@ -169,18 +162,9 @@ html{overflow-x:hidden}body{overflow-x:hidden}button,a,input,select,textarea{tou
 .qiblaV27Card{overflow:hidden}.qiblaV27Intro{display:flex;gap:12px;align-items:center;justify-content:center;text-align:right}.qiblaV27Intro>span{font-size:42px}.qiblaV27Intro b{display:block;font-size:20px}.qiblaV27Intro small{color:var(--muted)}
 .qiblaStage{display:grid;place-items:center;margin:18px 0}.qiblaDialV27{width:min(76vw,330px);height:min(76vw,330px);max-width:330px;max-height:330px;border-radius:50%;position:relative;border:10px solid #d5c29a;background:radial-gradient(circle,#fffdf8 0 55%,#efe6d3 56% 100%);box-shadow:inset 0 0 0 2px #fff,0 15px 35px #173c3120}.qiblaRing{position:absolute;inset:18px;border:1px dashed #bba77b;border-radius:50%}.qiblaMarkV27{position:absolute;font-weight:900;font-size:20px;color:var(--green);z-index:2}.qiblaMarkV27.n{top:22px;left:50%;transform:translateX(-50%)}.qiblaMarkV27.e{right:25px;top:50%;transform:translateY(-50%)}.qiblaMarkV27.s{bottom:22px;left:50%;transform:translateX(-50%)}.qiblaMarkV27.w{left:25px;top:50%;transform:translateY(-50%)}.qiblaArrow{position:absolute;left:50%;top:50%;width:0;height:0;transform-origin:0 0;z-index:5}.qiblaArrowLine{position:absolute;width:7px;height:105px;left:-3.5px;top:-105px;border-radius:8px;background:linear-gradient(#a33,#c8a15b)}.qiblaArrowHead{position:absolute;left:-14px;top:-128px;width:28px;height:28px;background:#a33;clip-path:polygon(50% 0,100% 100%,50% 78%,0 100%);}.qiblaCenter{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:28px;background:var(--card);border:2px solid #c8a15b;border-radius:50%;width:58px;height:58px;display:grid;place-items:center;z-index:6}.qiblaKaabaMarker{position:absolute;left:50%;top:6px;transform:translateX(-50%);font-size:27px;z-index:7;background:var(--card);border-radius:12px;padding:2px 5px;box-shadow:0 3px 10px #0002}.qiblaReadout{display:grid;gap:7px;text-align:center}.qiblaReadout b{font-size:18px}.qiblaReadout span{color:var(--muted);font-size:13px}.sourceChips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.sourceChip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 11px;cursor:pointer;color:var(--text)}.sourceChip.active{border-color:var(--gold);box-shadow:0 0 0 2px #c8a15b33}.scholarGrid,.asmaGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.scholarCard,.asmaCard{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--card);cursor:pointer}.scholarCard b,.asmaCard b{display:block;margin-bottom:5px}.scholarCard small,.asmaCard small{color:var(--muted)}.khatmahCard{text-align:center}.khatmahCircle{width:140px;height:140px;border-radius:50%;border:12px solid #c8a15b;display:grid;place-items:center;margin:10px auto;font-size:30px;font-weight:900}.v27Result{margin:12px 0}.v27Result .mini{margin-top:7px}.audioRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.audioRow audio{width:min(100%,480px)}.v27Source{font-size:13px;color:var(--muted)}@media(max-width:700px){.v27HomeGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.scholarGrid,.asmaGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .largeUI{font-size:1.08em}.reduceMotion *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-</style><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-<style>
-#mosqueMap{height:380px;border-radius:18px;border:1px solid var(--line);margin-top:12px;z-index:1}
-.locationModal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:10000}
-.locationModal.show{display:flex}.locationModal .box{width:min(520px,100%);background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 20px 60px #0004}
-.locationModal .box h3{margin-top:0}.locationModal .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.locationModal .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.page .section .back{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--line)!important}
-.mushafToolbar button.zoomBtn{font-weight:800;min-width:52px}
-@media(max-width:650px){#mosqueMap{height:300px}.locationModal .grid{grid-template-columns:1fr}}
-</style>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</style><style>
 
+</style>
 <style id="v34-enhancements">
 /* V34 */
 html{--mushaf-font:28px}
@@ -191,7 +175,7 @@ html{--mushaf-font:28px}
 .v34-advanced-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.v34-advanced-grid button{min-height:42px}
 @media(max-width:680px){.v34-advanced-grid{grid-template-columns:1fr}}
 </style>
-<meta name="app-version" content="V48"><meta name="adhkar-audio-policy" content="human-recordings-only"><meta name="travel-mode" content="removed">
+<meta name="app-version" content="V50"><meta name="adhkar-audio-policy" content="human-recordings-only"><meta name="travel-mode" content="removed">
 </head>
 <body><div class="app">
 <header class="top"><div class="brand"><span class="logo" aria-label="شعار المسلم"></span><div><b>المسلم</b><small>القرآن • التلاوات • الأذكار • الأحاديث</small></div></div><div><button onclick="toggleDark()">☀</button></div></header>
@@ -202,10 +186,11 @@ html{--mushaf-font:28px}
 
 
 
-<section id="adhkarHub" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🤲 الأذكار والأدعية</h2><p>أقسام واسعة مع النص والمصدر والصوت البشري عند توفر تسجيل مطابق.</p></div></div>
-<div class="card"><input id="adhkarHubSearch" class="field" placeholder="🔎 ابحث في الذكر أو الدعاء"><div id="adhkarHubCategories" class="sourceChips"></div></div><div id="adhkarHubList"></div></section>
+<section id="adhkarHub" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🤲 الأذكار والأدعية</h2><p>قسم مستقل جديد للنصوص والتسجيلات البشرية والمفضلة والتنزيل دون إنترنت.</p></div></div>
+<div class="card v50HubIntro"><b>🎙️ التسجيلات البشرية</b><p class="mini">كل ذكر يُربط بتسجيله الخاص من المصدر الصوتي، ولا نستخدم صوتًا آليًا. إذا كان للتسجيل ملف صوتي مستقل فسيظهر زر الاستماع والتحميل.</p><input id="adhkarHubSearch" class="field" placeholder="🔎 ابحث في الذكر أو الدعاء"></div>
+<div id="adhkarHubCategories" class="sourceChips"></div><div id="adhkarHubList"></div></section>
 
-<section id="scholars" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>👳 علماء المسلمين</h2><p>مواد مرتبطة بالعلماء مع إظهار المصدر وعدم نسبة مادة بلا دليل.</p></div></div>
+<section id="scholars"<section id="scholars" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>👳 علماء المسلمين</h2><p>مواد مرتبطة بالعلماء مع إظهار المصدر وعدم نسبة مادة بلا دليل.</p></div></div>
 <div class="card"><div id="scholarsList" class="scholarGrid"></div></div><div id="scholarResults"></div></section>
 
 <section id="asma" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🌿 أسماء الله الحسنى</h2><p>الأسماء ومعانيها باختصار، مع التنبيه إلى اختلاف قوائم الأسماء المعيّنة.</p></div></div><input id="asmaSearch" class="search" placeholder="🔎 ابحث عن اسم"><div id="asmaList" class="asmaGrid"></div></section>
@@ -239,21 +224,36 @@ html{--mushaf-font:28px}
     </div>
   </div>
   <div class="qiblaReadout"><b id="qiblaText">اختر موقعك ثم شغّل القبلة</b><span id="qiblaHeading">اتجاه الهاتف: — • اتجاه مكة: —</span></div>
-  <div class="locationPicker card" style="margin-top:12px"><b>📍 موقعك المستخدم للقبلة</b><p class="mini">استخدم موقع الجهاز بدقة عالية، أو اضغط على الخريطة لتحديد موقع مختلف، أو استخدم زر تحديد موقعي تلقائيًا.</p><div class="controls"><button class="primary" onclick="useDeviceLocation('qibla')">📍 استخدام موقعي</button><button onclick="showManualLocation()">✏️ تحديد يدوي</button></div><div id="selectedLocationQibla" class="mini" style="margin-top:8px"></div></div>
+  <div class="locationPicker card" style="margin-top:12px"><b>📍 الموقع الحالي</b><p class="mini">الموقع يُحدّث تلقائيًا من GPS بدقة عالية. لا توجد خريطة ولا تحديد يدوي.</p><div id="selectedLocationQibla" class="mini" style="margin-top:8px">جارٍ تحديد الموقع…</div><button class="primary" onclick="refreshLiveLocation('qibla')" style="margin-top:10px">📍 تحديث موقعي الآن</button></div>
   <button class="primary" onclick="locateQibla()" style="width:100%;margin-top:12px">🧭 تشغيل ومعايرة القبلة</button><button onclick="qiblaLastHeading=null;locateQibla()" style="width:100%;margin-top:8px">🔄 إعادة المعايرة</button>
   <p class="mini">يحتاج المتصفح إلى إذن الموقع وحساس الاتجاه. السهم هو العنصر المتحرك؛ الكلمات والعلامات تبقى ثابتة.</p>
   <a class="sourceLink" href="https://qibla.fatiha.com/" target="_blank" rel="noopener">مصدر مساعد لاتجاه القبلة</a>
 </div></section>
 
 <section id="repeatAyah" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🔁 تكرار الآية</h2><p>اختر السورة ونطاق الآيات والقارئ، ثم ابدأ التكرار حتى تضغط إيقاف.</p></div></div><div class="card"><label class="mini">السورة</label><select id="repeatSurah" class="field"></select><label class="mini">من الآية</label><input id="repeatFrom" class="field" type="number" min="1" value="1"><label class="mini">إلى الآية</label><input id="repeatTo" class="field" type="number" min="1" value="1"><label class="mini">القارئ</label><input id="repeatReaderSearch" class="field" placeholder="🔎 ابحث عن القارئ..."><select id="repeatReciter" class="field"></select><div class="controls"><button class="primary" onclick="startAyahRepeat()">▶ بدء التكرار</button><button class="danger" onclick="stopAyahRepeat()">⏹ إيقاف نهائي</button></div><div id="repeatAyahStatus" class="notice" style="margin-top:12px">اختر السورة والقارئ ثم ابدأ.</div></div></section>
-<section id="tasmee3Unavailable" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🎙️ تسميع القرآن</h2><p>ميزة تسميع القرآن</p></div></div><div class="card detailHero"><div class="detailIcon">🎙️</div><h2>هذه الميزة ليست متاحة الآن</h2><p class="muted">سيتم تفعيل تسميع القرآن في إصدار لاحق.</p></div></section><section id="prayer" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🕌 مواقيت الصلاة</h2><p>مواقيت اليوم مع تحديد الموقع أو اختيار المدينة.</p></div></div><div class="card"><div class="controls"><button class="primary" onclick="loadPrayerTimes(true)">📍 استخدام موقعي بدقة</button><button onclick="loadPrayerTimes(false)">🔄 تحديث</button></div><label class="mini">الدولة</label><select id="prayerCountrySelect" class="field" onchange="populatePrayerCities()"></select><label class="mini">المدينة</label><select id="prayerCitySelect" class="field"></select><input id="prayerCity" type="hidden" value="Tripoli"><input id="prayerCountry" type="hidden" value="Libya"><select id="prayerMethod" class="field"><option value="2">رابطة العالم الإسلامي — 18° / 17°</option><option value="5">هيئة المساحة المصرية — 19.5° / 17.5°</option><option value="3">جامعة العلوم الإسلامية بكراتشي — 18° / 18°</option><option value="8">منطقة الخليج</option></select><select id="prayerSchool" class="field"><option value="0">العصر: المالكي / الشافعي / الحنبلي</option><option value="1">العصر: الحنفي</option></select><select id="prayerHighLat" class="field"><option value="3">تصحيح خطوط العرض: زاويًا</option><option value="1">أقرب خط عرض</option><option value="2">منتصف الليل</option></select><div class="notice"><b>ما معنى «العصر: المالكي / الشافعي / الحنبلي»؟</b><br>هذا يحدد طريقة حساب بداية وقت العصر. المالكي هنا مع الشافعي والحنبلي في الحساب القياسي: يبدأ العصر عندما يصبح ظل الشيء مساويًا لطوله تقريبًا بعد استثناء ظل الزوال. الحنفي يحسبه عند ضعف ذلك تقريبًا، لذلك يظهر العصر متأخرًا.</div><div class="notice">الدقة الأعلى = موقع GPS عالي الدقة + طريقة حساب واضحة + تصحيح خطوط العرض + توقيت جهازك المحلي. اختلاف دقيقة أو أكثر قد يحدث بين طرق الحساب المختلفة.</div><div class="notice">للدقة الأعلى: اسمح بالموقع، ثم اختر طريقة الحساب والمذهب المناسبين لمكانك. مواقيت الصلاة تُحسب من الإحداثيات أو المدينة عبر خدمة المواقيت.</div><div id="prayerStatus" class="notice">جارٍ التحميل…</div><div id="prayerList" class="prayerGrid"></div></div></section>
+<section id="tasmee3Unavailable" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🎙️ تسميع القرآن</h2><p>ميزة تسميع القرآن</p></div></div><div class="card detailHero"><div class="detailIcon">🎙️</div><h2>هذه الميزة ليست متاحة الآن</h2><p class="muted">سيتم تفعيل تسميع القرآن في إصدار لاحق.</p></div></section><section id="prayer" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🕌 مواقيت الصلاة</h2><p>مواقيت اليوم مع تحديد الموقع أو اختيار المدينة.</p></div></div><div class="card"><div class="controls"><button class="primary" onclick="loadPrayerTimes(true)">📍 استخدام موقعي بدقة</button><button onclick="loadPrayerTimes(false)">🔄 تحديث</button></div><label class="mini">الدولة</label><select id="prayerCountrySelect" class="field" onchange="populatePrayerCities()"></select><label class="mini">المدينة</label><select id="prayerCitySelect" class="field"></select><input id="prayerCity" type="hidden" value="Tripoli"><input id="prayerCountry" type="hidden" value="Libya"><div class="notice">تُحدد المواقيت تلقائيًا من البلد والمدينة، ومع توفر GPS يُستخدم الموقع الحالي بدقة عالية. لا تحتاج إلى اختيار مذهب أو طريقة حساب.</div><div id="prayerStatus" class="notice">جارٍ التحميل…</div><div id="prayerList" class="prayerGrid"></div></div></section>
 <section id="daily" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>☀️ أعمال اليوم والليلة</h2><p>أعمال وتذكيرات مرتبطة بالوقت الحالي</p></div></div><div id="dailyList" class="extraGrid"></div></section>
-<section id="mosques" class="page"><div class="section"><button class="back" onclick="show('home')">← الرئيسية</button><div><h2>🕌 المساجد القريبة</h2><p>حدد موقعك، ثم تظهر قائمة المساجد الأقرب إليك بأوسع نطاق متاح للبحث، مع ترتيب النتائج من الأقرب إلى الأبعد.</p></div></div><div class="card"><b>📍 تحديد الموقع</b><p class="mini">لا توجد نافذة تطلب منك الكتابة تلقائيًا. يمكنك السماح بالموقع أو فتح خريطة واختيار نقطة بنفسك.</p><div class="controls"><button class="primary" onclick="useDeviceLocation('mosques')">📍 استخدام موقعي بدقة</button><button onclick="showManualLocation()">🗺️ اختيار من الخريطة</button></div><div id="selectedLocationMosques" class="mini" style="margin:8px 0"></div><div id="mosqueMap"></div><div class="pillRow" id="mosqueTypeChooser" style="margin-top:12px"><button class="pill active" data-mtype="mosques" onclick="setMosqueType('mosques')">🕌 مسجد</button><button class="pill" data-mtype="women" onclick="setMosqueType('women')">👩 مصلى / مكان صلاة للنساء</button></div><div class="notice">اختر ما تريد البحث عنه. في خيار النساء سنبحث عن المصليات والمرافق التي تُظهر بيانات خرائطها أن للنساء إمكانية استخدام المكان. إذا لم تكن بيانات النساء مذكورة في OpenStreetMap فلن نعتبر المكان مخصصًا للنساء حتى لا نعطيك معلومة غير مؤكدة.</div><div class="controls" style="margin-top:12px"><button class="primary" onclick="findMosques()">🔎 البحث عن الأقرب</button></div><div id="mosqueStatus" class="notice" style="margin-top:12px">حدد موقعك أولًا ثم اختر مسجدًا أو مصلى نساء ثم اضغط البحث.</div><div id="mosqueList"></div></div></section>
-<section id="calendar" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>📅 التقويم والمناسبات</h2><p>التاريخ الهجري والميلادي والمناسبات الإسلامية</p></div></div><div class="card"><div id="dateInfo" class="shareCard"></div></div><div class="card"><h3>🔄 تحويل التاريخ</h3><div class="controls"><button class="primary" onclick="convertTodayToHijri()">ميلادي ← هجري</button><button onclick="convertHijriToday()">هجري ← ميلادي</button></div><div id="conversionResult" class="notice">اختر التحويل.</div></div><div class="card"><h3>🌙 المناسبات الإسلامية</h3><div id="occasionsList"></div></div></section>
+<section id="mosques" class="page"><div class="section"><button class="back" onclick="show('home')">← الرئيسية</button><div><h2>🕌 المساجد القريبة</h2><p>يعتمد البحث على موقع GPS الحالي فقط، ويبدأ بالأقرب ثم يوسع البحث تلقائيًا.</p></div></div><div class="card"><b>📍 موقعك الحالي</b><p class="mini">لا توجد خريطة ولا تحديد يدوي. عند تغيير موقعك أثناء الحركة يمكن للتطبيق تحديث نقطة البحث تلقائيًا.</p><div id="selectedLocationMosques" class="mini" style="margin:8px 0">جارٍ تحديد الموقع…</div><div class="pillRow" id="mosqueTypeChooser" style="margin-top:12px"><button class="pill active" data-mtype="mosques" onclick="setMosqueType('mosques')">🕌 مسجد</button><button class="pill" data-mtype="women" onclick="setMosqueType('women')">👩 مصلى / مكان صلاة للنساء</button></div><div class="notice">في خيار النساء لا نعرض المكان على أنه مخصص للنساء إلا إذا كانت بيانات المصدر تشير بوضوح إلى ذلك.</div><div class="controls" style="margin-top:12px"><button class="primary" onclick="findMosques()">🔎 البحث الآن</button></div><div id="mosqueStatus" class="notice" style="margin-top:12px">جارٍ تحديد الموقع تلقائيًا…</div><div id="mosqueList"></div></div></section>
+<section id="calendar"<section id="calendar" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>📅 التقويم والمناسبات</h2><p>التاريخ الهجري والميلادي والمناسبات الإسلامية</p></div></div><div class="card"><div id="dateInfo" class="shareCard"></div></div><div class="card"><h3>🔄 تحويل التاريخ</h3><div class="controls"><button class="primary" onclick="convertTodayToHijri()">ميلادي ← هجري</button><button onclick="convertHijriToday()">هجري ← ميلادي</button></div><div id="conversionResult" class="notice">اختر التحويل.</div></div><div class="card"><h3>🌙 المناسبات الإسلامية</h3><div id="occasionsList"></div></div></section>
 
 <section id="favorites" class="page"><div class="section"><button class="back" onclick="show('settings')">←</button><div><h2>⭐ المفضلة</h2><p>كل نوع له خانة مستقلة.</p></div></div><div class="favoritesCategories"><button class="favCategoryBtn active" data-fav="readers" onclick="renderFavorites('readers')">🎙️<span>المشايخ والقراء</span></button><button class="favCategoryBtn" data-fav="hadiths" onclick="renderFavorites('hadiths')">📜<span>الأحاديث</span></button><button class="favCategoryBtn" data-fav="adhkar" onclick="renderFavorites('adhkar')">🤲<span>الأذكار</span></button><button class="favCategoryBtn" data-fav="quran" onclick="renderFavorites('quran')">📖<span>القرآن والسور</span></button><button class="favCategoryBtn" data-fav="daily" onclick="renderFavorites('daily')">☀️<span>أعمال اليوم</span></button><button class="favCategoryBtn" data-fav="ruqyah" onclick="renderFavorites('ruqyah')">🕋<span>الرقية</span></button></div><div id="favoritesList" class="favoritesList"></div></section>
 <section id="qrPage" class="page"><div class="section"><button class="back" onclick="show('settings')">←</button><div><h2>📱 QR كود</h2><p>افتح موقع المسلم من الهاتف بسرعة.</p></div></div><div class="card" style="text-align:center"><img src="qr-muslim-site.png" alt="QR كود موقع المسلم" style="width:min(100%,320px);display:block;margin:10px auto;border-radius:12px"><b>https://2009malek11-source.github.io/Muslim/</b><p class="muted">بعد فتح الموقع، استخدم خيار «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إذا ظهر في المتصفح.</p><button class="primary" onclick="downloadMuslimQR()">⬇️ حفظ QR كصورة</button></div></section>
-<section id="settings" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>⚙️ الإعدادات</h2><p>إعدادات التطبيق والتحكم فيه</p></div></div><div class="settingsGrid"><div class="setting"><b>📱 QR كود لتطبيق المسلم</b><p class="muted">امسح الكود لفتح موقع المسلم في المتصفح.</p><div class="controls"><button class="primary" onclick="show('qrPage')">عرض QR كود</button><button onclick="openInstallGuide()">📲 كيفية التثبيت عبر PWA</button></div></div><div class="setting favoritesSetting"><b>⭐ المفضلة</b><p class="muted">المشايخ والقراء والأحاديث والأذكار والقرآن التي حفظتها على هذا الجهاز.</p><button class="primary" onclick="show('favorites');renderFavorites(document.getElementById('favoritesType')?.value||'readers')">فتح المفضلة</button></div><div class="setting"><b>🌙 المظهر</b><p class="muted">فاتح أو مظلم.</p><button class="primary" onclick="toggleDark()">تبديل المظهر</button></div><div class="setting"><b>🔔 تذكيرات الصلاة</b><p class="muted">احفظ اختيارك الآن، وسيتم تفعيل الإشعارات الأصلية عند تجهيز نسخة الهاتف.</p><label><input id="settingPrayerReminders" type="checkbox" onchange="saveLocalSetting('prayerReminders',this.checked)"> تفعيل تذكيرات الصلاة</label></div><div class="setting"><b>🌙 المناسبات الإسلامية</b><p class="muted">إظهار المناسبات والأعياد الإسلامية داخل التطبيق.</p><label><input id="settingOccasions" type="checkbox" checked onchange="saveLocalSetting('occasions',this.checked)"> إظهار المناسبات</label></div><div class="setting"><b>📍 الخصوصية والموقع</b><p class="muted">لا نطلب الموقع إلا عند استخدام الصلاة أو القبلة أو المساجد. لا يوجد حساب شخصي ولا ملف موقع للمستخدم، ولا نحفظ إحداثيات موقعك في حساب داخل التطبيق. لا يتم استخدام الموقع في الخلفية.</p><button class="primary" onclick="show('qibla')">فتح القبلة</button></div><div class="setting"><b>📖 آخر قراءة</b><p class="muted">حفظ آخر سورة محليًا على هذا الجهاز.</p><button class="primary" onclick="alert('سيتم فتح آخر موضع قراءة عند استكمال نظام المتابعة.')">إدارة آخر قراءة</button></div><div class="setting"><b>🔤 حجم الخط</b><p class="muted">تكبير أو تصغير نصوص التطبيق.</p><div style="display:flex;gap:8px"><button class="primary" onclick="setFontScale(0.9)">A−</button><button class="primary" onclick="setFontScale(1)">A</button><button class="primary" onclick="setFontScale(1.12)">A+</button></div></div><div class="setting"><b>⬇️ التنزيلات</b><p class="muted">هنا يظهر ما قام المستخدم بتنزيله للاستماع أو الاستخدام بدون إنترنت.</p><button class="primary" onclick="showDownloadsInSettings()">فتح التنزيلات</button><div id="settingsDownloads" class="list" style="margin-top:10px"></div></div><div class="setting"><b>🌐 اللغات</b><p class="muted">غيّر لغة واجهة التطبيق. نص المصحف والآيات يبقى باللغة العربية.</p><select id="appLanguage" class="field" onchange="setAppLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="es">Español</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option><option value="bn">বাংলা</option><option value="hi">हिन्दी</option><option value="fa">فارسی</option><option value="sw">Kiswahili</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="it">Italiano</option><option value="nl">Nederlands</option></select><div class="mini">المصحف لا تتم ترجمته.</div></div><div class="setting"><b>🔊 الصوت</b><p class="muted">تحكم في التشغيل التلقائي ومستوى الصوت.</p><label><input type="checkbox" id="settingAutoplay" onchange="saveLocalSetting('autoplay',this.checked)"> التشغيل التلقائي للتلاوات</label><label><input type="checkbox" id="settingKeepAudio" checked onchange="saveLocalSetting('keepAudio',this.checked)"> استمرار الصوت عند الانتقال بين الأقسام</label></div><div class="setting"><b>📖 قراءة القرآن</b><p class="muted">خيارات تساعدك على القراءة.</p><label><input type="checkbox" id="settingLastRead" checked onchange="saveLocalSetting('lastRead',this.checked)"> حفظ آخر موضع قراءة</label><label><input type="checkbox" id="settingArabicOnly" checked disabled> إبقاء نص المصحف بالعربية</label></div><div class="setting"><b>📍 دقة الموقع</b><p class="muted">استخدم الموقع عالي الدقة فقط عند طلب المساجد أو القبلة، ولا يعمل في الخلفية.</p><label><input type="checkbox" id="settingHighAccuracy" checked onchange="saveLocalSetting('highAccuracy',this.checked)"> استخدام أعلى دقة متاحة</label><button class="primary" onclick="showManualLocation()">تغيير الموقع يدويًا</button></div><div class="setting"><b>🧭 البوصلة</b><p class="muted">معايرة حساسات الهاتف عند استخدام القبلة.</p><button class="primary" onclick="locateQibla()">معايرة وتشغيل القبلة</button></div><div class="setting"><b>🕌 مواقيت الصلاة</b><p class="muted">اختر طريقة الحساب من صفحة مواقيت الصلاة، ويمكنك حفظ المدينة.</p><button class="primary" onclick="show('prayer')">إعداد مواقيت الصلاة</button></div><div class="setting"><b>📳 الاهتزاز</b><label><input type="checkbox" checked onchange="saveLocalSetting('vibration',this.checked)"> تفعيل الاهتزاز عند توفره</label></div><div class="setting"><b>🔎 البحث</b><label><input type="checkbox" checked onchange="saveLocalSetting('searchSuggestions',this.checked)"> إظهار اقتراحات البحث</label></div><div class="setting"><b>🗓️ التقويم</b><label><input type="checkbox" checked onchange="saveLocalSetting('hijriCalendar',this.checked)"> إظهار التاريخ الهجري والمناسبات</label></div><div class="setting"><b>♿ سهولة الاستخدام</b><label><input type="checkbox" onchange="document.body.classList.toggle('largeUI',this.checked);saveLocalSetting('largeUI',this.checked)"> تكبير عناصر الواجهة</label><label><input type="checkbox" onchange="document.body.classList.toggle('reduceMotion',this.checked);saveLocalSetting('reduceMotion',this.checked)"> تقليل الحركة</label></div><div class="setting"><b>🛠️ أدوات إضافية</b><p class="muted">اختصارات سريعة لتحسين تجربة التطبيق وإدارة البيانات.</p><div class="v34-advanced-grid"><button onclick="location.reload()">🔄 إعادة تحميل التطبيق</button><button onclick="clearCachedAppDataV34()">🧹 تنظيف التخزين المؤقت</button><button onclick="showAppInfoV34()">ℹ️ معلومات الاتصال</button></div><div id="v34ToolsStatus" class="mini" style="margin-top:8px"></div></div><div class="setting"><b>🧹 بيانات الجهاز</b><p class="muted">حذف إعدادات هذا الجهاز فقط.</p><button class="danger" onclick="clearLocalAppData()">مسح بيانات التطبيق المحلية</button></div><div class="setting"><b>ℹ️ عن التطبيق</b><p class="muted">تطبيق المسلم</p><p class="mini">الموقع يعمل بدون حساب، ولا توجد ميزة تسجيل دخول.</p></div></div></section>
+<script id="v51-home-clean">
+(function(){
+  function cleanHomeUtilityCards(){
+    const home=document.getElementById('home'); if(!home)return;
+    home.querySelectorAll('.setting,.card,[data-home-utility]').forEach(el=>{
+      const t=(el.textContent||'').replace(/\s+/g,' ');
+      if(/بيانات الجهاز|مسح بيانات التطبيق المحلية|عن التطبيق/.test(t)) el.remove();
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(cleanHomeUtilityCards,120));
+  else setTimeout(cleanHomeUtilityCards,120);
+  window.cleanHomeUtilityCards=cleanHomeUtilityCards;
+})();
+</script>
+
+<section id="settings" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>⚙️ الإعدادات</h2><p>إعدادات التطبيق والتحكم فيه</p></div></div><div class="settingsGrid"><div class="setting"><b>📱 QR كود لتطبيق المسلم</b><p class="muted">امسح الكود لفتح موقع المسلم في المتصفح.</p><div class="controls"><button class="primary" onclick="show('qrPage')">عرض QR كود</button><button onclick="openInstallGuide()">📲 كيفية التثبيت عبر PWA</button></div></div><div class="setting favoritesSetting"><b>⭐ المفضلة</b><p class="muted">المشايخ والقراء والأحاديث والأذكار والقرآن التي حفظتها على هذا الجهاز.</p><button class="primary" onclick="show('favorites');renderFavorites(document.getElementById('favoritesType')?.value||'readers')">فتح المفضلة</button></div><div class="setting"><b>🔔 تذكيرات الصلاة</b><p class="muted">احفظ اختيارك الآن، وسيتم تفعيل الإشعارات الأصلية عند تجهيز نسخة الهاتف.</p><label><input id="settingPrayerReminders" type="checkbox" onchange="saveLocalSetting('prayerReminders',this.checked)"> تفعيل تذكيرات الصلاة</label></div><div class="setting"><b>🌙 المناسبات الإسلامية</b><p class="muted">إظهار المناسبات والأعياد الإسلامية داخل التطبيق.</p><label><input id="settingOccasions" type="checkbox" checked onchange="saveLocalSetting('occasions',this.checked)"> إظهار المناسبات</label></div><div class="setting"><b>📍 الخصوصية والموقع</b><p class="muted">لا نطلب الموقع إلا عند استخدام الصلاة أو القبلة أو المساجد. لا يوجد حساب شخصي ولا ملف موقع للمستخدم، ولا نحفظ إحداثيات موقعك في حساب داخل التطبيق. لا يتم استخدام الموقع في الخلفية.</p><button class="primary" onclick="show('qibla')">فتح القبلة</button></div><div class="setting"><b>📖 آخر قراءة</b><p class="muted">حفظ آخر سورة محليًا على هذا الجهاز.</p><button class="primary" onclick="alert('سيتم فتح آخر موضع قراءة عند استكمال نظام المتابعة.')">إدارة آخر قراءة</button></div><div class="setting"><b>🔤 حجم الخط</b><p class="muted">تكبير أو تصغير نصوص التطبيق.</p><div style="display:flex;gap:8px"><button class="primary" onclick="setFontScale(0.9)">A−</button><button class="primary" onclick="setFontScale(1)">A</button><button class="primary" onclick="setFontScale(1.12)">A+</button></div></div></div><div class="setting"><b>🌐 اللغات</b><p class="muted">غيّر لغة واجهة التطبيق. نص المصحف والآيات يبقى باللغة العربية.</p><select id="appLanguage" class="field" onchange="setAppLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="es">Español</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option><option value="bn">বাংলা</option><option value="hi">हिन्दी</option><option value="fa">فارسی</option><option value="sw">Kiswahili</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="it">Italiano</option><option value="nl">Nederlands</option></select><div class="mini">المصحف لا تتم ترجمته.</div></div><div class="setting"><b>🔊 الصوت</b><p class="muted">تحكم في التشغيل التلقائي ومستوى الصوت.</p><label><input type="checkbox" id="settingAutoplay" onchange="saveLocalSetting('autoplay',this.checked)"> التشغيل التلقائي للتلاوات</label><label><input type="checkbox" id="settingKeepAudio" checked onchange="saveLocalSetting('keepAudio',this.checked)"> استمرار الصوت عند الانتقال بين الأقسام</label></div><div class="setting"><b>📖 قراءة القرآن</b><p class="muted">خيارات تساعدك على القراءة.</p><label><input type="checkbox" id="settingLastRead" checked onchange="saveLocalSetting('lastRead',this.checked)"> حفظ آخر موضع قراءة</label><label><input type="checkbox" id="settingArabicOnly" checked disabled> إبقاء نص المصحف بالعربية</label></div><div class="setting"><b>📳 الاهتزاز</b><label><input type="checkbox" checked onchange="saveLocalSetting('vibration',this.checked)"> تفعيل الاهتزاز عند توفره</label></div><div class="setting"><b>🔎 البحث</b><label><input type="checkbox" checked onchange="saveLocalSetting('searchSuggestions',this.checked)"> إظهار اقتراحات البحث</label></div><div class="setting"><b>🗓️ التقويم</b><label><input type="checkbox" checked onchange="saveLocalSetting('hijriCalendar',this.checked)"> إظهار التاريخ الهجري والمناسبات</label></div><div class="setting"><b>♿ سهولة الاستخدام</b><label><input type="checkbox" onchange="document.body.classList.toggle('largeUI',this.checked);saveLocalSetting('largeUI',this.checked)"> تكبير عناصر الواجهة</label><label><input type="checkbox" onchange="document.body.classList.toggle('reduceMotion',this.checked);saveLocalSetting('reduceMotion',this.checked)"> تقليل الحركة</label></div><div id="v34ToolsStatus" class="mini" style="margin-top:8px"></div></div><div class="setting"><b>🧹 بيانات الجهاز</b><p class="muted">حذف إعدادات هذا الجهاز فقط.</p><button class="danger" onclick="clearLocalAppData()">مسح بيانات التطبيق المحلية</button></div><div class="setting"><b>ℹ️ عن التطبيق</b><p class="muted">تطبيق المسلم</p><p class="mini">الموقع يعمل بدون حساب، ولا توجد ميزة تسجيل دخول.</p></div></div></section>
 </div><nav class="nav" aria-label="التنقل"><button onclick="show('home')"><span>🏠</span><b>الرئيسية</b></button><button onclick="show('settings')"><span>⚙️</span><b>الإعدادات</b></button></nav>
 </div><script src="ai-config.js"></script><script>const audio=document.getElementById('audio');
 const audioSeek=document.getElementById('audioSeek'),audioPlayBtn=document.getElementById('audioPlayBtn'),audioTime=document.getElementById('audioTime'),audioTitle=document.getElementById('audioTitle');
@@ -843,31 +843,19 @@ function initPrayerPlaces(){const c=document.getElementById('prayerCountrySelect
 document.getElementById('prayerMethod')&&(document.getElementById('prayerMethod').value=localStorage.getItem('muslimPrayerMethod')||'2');document.getElementById('prayerSchool')&&(document.getElementById('prayerSchool').value=localStorage.getItem('muslimPrayerSchool')||'0');document.getElementById('prayerHighLat')&&(document.getElementById('prayerHighLat').value=localStorage.getItem('muslimPrayerHighLat')||'3');
 function populatePrayerCities(preferred){const c=document.getElementById('prayerCountrySelect'),city=document.getElementById('prayerCitySelect');if(!c||!city)return;const country=PRAYER_PLACES[c.value]||PRAYER_PLACES['ليبيا'];const keys=Object.keys(country.cities);city.innerHTML=keys.map(x=>`<option value="${xSafe(x)}">${xSafe(x)}</option>`).join('');const target=preferred&&keys.includes(preferred)?preferred:keys[0];city.value=target;document.getElementById('prayerCountry').value=country.en;document.getElementById('prayerCity').value=country.cities[target];localStorage.setItem('muslimPrayerCountryAr',c.value);localStorage.setItem('muslimPrayerCityAr',target);}
 async function loadPrayerTimes(useLocation=false){
- const status=document.getElementById('prayerStatus'),list=document.getElementById('prayerList');if(!status||!list)return;
- status.textContent='⏳ جارٍ حساب مواقيت الصلاة بدقة…';
+ const status=document.getElementById('prayerStatus'),list=document.getElementById('prayerList');if(!status||!list)return;status.textContent='⏳ جارٍ تحديث مواقيت الصلاة بدقة…';
  try{
-  const method=document.getElementById('prayerMethod')?.value||'2',school=document.getElementById('prayerSchool')?.value||'0',highLat=document.getElementById('prayerHighLat')?.value||'3'; localStorage.setItem('muslimPrayerMethod',method);localStorage.setItem('muslimPrayerSchool',school);localStorage.setItem('muslimPrayerHighLat',highLat);
-  let url,locationLabel='طرابلس';let loc=getSelectedLocation();
-  if(useLocation){
-   if(!navigator.geolocation)throw new Error('geo');
-   const p=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true,timeout:20000,maximumAge:0}));
-   loc=setSelectedLocation(p.coords.latitude,p.coords.longitude,'موقع الجهاز • دقة '+Math.round(p.coords.accuracy||0)+'م');updateLocationLabels();
-  }
-  if(loc&&Number.isFinite(Number(loc.lat))&&Number.isFinite(Number(loc.lon))){
-   url=`https://api.aladhan.com/v1/timings?latitude=${encodeURIComponent(loc.lat)}&longitude=${encodeURIComponent(loc.lon)}&method=${method}&school=${school}&latitudeAdjustmentMethod=${highLat}&midnightMode=1&timezonestring=${encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone||'Africa/Tripoli')}`;locationLabel=`الموقع المحدد (${Number(loc.lat).toFixed(5)}, ${Number(loc.lon).toFixed(5)})`;
-  }else{
-   const c=document.getElementById('prayerCountrySelect'),city=document.getElementById('prayerCitySelect');if(c&&city){populatePrayerCities(city.value);}
-   const cityEn=encodeURIComponent(document.getElementById('prayerCity').value||'Tripoli'),countryEn=encodeURIComponent(document.getElementById('prayerCountry').value||'Libya');
-   url=`https://api.aladhan.com/v1/timingsByCity?city=${cityEn}&country=${countryEn}&method=${method}&school=${school}&latitudeAdjustmentMethod=${highLat}&midnightMode=1&timezonestring=${encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone||'Africa/Tripoli')}`;
-   locationLabel=`${document.getElementById('prayerCitySelect')?.value||'طرابلس'}، ${document.getElementById('prayerCountrySelect')?.value||'ليبيا'}`;
-  }
-  const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw new Error('prayer');const d=await r.json();const t=d.data?.timings;if(!t)throw new Error('no-data');
+  if(useLocation)refreshLiveLocation('qibla');
+  const loc=getSelectedLocation();let url,locationLabel='طرابلس، ليبيا';
+  if(loc&&Number.isFinite(loc.lat)&&Number.isFinite(loc.lon)){url=`https://api.aladhan.com/v1/timings?latitude=${loc.lat}&longitude=${loc.lon}&method=2&school=0&latitudeAdjustmentMethod=3&midnightMode=1&timezonestring=${encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone||'Africa/Tripoli')}`;locationLabel='الموقع الحالي';}
+  else{const c=document.getElementById('prayerCountrySelect'),city=document.getElementById('prayerCitySelect');if(c&&city)populatePrayerCities(city.value);const cityEn=encodeURIComponent(document.getElementById('prayerCity').value||'Tripoli'),countryEn=encodeURIComponent(document.getElementById('prayerCountry').value||'Libya');url=`https://api.aladhan.com/v1/timingsByCity?city=${cityEn}&country=${countryEn}&method=2&school=0&latitudeAdjustmentMethod=3&midnightMode=1&timezonestring=${encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone||'Africa/Tripoli')}`;locationLabel=`${document.getElementById('prayerCitySelect')?.value||'طرابلس'}، ${document.getElementById('prayerCountrySelect')?.value||'ليبيا'}`}
+  const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('prayer');const d=await r.json(),t=d.data?.timings;if(!t)throw Error('no-data');
   const items=[['الفجر','Fajr','🌅'],['الشروق','Sunrise','☀️'],['الظهر','Dhuhr','🌞'],['العصر','Asr','🌤️'],['المغرب','Maghrib','🌇'],['العشاء','Isha','🌙']];
-  const fmt12=v=>{const [hh,mm]=String(v||'—').split(':').map(Number);if(!Number.isFinite(hh))return v;const ap=hh>=12?'م':'ص',h=hh%12||12;return `${h}:${String(mm).padStart(2,'0')} ${ap}`};
-  list.innerHTML=items.map(x=>`<div class="prayerCard"><span>${x[2]}</span><small>${x[0]}</small><b>${fmt12(t[x[1]])}</b></div>`).join('');window._prayerTimes={...t};updateHomePrayerCard();
-  const acc=loc?.accuracy?` • دقة الموقع ~${Math.round(loc.accuracy)}م`:'';status.textContent=`📅 ${d.data?.date?.readable||'اليوم'} • ${locationLabel}${acc} • طريقة الحساب: ${method==='5'?'الهيئة المصرية':method==='2'?'رابطة العالم الإسلامي':method==='3'?'كراتشي':method==='8'?'الخليج':'مخصصة'}`;
+  const fmt12=v=>{const [hh,mm]=String(v||'—').split(':').map(Number);if(!Number.isFinite(hh))return v;return `${hh%12||12}:${String(mm).padStart(2,'0')} ${hh>=12?'م':'ص'}`};
+  list.innerHTML=items.map(x=>`<div class="prayerCard"><span>${x[2]}</span><small>${x[0]}</small><b>${fmt12(t[x[1]])}</b></div>`).join('');window._prayerTimes={...t};updateHomePrayerCard();status.textContent=`📅 ${d.data?.date?.readable||'اليوم'} • ${locationLabel}${loc?.accuracy?` • دقة GPS ~${Math.round(loc.accuracy)}م`:''}`;
  }catch(e){status.textContent='تعذر تحميل المواقيت. اسمح بالموقع أو اختر الدولة والمدينة ثم حاول مرة أخرى.';console.error(e)}
 }
+
 const DAILY_BASE=[
  {id:'morning',title:'أذكار الصباح',desc:'ابدأ يومك بذكر الله',icon:'🌅',action:"show('adhkar');renderAdhkar('صباح')"},
  {id:'quran',title:'ورد القرآن',desc:'اقرأ ما تيسر من كتاب الله',icon:'📖',action:"show('quran')"},
@@ -904,106 +892,98 @@ function renderDaily(){
  box.innerHTML=rows.map(x=>`<div class="card dailyCard"><div class="dailyTop"><span class="dailyIcon">${x.icon}</span><div><h3>${xSafe(x.title)}</h3><p class="mini">${xSafe(x.desc)}</p><small class="timeBadge">${xSafe(x.when)}</small></div><button class="favBtn ${fav.includes(String(x.id))?'active':''}" onclick="toggleDailyFavorite('${String(x.id).replaceAll("'","\\'")}')">${fav.includes(String(x.id))?'★':'☆'}</button></div><button class="primary" onclick="${x.action}">فتح</button></div>`).join('');
 }
 
-function getSelectedLocation(){try{return JSON.parse(localStorage.getItem('muslimSelectedLocation')||'null')}catch(e){return null}}
-function setSelectedLocation(lat,lon,label){const x={lat:Number(lat),lon:Number(lon),label:label||'موقع محدد'};localStorage.setItem('muslimSelectedLocation',JSON.stringify(x));updateLocationLabels();return x}
-function updateLocationLabels(){const x=getSelectedLocation();const text=x?`الموقع المحدد: ${Number(x.lat).toFixed(5)}, ${Number(x.lon).toFixed(5)}${x.label?' • '+x.label:''}`:'لم يتم تحديد موقع بعد.';['selectedLocationQibla','selectedLocationMosques'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=text})}
-let mosqueMap=null,manualMap=null,mapMarker=null,manualMarker=null; window._mosqueResultMarkers=[];
-function initMosqueMap(){
- const el=document.getElementById('mosqueMap'); if(!el||typeof L==='undefined')return;
- if(mosqueMap){setTimeout(()=>mosqueMap.invalidateSize(),80);return;}
- mosqueMap=L.map(el,{zoomControl:true}).setView([32.8872,13.1913],11);
- L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(mosqueMap);
- const loc=getSelectedLocation(); if(loc) setMapLocation(loc.lat,loc.lon,loc.label);
-}
-function setMapLocation(lat,lon,label){
- if(!mosqueMap)return; if(mapMarker)mosqueMap.removeLayer(mapMarker);
- mapMarker=L.marker([lat,lon]).addTo(mosqueMap).bindPopup('📍 '+(label||'موقعك')).openPopup();
- mosqueMap.setView([lat,lon],15);
-}
-let manualPicked=null;
-function showManualLocation(){
- const modal=document.getElementById('locationModal'); if(!modal)return; modal.classList.add('show');
- const loc=getSelectedLocation(); manualPicked=loc?{lat:Number(loc.lat),lon:Number(loc.lon)}:null;
- const picked=document.getElementById('manualPicked'); if(picked) picked.textContent=manualPicked?`الموقع الحالي: ${manualPicked.lat.toFixed(5)}, ${manualPicked.lon.toFixed(5)} — اضغط على الخريطة لتغييره.`:'اضغط على الخريطة لتحديد الموقع.';
- setTimeout(()=>{
-   const el=document.getElementById('manualMap'); if(typeof L==='undefined'||!el)return;
-   if(!manualMap){
-     manualMap=L.map(el,{zoomControl:true}).setView(loc?[loc.lat,loc.lon]:[32.8872,13.1913],loc?15:11);
-     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(manualMap);
-     manualMap.on('click',e=>{
-       manualPicked={lat:e.latlng.lat,lon:e.latlng.lng};
-       if(manualMarker)manualMap.removeLayer(manualMarker);
-       manualMarker=L.marker(e.latlng).addTo(manualMap).bindPopup('📍 الموقع المحدد').openPopup();
-       const picked=document.getElementById('manualPicked'); if(picked)picked.textContent=`تم اختيار: ${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
-     });
-   }
-   if(loc){if(manualMarker)manualMap.removeLayer(manualMarker);manualMarker=L.marker([loc.lat,loc.lon]).addTo(manualMap).bindPopup('📍 الموقع الحالي');manualMap.setView([loc.lat,loc.lon],15);}
-   manualMap.invalidateSize();
- },120);
-}
-function closeLocationModal(){document.getElementById('locationModal')?.classList.remove('show')}
-function locateMeOnManualMap(){
- if(!navigator.geolocation){alert('المتصفح لا يدعم تحديد الموقع.');return}
- const picked=document.getElementById('manualPicked');if(picked)picked.textContent='⏳ جارٍ تحديد موقعك…';
- navigator.geolocation.getCurrentPosition(p=>{manualPicked={lat:p.coords.latitude,lon:p.coords.longitude};if(manualMap){if(manualMarker)manualMap.removeLayer(manualMarker);manualMarker=L.marker([manualPicked.lat,manualPicked.lon]).addTo(manualMap).bindPopup('📍 موقعي الحالي').openPopup();manualMap.setView([manualPicked.lat,manualPicked.lon],16);manualMap.invalidateSize();}if(picked)picked.textContent=`📍 تم تحديد موقعي: ${manualPicked.lat.toFixed(5)}, ${manualPicked.lon.toFixed(5)} • دقة تقريبية ${Math.round(p.coords.accuracy||0)}م`;},()=>{if(picked)picked.textContent='تعذر تحديد موقعك. اسمح بالموقع من المتصفح ثم حاول مرة أخرى.';},{enableHighAccuracy:true,timeout:20000,maximumAge:0});
-}
-function saveManualLocation(){
- if(!manualPicked){alert('اضغط أولًا على المكان المطلوب في الخريطة.');return}
- const {lat,lon}=manualPicked;
- setSelectedLocation(lat,lon,'اختيار من الخريطة');
- closeLocationModal(); updateLocationLabels(); if(mosqueMap)setMapLocation(lat,lon,'الموقع المحدد');
-}
-
-function useDeviceLocation(target){if(!navigator.geolocation){alert('المتصفح لا يدعم تحديد الموقع.');return}const msg=target==='qibla'?document.getElementById('qiblaText'):document.getElementById('mosqueStatus');if(msg)msg.textContent='⏳ جارٍ تحديد موقعك بدقة…';navigator.geolocation.getCurrentPosition(p=>{const x=setSelectedLocation(p.coords.latitude,p.coords.longitude,'موقع الجهاز • دقة '+Math.round(p.coords.accuracy||0)+'م');updateLocationLabels();if(msg)msg.textContent='تم تحديد موقعك بدقة (حوالي '+Math.round(p.coords.accuracy||0)+'م).';},()=>{if(msg)msg.textContent='تعذر الحصول على موقعك. اسمح بالموقع من إعدادات المتصفح.'},{enableHighAccuracy:true,timeout:15000,maximumAge:0})}
 let selectedMosqueType=localStorage.getItem('muslimMosqueType')||'mosques';
-function setMosqueType(type){selectedMosqueType=type==='women'?'women':'mosques';localStorage.setItem('muslimMosqueType',selectedMosqueType);document.querySelectorAll('#mosqueTypeChooser .pill').forEach(b=>b.classList.toggle('active',b.dataset.mtype===selectedMosqueType));const st=document.getElementById('mosqueStatus');if(st)st.textContent=selectedMosqueType==='women'?'اخترت: مصليات/أماكن الصلاة التي تظهر في بيانات الخريطة أنها مناسبة للنساء.':'اخترت: المساجد القريبة.';}
-function mosqueWomenTagged(t){const vals=['yes','designated','only'];const female=String(t.female||t.women||t['female:access']||'').toLowerCase();return vals.includes(female)||String(t['female:conditional']||'').trim()!==''||String(t.description||'').toLowerCase().match(/women|female|نساء|للنساء|مصلى نساء|نساء فقط/);}
+window._liveLocation=null;
+function getSelectedLocation(){return window._liveLocation||null}
+function setSelectedLocation(lat,lon,label,accuracy){window._liveLocation={lat:Number(lat),lon:Number(lon),label:label||'موقع GPS',accuracy:Number(accuracy||0)};updateLocationLabels();return window._liveLocation}
+function updateLocationLabels(){const x=getSelectedLocation();const text=x?`📍 الموقع الحالي • دقة تقريبية ${Math.round(x.accuracy||0)}م`:'📍 جارٍ تحديد موقعك بدقة عالية…';['selectedLocationQibla','selectedLocationMosques'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=text});}
+function handleLivePosition(p){return setSelectedLocation(p.coords.latitude,p.coords.longitude,'موقع GPS',p.coords.accuracy)}
+function startHighAccuracyLocationWatch(){
+ if(!navigator.geolocation){updateLocationLabels();return}
+ if(window._geoWatchId!=null)return;
+ const opts={enableHighAccuracy:true,timeout:20000,maximumAge:0};
+ window._geoWatchId=navigator.geolocation.watchPosition(p=>{handleLivePosition(p);updateLocationLabels();if(document.getElementById('prayer')?.classList.contains('active'))loadPrayerTimes(true);},()=>{updateLocationLabels()},opts);
+ navigator.geolocation.getCurrentPosition(p=>{handleLivePosition(p);updateLocationLabels()},()=>{},opts);
+}
+function refreshLiveLocation(target){
+ const el=target==='qibla'?document.getElementById('qiblaText'):document.getElementById('mosqueStatus');if(el)el.textContent='⏳ جارٍ تحديث موقعك بدقة عالية…';
+ if(!navigator.geolocation){if(el)el.textContent='المتصفح لا يدعم تحديد الموقع.';return}
+ navigator.geolocation.getCurrentPosition(p=>{handleLivePosition(p);updateLocationLabels();if(el)el.textContent=`✓ تم تحديث الموقع • دقة تقريبية ${Math.round(p.coords.accuracy||0)}م`;if(target==='mosques')findMosques();},()=>{if(el)el.textContent='تعذر الحصول على الموقع. اسمح بالموقع من إعدادات المتصفح.'},{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+}
+function useDeviceLocation(target){refreshLiveLocation(target)}
+function setMosqueType(type){selectedMosqueType=type==='women'?'women':'mosques';localStorage.setItem('muslimMosqueType',selectedMosqueType);document.querySelectorAll('#mosqueTypeChooser .pill').forEach(b=>b.classList.toggle('active',b.dataset.mtype===selectedMosqueType));const st=document.getElementById('mosqueStatus');if(st)st.textContent=selectedMosqueType==='women'?'سيتم البحث عن مصليات/أماكن صلاة تشير بياناتها بوضوح إلى إتاحة النساء.':'سيتم البحث عن المساجد الأقرب.';}
+function mosqueWomenTagged(t){const female=String(t.female||t.women||t['female:access']||'').toLowerCase();return ['yes','designated','only'].includes(female)||String(t['female:conditional']||'').trim()!==''||/women|female|نساء|للنساء|مصلى نساء|نساء فقط/i.test(String(t.description||''));}
 async function findMosques(){
- const st=document.getElementById('mosqueStatus'),list=document.getElementById('mosqueList');if(!st||!list)return;const loc=getSelectedLocation();if(!loc){st.textContent='📍 حدد موقعك أولًا باستخدام «استخدام موقعي» أو «اختيار من الخريطة».';return}
- setMosqueType(selectedMosqueType);st.textContent='⏳ جارٍ البحث بدقة ضمن 10 كم…';list.innerHTML='';
- try{const {lat,lon}=loc;
-  const q=`[out:json][timeout:80];(node[amenity=place_of_worship][religion=muslim](around:20000,${lat},${lon});way[amenity=place_of_worship][religion=muslim](around:20000,${lat},${lon});relation[amenity=place_of_worship][religion=muslim](around:20000,${lat},${lon});node[building=mosque](around:20000,${lat},${lon});way[building=mosque](around:20000,${lat},${lon});relation[building=mosque](around:20000,${lat},${lon});node[name~"مسجد|جامع|زاوية|مصلى|mosque|masjid|musalla|mushalla",i](around:20000,${lat},${lon});way[name~"مسجد|جامع|زاوية|مصلى|mosque|masjid|musalla|mushalla",i](around:20000,${lat},${lon}););out center tags;`;
-  const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];
-  const responses=await Promise.allSettled(endpoints.map(ep=>fetch(ep+'?data='+encodeURIComponent(q),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})));
-  const elements=[];for(const r of responses)if(r.status==='fulfilled'&&Array.isArray(r.value?.elements))elements.push(...r.value.elements);
-  const dist=e=>{const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)return 99999;const R=6371,rad=Math.PI/180,a=Math.sin((la-lat)*rad/2)**2+Math.cos(lat*rad)*Math.cos(la*rad)*Math.sin((lo-lon)*rad/2)**2;return 2*R*Math.asin(Math.sqrt(a))};
-  const seen=new Set(),arr=[];for(const e of elements){const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)continue;const d=dist(e);if(d>10)continue;const t=e.tags||{};const isMusalla=String(t.place_of_worship||'').toLowerCase()==='musalla'||/مصلى|musalla|mushalla/i.test(String(t.name||''));if(selectedMosqueType==='women'){if(!mosqueWomenTagged(t)&&!(isMusalla&&mosqueWomenTagged(t)))continue}else if(isMusalla&&String(t.female||t.women||'').toLowerCase()==='no')continue;const key=la.toFixed(5)+','+lo.toFixed(5);if(seen.has(key))continue;seen.add(key);const name=t.name_ar||t['name:ar']||t.name||(isMusalla?'مصلى':'مسجد');arr.push({e,d,name,la,lo,t,isMusalla})}
-  arr.sort((a,b)=>a.d-b.d);const shown=arr.slice(0,100);if(!shown.length){st.textContent=selectedMosqueType==='women'?'لم نجد ضمن 10 كم أماكن مسجلة ببيانات واضحة عن إتاحة المكان للنساء. هذا لا يعني عدم وجودها، بل قد تكون المعلومة غير مضافة للخريطة.':'لم نجد أماكن عبادة إسلامية مسجلة ضمن 10 كم من الموقع المحدد.';return}
-  list.innerHTML=shown.map(x=>`<div class="mosqueItem"><div><b>${x.isMusalla?'🤲':'🕌'} ${xSafe(x.name)}</b><div class="mini">${x.d.toFixed(2)} كم تقريبًا • ${selectedMosqueType==='women'?'بيانات إتاحة النساء في OpenStreetMap':'OpenStreetMap'}</div></div><button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${x.la},${x.lo}','_blank')">الاتجاهات</button></div>`).join('');st.textContent=`وجدنا ${shown.length} نتيجة ضمن 10 كم، مرتبة من الأقرب إلى الأبعد.`;
- }catch(e){st.textContent='تعذر البحث الآن. تحقق من الإنترنت ثم حاول مرة أخرى.';console.error(e)}}
-
+ const st=document.getElementById('mosqueStatus'),list=document.getElementById('mosqueList');if(!st||!list)return;const loc=getSelectedLocation();if(!loc){st.textContent='📍 جارٍ تحديد موقعك تلقائيًا…';refreshLiveLocation('mosques');return}
+ list.innerHTML='';st.textContent='⏳ يبحث عن الأقرب ثم يوسع البحث تلقائيًا…';
+ const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];
+ const radii=[1000,3000,7000,15000]; const all=[]; const seen=new Set();
+ try{
+  for(const radius of radii){
+   const {lat,lon}=loc;const q=`[out:json][timeout:35];(nwr[amenity=place_of_worship][religion=muslim](around:${radius},${lat},${lon});nwr[building=mosque](around:${radius},${lat},${lon});nwr[place_of_worship=mosque](around:${radius},${lat},${lon});nwr[place_of_worship=musalla](around:${radius},${lat},${lon});nwr[name~"مسجد|جامع|مصلى|mosque|masjid|musalla|mushalla",i](around:${radius},${lat},${lon}););out center tags;`;
+   const responses=await Promise.allSettled(endpoints.map(ep=>fetch(ep+'?data='+encodeURIComponent(q),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()})));
+   for(const rr of responses)if(rr.status==='fulfilled')for(const e of (rr.value?.elements||[])){
+    const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)continue;const t=e.tags||{};const isMusalla=String(t.place_of_worship||'').toLowerCase()==='musalla'||/مصلى|musalla|mushalla/i.test(String(t.name||''));
+    if(selectedMosqueType==='women'&&!mosqueWomenTagged(t))continue;
+    if(selectedMosqueType!=='women'&&isMusalla&&String(t.female||t.women||'').toLowerCase()==='no')continue;
+    const rad=Math.PI/180,R=6371,d=2*R*Math.asin(Math.sqrt(Math.sin((la-lat)*rad/2)**2+Math.cos(lat*rad)*Math.cos(la*rad)*Math.sin((lo-lon)*rad/2)**2));
+    const key=(la.toFixed(5)+','+lo.toFixed(5));if(seen.has(key))continue;seen.add(key);all.push({d,name:t.name_ar||t['name:ar']||t.name||(isMusalla?'مصلى':'مسجد'),la,lo,isMusalla});
+   }
+   all.sort((a,b)=>a.d-b.d); renderMosqueResults(all,st,list,radius);
+   if(all.length>=12)break;
+  }
+  all.sort((a,b)=>a.d-b.d);renderMosqueResults(all,st,list,radii[radii.length-1]);
+ }catch(e){st.textContent='تعذر البحث الآن. تحقق من الإنترنت وحاول مرة أخرى.';console.error(e)}
+}
+function renderMosqueResults(arr,st,list,radius){const shown=arr.slice(0,100);if(!shown.length){st.textContent=`لم نجد نتائج في نطاق ${radius/1000} كم من بيانات المصادر الحالية. سنستمر عند توسيع البحث.`;return}list.innerHTML=shown.map(x=>`<div class="mosqueItem"><div><b>${x.isMusalla?'🤲':'🕌'} ${xSafe(x.name)}</b><div class="mini">${x.d<1?(x.d*1000).toFixed(0)+' متر':x.d.toFixed(2)+' كم'} تقريبًا</div></div><button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${x.la},${x.lo}','_blank')">الاتجاهات</button></div>`).join('');st.textContent=`✓ وجدنا ${shown.length} نتيجة، مرتبة من الأقرب إلى الأبعد.`}
 function hijriToGregorianDay(hy,hm,hd){return null}
 async function renderCalendarInfo(){const box=document.getElementById('dateInfo'),occ=document.getElementById('occasionsList');if(!box)return;box.textContent='⏳ جارٍ جلب التاريخ الهجري…';try{const d=new Date(),g=`${String(d.getDate()).padStart(2,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${d.getFullYear()}`;const r=await fetch(`https://api.aladhan.com/v1/gToH?date=${g}`);const j=await r.json();const h=j.data?.hijri;box.innerHTML=`<div style="font-size:22px">${d.toLocaleDateString('ar-LY',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div><div style="font-size:26px;margin-top:8px">${h?`${h.day} ${h.month.ar} ${h.year} هـ`:'—'}</div>`;const occasions=[['1','محرم','رأس السنة الهجرية'],['10','محرم','عاشوراء'],['12','ربيع الأول','المولد النبوي'],['27','رجب','الإسراء والمعراج'],['15','شعبان','ليلة النصف من شعبان'],['1','رمضان','بداية رمضان'],['1','شوال','عيد الفطر'],['9','ذو الحجة','يوم عرفة'],['10','ذو الحجة','عيد الأضحى']];occ.innerHTML=occasions.map(o=>`<div class="mosqueItem"><b>${o[0]} ${o[1]}</b><span>${o[2]}</span></div>`).join('')}catch(e){box.textContent='تعذر جلب التاريخ الهجري.'}}
 async function convertTodayToHijri(){const d=new Date(),g=`${String(d.getDate()).padStart(2,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${d.getFullYear()}`;try{const j=await (await fetch(`https://api.aladhan.com/v1/gToH?date=${g}`)).json();const h=j.data?.hijri;document.getElementById('conversionResult').textContent=h?`${g} ميلادي = ${h.day} ${h.month.ar} ${h.year} هجري`:'تعذر التحويل'}catch(e){document.getElementById('conversionResult').textContent='تعذر التحويل الآن.'}}
 async function convertHijriToday(){try{const d=new Date(),g=`${String(d.getDate()).padStart(2,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${d.getFullYear()}`;const h=(await (await fetch(`https://api.aladhan.com/v1/gToH?date=${g}`)).json()).data?.hijri;if(!h)throw 0;const r=await (await fetch(`https://api.aladhan.com/v1/hToG?date=${h.day}-${h.month.number}-${h.year}`)).json();const x=r.data?.gregorian;document.getElementById('conversionResult').textContent=x?`${h.day} ${h.month.ar} ${h.year} هجري = ${x.day} ${x.month.en} ${x.year} ميلادي`:'تعذر التحويل'}catch(e){document.getElementById('conversionResult').textContent='تعذر التحويل الآن.'}}
 async function showDownloadsInSettings(){
  const box=document.getElementById('settingsDownloads');if(!box)return;
- box.innerHTML='<div class="notice">⏳ جارٍ قراءة التنزيلات المحفوظة على هذا الجهاز…</div>';
+ box.innerHTML='<div class="notice">⏳ جارٍ قراءة كل التنزيلات: القرآن، الأذكار والأدعية، والرقية الشرعية…</div>';
+ const esc=s=>xSafe(String(s??''));
+ const items=[];
+ // 1) Quran downloads stored in IndexedDB.
  try{
   const db=await openAudioDB();
   const tx=db.transaction(DB_STORE,'readonly');
   const req=tx.objectStore(DB_STORE).getAllKeys();
-  req.onsuccess=()=>{
-   const keys=req.result||[];db.close();
-   if(!keys.length){box.innerHTML='<div class="item muted">لا توجد تلاوات محفوظة حاليًا.</div>';return}
-   box.innerHTML=keys.map(k=>{
-    const key=String(k),parts=key.split(':'),num=Number(parts.pop());
-    let meta=null;try{meta=JSON.parse(localStorage.getItem('quran-m09-download-meta:'+key)||'null')}catch(e){}
-    const rid=meta?.readerId||parts.slice(1).join(':')||'';
-    const readerName=meta?.readerName||RECITERS.find(r=>String(r.id)===String(rid))?.name||'القارئ';
-    const surahName=meta?.surahName||S[num-1]||('سورة '+num);
-    const readerIndex=RECITERS.findIndex(r=>String(r.id)===String(rid));
-    return `<div class="item" style="cursor:pointer" onclick="openDownloadedItem(${readerIndex},${num},'${xSafe(readerName)}')"><div style="display:flex;align-items:center;gap:10px"><span class="num">${num}</span><div style="flex:1"><b>🎧 ${xSafe(surahName)}</b><div class="mini">${xSafe(readerName)}${meta?.readerRewaya?' • '+xSafe(meta.readerRewaya):''}</div></div><button class="downloadBtn" onclick="event.stopPropagation();openDownloadedItem(${readerIndex},${num},'${xSafe(readerName)}')">▶ استماع</button></div></div>`;
-   }).join('');
-  };
-  req.onerror=()=>{db.close();box.innerHTML='<div class="item">تعذر قراءة التنزيلات.</div>'}
- }catch(e){box.innerHTML='<div class="item">لا توجد تنزيلات يمكن عرضها حاليًا.</div>'}
+  const keys=await new Promise((resolve,reject)=>{req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)});
+  db.close();
+  for(const k of keys){
+   const key=String(k),parts=key.split(':'),num=Number(parts.pop());let meta=null;
+   try{meta=JSON.parse(localStorage.getItem('quran-m09-download-meta:'+key)||'null')}catch(e){}
+   const rid=meta?.readerId||parts.slice(1).join(':')||'';
+   const readerName=meta?.readerName||RECITERS.find(r=>String(r.id)===String(rid))?.name||'القارئ';
+   const surahName=meta?.surahName||S[num-1]||('سورة '+num);
+   const readerIndex=RECITERS.findIndex(r=>String(r.id)===String(rid));
+   items.push({type:'quran',key,id:key,title:surahName,sub:'🎧 '+readerName+(meta?.readerRewaya?' • '+meta.readerRewaya:''),readerIndex,num});
+  }
+ }catch(e){console.warn('downloads quran',e)}
+ // 2) Human adhkar/duas saved in Cache API.
+ const adhkarCaches=['muslim-adhkar-audio-v46','muslim-adhkar-human-v50','muslim-human-audio-v43','muslim-human-audio-v44'];
+ const ruqyahCaches=['muslim-human-audio-v43','muslim-human-audio-v44'];
+ const seenAudio=new Set();
+ async function collectCache(cacheName,type){try{const c=await caches.open(cacheName);const reqs=await c.keys();for(const r of reqs){const url=r.url;if(seenAudio.has(url))continue;seenAudio.add(url);let title=url.split('/').pop()||'تسجيل محفوظ';let sub=type==='adhkar'?'🤲 الأذكار والأدعية':'🕋 الرقية الشرعية';
+    try{if(type==='adhkar'&&window._v50HubRows?.length){const z=window._v50HubRows.find(x=>x.audio===url);if(z){title=z.text;sub=`🤲 ${z.category} • تسجيل حمد الدريهم`}}
+      if(type==='ruqyah'){const all=(window.V44_RUQYAH||[]);const z=all.find(x=>x[1]===url);if(z)title=z[0]}
+    }catch(e){}
+    items.push({type,url,title,sub,cache:cacheName});
+  }}catch(e){}}
+ for(const c of adhkarCaches)await collectCache(c,'adhkar');
+ for(const c of ruqyahCaches)await collectCache(c,'ruqyah');
+ // Render a unified download manager.
+ if(!items.length){box.innerHTML='<div class="item muted">لا توجد تنزيلات محفوظة حاليًا. عندما تضغط «تحميل» على سورة أو ذكر أو دعاء أو مقطع من الرقية سيظهر هنا.</div>';return}
+ const grouped=[['quran','📖 تلاوات القرآن'],['adhkar','🤲 الأذكار والأدعية'],['ruqyah','🕋 الرقية الشرعية']];
+ box.innerHTML=`<div class="downloadManagerHead"><div><b>التنزيلات المحفوظة</b><div class="mini">${items.length} ملف محفوظ على هذا الجهاز</div></div><button type="button" class="danger" onclick="deleteAllMuslimDownloads()">🗑️ حذف الكل</button></div>`+
+ grouped.map(([type,label])=>{const arr=items.filter(x=>x.type===type);if(!arr.length)return '';return `<div class="downloadGroup"><h4>${label} <span class="mini">(${arr.length})</span></h4>${arr.map((x,i)=>`<div class="downloadItem" data-dl-type="${esc(x.type)}" data-dl-url="${esc(x.url||'')}" data-dl-cache="${esc(x.cache||'')}" data-dl-key="${esc(x.key||'')}"><div class="downloadInfo"><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></div><div class="controls"><button type="button" class="primary" onclick="listenMuslimDownload(this)">▶ استماع</button><button type="button" onclick="openMuslimDownload(this)">فتح</button><button type="button" class="danger" onclick="removeMuslimDownload(this)">🗑️ إزالة</button></div></div>`).join('')}</div>`}).join('');
 }
-function openDownloadedItem(readerIndex,num,readerName){
- if(readerIndex<0||!RECITERS[readerIndex]){alert('تم حفظ التلاوة، لكن بيانات القارئ القديمة غير متاحة في هذه النسخة. يمكنك تشغيلها من صفحة التنزيل نفسها إذا كانت البيانات محفوظة.');return}
- show('readerDetail');
- openReader(readerIndex).then(()=>setTimeout(()=>playSurah(Number(num)),80)).catch(()=>{});
-}
+window.listenMuslimDownload=async function(btn){const item=btn.closest('.downloadItem');if(!item)return;const type=item.dataset.dlType,url=item.dataset.dlUrl;if(type==='quran'){const n=Number(item.dataset.dlKey?.split(':').pop());const rid=(item.dataset.dlKey||'').split(':').slice(1,-1).join(':');const ri=RECITERS.findIndex(r=>String(r.id)===String(rid));if(ri>=0){show('readerDetail');await openReader(ri);setTimeout(()=>playSurah(n),80)}else alert('بيانات القارئ غير متاحة حاليًا.')}else if(url){try{const c=await caches.open(item.dataset.dlCache||'muslim-adhkar-human-v50');const r=await c.match(url);const src=r?URL.createObjectURL(await r.blob()):url;const audio=document.getElementById('v43AudioElement');if(audio){audio.src=src;audio.currentTime=0;await audio.play();const bar=document.getElementById('v43AudioBar');bar?.classList.add('show');document.getElementById('v43AudioTitle').textContent=item.querySelector('.downloadInfo b')?.textContent||'تسجيل محفوظ';document.getElementById('v43AudioSub').textContent=type==='adhkar'?'الأذكار والأدعية • دون إنترنت':'الرقية الشرعية • دون إنترنت'}}catch(e){alert('تعذر تشغيل التسجيل المحفوظ.')}}};
+window.openMuslimDownload=async function(btn){const item=btn.closest('.downloadItem');if(!item)return;const type=item.dataset.dlType;if(type==='quran'){await listenMuslimDownload(btn);return}const url=item.dataset.dlUrl;if(url)window.open(url,'_blank','noopener');};
+window.removeMuslimDownload=async function(btn){const item=btn.closest('.downloadItem');if(!item)return;if(!confirm('حذف هذا التنزيل من الجهاز؟'))return;try{if(item.dataset.dlType==='quran'){const key=item.dataset.dlKey;const db=await openAudioDB();const tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).delete(key);localStorage.removeItem('quran-m09-download-meta:'+key);await new Promise((res,rej)=>{tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});db.close()}else{const c=await caches.open(item.dataset.dlCache);await c.delete(item.dataset.dlUrl);localStorage.removeItem('muslimHumanAudio:'+item.dataset.dlUrl);localStorage.removeItem('muslim-adhkar-downloaded:'+item.dataset.dlUrl)}item.remove();document.getElementById('settingsDownloads')?.querySelectorAll('.downloadGroup').forEach(g=>{if(!g.querySelector('.downloadItem'))g.remove()})}catch(e){alert('تعذر حذف التنزيل الآن.')}};
+window.deleteAllMuslimDownloads=async function(){if(!confirm('حذف جميع تنزيلات القرآن والأذكار والأدعية والرقية من هذا الجهاز؟'))return;try{const db=await openAudioDB();const tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).clear();await new Promise((res,rej)=>{tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});db.close();for(const k of Object.keys(localStorage)){if(k.startsWith('quran-m09-download-meta:')||k.startsWith('muslimHumanAudio:')||k.startsWith('muslim-adhkar-downloaded:'))localStorage.removeItem(k)}for(const c of ['muslim-adhkar-audio-v46','muslim-adhkar-human-v50','muslim-human-audio-v43','muslim-human-audio-v44']){try{await caches.delete(c)}catch(e){}}await showDownloadsInSettings();v50RefreshUsage()}catch(e){alert('تعذر حذف كل التنزيلات الآن.')}};
 
 function sharePrayerCard(){const t=window._prayerTimes;if(!t){alert('حمّل مواقيت الصلاة أولًا.');return}const fmt=v=>{const [h,m]=String(v).split(':').map(Number);const ap=h>=12?'م':'ص';return `${h%12||12}:${String(m).padStart(2,'0')} ${ap}`};const text=`🕌 مواقيت الصلاة اليوم\nالفجر ${fmt(t.Fajr)}\nالظهر ${fmt(t.Dhuhr)}\nالعصر ${fmt(t.Asr)}\nالمغرب ${fmt(t.Maghrib)}\nالعشاء ${fmt(t.Isha)}\n\nالمسلم`;if(navigator.share)navigator.share({title:'مواقيت الصلاة',text}).catch(()=>{});else navigator.clipboard?.writeText(text).then(()=>alert('تم نسخ بطاقة المواقيت.'))}
 
@@ -1230,7 +1210,7 @@ try{initPrayerPlaces();renderDaily();}catch(e){console.error(e)}
 setInterval(()=>{try{renderDaily();updateHomePrayerCard()}catch(e){}},60000);
 
 </script>
-<style id="v36-fixes">.dailyCard{padding:16px}.timeBadge{display:inline-block;margin-top:6px;padding:4px 8px;border-radius:999px;background:#eee3cc;color:var(--green);font-size:11px}.dark .timeBadge{background:#263b31;color:#dcebe2}.dailyTop{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}.dailyTop>div{flex:1}.dailyTop h3{margin:0 0 4px}.dailyIcon{font-size:30px}.ruqyahTextRow{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}.ruqyahTextRow>div{flex:1}.ruqyahTextRow p{font-size:21px;line-height:2;margin:8px 0}.pwaGuide{position:fixed;inset:0;background:#0008;z-index:2000;display:grid;place-items:center;padding:16px}.pwaGuideBox{position:relative;max-width:560px;width:100%;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 20px 70px #0005}.pwaGuideBox li{margin:10px 0;line-height:1.8}.pwaClose{position:absolute;top:8px;left:8px;border:0;background:none;color:var(--text);font-size:28px;cursor:pointer}.nav button{cursor:pointer}</style>
+<style id="v52-downloads">.downloadManagerHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.downloadGroup{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}.downloadGroup h4{margin:0 0 8px}.downloadItem{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:16px;margin:8px 0;background:var(--card)}.downloadInfo{flex:1;min-width:0}.downloadInfo b{display:block;line-height:1.6}.downloadInfo small{display:block;color:var(--muted);margin-top:3px}.downloadItem .controls{margin:0}.danger{border:1px solid #c55;background:transparent;color:#b33}.dark .danger{color:#ffb0b0}@media(max-width:650px){.downloadItem{display:block}.downloadItem .controls{margin-top:8px}.downloadManagerHead{align-items:flex-start}} </style><style id="v36-fixes">.dailyCard{padding:16px}.timeBadge{display:inline-block;margin-top:6px;padding:4px 8px;border-radius:999px;background:#eee3cc;color:var(--green);font-size:11px}.dark .timeBadge{background:#263b31;color:#dcebe2}.dailyTop{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}.dailyTop>div{flex:1}.dailyTop h3{margin:0 0 4px}.dailyIcon{font-size:30px}.ruqyahTextRow{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}.ruqyahTextRow>div{flex:1}.ruqyahTextRow p{font-size:21px;line-height:2;margin:8px 0}.pwaGuide{position:fixed;inset:0;background:#0008;z-index:2000;display:grid;place-items:center;padding:16px}.pwaGuideBox{position:relative;max-width:560px;width:100%;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 20px 70px #0005}.pwaGuideBox li{margin:10px 0;line-height:1.8}.pwaClose{position:absolute;top:8px;left:8px;border:0;background:none;color:var(--text);font-size:28px;cursor:pointer}.nav button{cursor:pointer}</style>
 <style id="v25-12-ui">
 .top{background:var(--bg)!important;color:var(--text)!important;border-bottom:1px solid var(--line)!important;box-shadow:0 4px 18px rgba(0,0,0,.04)!important}
 .top button{background:var(--card)!important;color:var(--text)!important;border-color:var(--line)!important}
@@ -1283,7 +1263,6 @@ const rqSearch=document.getElementById('ruqyahSearch');if(rqSearch)rqSearch.onin
 
 
 <style> .favoritesCategories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.favCategoryBtn{min-height:78px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--text);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-weight:800;cursor:pointer}.favCategoryBtn.active{border-color:var(--gold);box-shadow:0 0 0 2px color-mix(in srgb,var(--gold) 25%,transparent)}.clickableDetail{cursor:pointer}.detailHero{text-align:center}.detailIcon{font-size:48px;margin-bottom:8px}.detailText{font-size:25px;line-height:2.1;margin:20px 0}.quranAyahs{margin-top:18px}.quranAyahs .ayah{font-size:25px;line-height:2.2;padding:12px 4px;border-bottom:1px solid var(--line)}@media(max-width:700px){.favoritesCategories{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
-<div id="locationModal" class="locationModal" onclick="if(event.target===this)closeLocationModal()"><div class="box"><h3>🗺️ اختر موقعك من الخريطة</h3><p class="mini">لا تحتاج إلى كتابة أي شيء. حرّك الخريطة واضغط على المكان الذي تريده، ثم اضغط «اختيار هذا الموقع».</p><div id="manualMap" style="height:340px;border-radius:15px;overflow:hidden;border:1px solid var(--line)"></div><div id="manualPicked" class="notice" style="margin-top:10px">اضغط على الخريطة لتحديد الموقع.</div><div class="actions"><button onclick="locateMeOnManualMap()">📍 تحديد موقعي تلقائيًا</button><button class="primary" onclick="saveManualLocation()">📍 اختيار هذا الموقع</button><button onclick="closeLocationModal()">إلغاء</button></div></div></div>
 <div id="pwaInstallGuide" class="pwaGuide" style="display:none" onclick="if(event.target===this)closeInstallGuide()"><div class="pwaGuideBox"><button class="pwaClose" onclick="closeInstallGuide()">×</button><h3>📲 تثبيت تطبيق المسلم</h3><p>يمكنك تثبيت المسلم كتطبيق ويب تقدّمي (PWA) ليظهر على الشاشة الرئيسية ويفتح في نافذة مستقلة. التثبيت لا يتم بالقوة ولا بمجرد مسح QR؛ بعد فتح الموقع يجب أن يؤكد المستخدم التثبيت من المتصفح. إذا لم يظهر زر التثبيت، فهذا لا يعني أن الموقع معطّل؛ استخدم خطوات «إضافة إلى الشاشة الرئيسية» الخاصة بمتصفحك.</p><div class="notice"><b>📱 Android / Chrome:</b><br>1) افتح الموقع من QR.<br>2) انتظر ظهور «تثبيت التطبيق» إن ظهر.<br>3) إن لم يظهر، افتح ⋮ ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».<br><br><b>🍎 iPhone / Safari:</b><br>1) افتح الموقع في Safari.<br>2) اضغط زر المشاركة ⬆️.<br>3) اختر «إضافة إلى الشاشة الرئيسية».<br>4) اضغط «إضافة».<br><br><b>💻 الكمبيوتر:</b><br>ابحث عن رمز التثبيت بجوار شريط العنوان، ثم اختر «تثبيت».</div><ol><li><b>Android / Chrome:</b> اضغط «تثبيت التطبيق» إذا ظهر الزر، أو افتح قائمة المتصفح ثم اختر «إضافة إلى الشاشة الرئيسية».</li><li><b>iPhone / iPad:</b> افتح الموقع في Safari، اضغط زر المشاركة، ثم اختر «إضافة إلى الشاشة الرئيسية».</li><li><b>الكمبيوتر:</b> إذا ظهر رمز التثبيت بجوار شريط العنوان اضغطه ثم أكد التثبيت.</li></ol><button id="pwaInstallNow" class="primary" style="display:none" onclick="installMuslimPWA()">⬇️ تثبيت التطبيق الآن</button><p class="mini">التثبيت يحتاج تأكيد المستخدم من المتصفح؛ لا يمكن للموقع تثبيته تلقائيًا دون موافقتك.</p></div></div>
 <div id="globalMiniPlayer" class="globalMiniPlayer" aria-label="مشغل التلاوة المصغر" style="display:none" onclick="openCurrentReaderFromMini(event)">
   <div class="miniPlayerInfo"><span id="miniPlayerIcon">🎧</span><div><b id="miniPlayerTitle">لا توجد تلاوة</b><small id="miniPlayerReader">—</small></div></div>
@@ -1348,7 +1327,7 @@ async function installMuslimPWA(){if(!muslimInstallPrompt){alert('إذا لم ي
 
 <style id="v40-final-fixes">
 /* V40: mobile stability, favorites, prayer, mosques, calendar and audio */
-#prayerMethod,#prayerSchool,#prayerHighLat{display:none!important}
+
 .prayerSettingsOld{display:none!important}
 .v40PrayerSource{margin-top:10px}
 .v40EventGrid{display:grid;gap:10px}
@@ -1765,17 +1744,36 @@ async function v44DownloadRuqyah(){let ok=0;const c=await caches.open('muslim-hu
 let v44MosqueRun=0;
 function v44Distance(a,b,c,d){const R=6371,rad=Math.PI/180,da=(c-a)*rad,db=(d-b)*rad;const q=Math.sin(da/2)**2+Math.cos(a*rad)*Math.cos(c*rad)*Math.sin(db/2)**2;return 2*R*Math.asin(Math.sqrt(q));}
 function v44Women(t){const s=Object.values(t||{}).join(' ').toLowerCase();return ['yes','designated','only','women','female','نساء','للنساء','مصلى نساء','نساء فقط'].some(x=>s.includes(x));}
-async function v44Overpass(query,ms=9000){const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),ms);try{const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];const req=ep=>fetch(ep+'?data='+encodeURIComponent(query),{signal:ctrl.signal,cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});const results=await Promise.allSettled(endpoints.map(req));for(const r of results)if(r.status==='fulfilled'&&Array.isArray(r.value?.elements)&&r.value.elements.length)return r.value.elements;return []}finally{clearTimeout(timer)}}
+async function v44Overpass(query,ms=12000){const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),ms);try{const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];const req=ep=>fetch(ep+'?data='+encodeURIComponent(query),{signal:ctrl.signal,cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});const results=await Promise.allSettled(endpoints.map(req));const merged=[],seen=new Set();for(const r of results){if(r.status!=='fulfilled')continue;for(const e of (r.value?.elements||[])){const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon,key=(la!=null&&lo!=null)?`${e.type}:${e.id}:${Number(la).toFixed(6)},${Number(lo).toFixed(6)}`:`${e.type}:${e.id}`;if(!seen.has(key)){seen.add(key);merged.push(e)}}}return merged}finally{clearTimeout(timer)}}
 window.findMosques=async function(){
- const st=document.getElementById('mosqueStatus'),list=document.getElementById('mosqueList');if(!st||!list)return;const loc=getSelectedLocation();if(!loc){st.textContent='📍 حدد موقعك أولًا.';return}
- const run=++v44MosqueRun;list.innerHTML='';let all=[];const seen=new Set();const radii=[3000,10000,30000];
- for(const radius of radii){if(run!==v44MosqueRun)return;st.textContent=`⏳ البحث عن ${selectedMosqueType==='women'?'مصليات/أماكن النساء':'المساجد'} حتى ${radius/1000} كم…`;
-  const {lat,lon}=loc;const q=`[out:json][timeout:20];(nwr[amenity=place_of_worship][religion=muslim](around:${radius},${lat},${lon});nwr[building=mosque](around:${radius},${lat},${lon});nwr[place_of_worship=musalla](around:${radius},${lat},${lon});nwr[name~"مسجد|جامع|مصلى|mosque|masjid|musalla|mushalla",i](around:${radius},${lat},${lon}););out center tags;`;
-  let els=[];try{els=await v44Overpass(q)}catch(e){console.warn(e)}
-  for(const e of els){const t=e.tags||{};const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)continue;const musalla=String(t.place_of_worship||'').toLowerCase()==='musalla'||/مصلى|musalla|mushalla/i.test(String(t.name||''));if(selectedMosqueType==='women'&&!v44Women(t)&&!musalla)continue;const key=`${Number(la).toFixed(5)},${Number(lo).toFixed(5)}`;if(seen.has(key))continue;seen.add(key);all.push({la,lo,d:v44Distance(loc.lat,loc.lon,la,lo),name:t.name_ar||t['name:ar']||t.name||(musalla?'مصلى':'مسجد'),musalla,t})}
-  all.sort((a,b)=>a.d-b.d);if(all.length){list.innerHTML=all.slice(0,100).map(x=>`<div class="mosqueItem"><div><b>${x.musalla?'🤲':'🕌'} ${esc(x.name)}</b><div class="mini">${x.d.toFixed(2)} كم تقريبًا</div></div><button type="button" data-map="${x.la},${x.lo}">الاتجاهات</button></div>`).join('');list.querySelectorAll('[data-map]').forEach(b=>b.onclick=()=>{const [la,lo]=b.dataset.map.split(',');window.open(`https://www.google.com/maps/dir/?api=1&destination=${la},${lo}`,'_blank')});st.textContent=`✓ وجدنا ${all.length} نتيجة حتى ${radius/1000} كم، وسنواصل البحث عن الأبعد…`}
+ const st=document.getElementById('mosqueStatus'),list=document.getElementById('mosqueList');if(!st||!list)return;
+ const loc=getSelectedLocation();if(!loc){st.textContent='📍 حدد موقعك أولًا.';return}
+ const run=++v44MosqueRun;list.innerHTML='';let all=[];const seen=new Set();const radii=[500,1000,3000,7000,15000];
+ const appendResults=()=>{
+   all.sort((a,b)=>a.d-b.d);
+   const shown=all.slice(0,100);
+   list.innerHTML=shown.length?shown.map(x=>`<div class="mosqueItem"><div style="flex:1"><b>${x.isMusalla?'🤲':'🕌'} ${xSafe(x.name)}</b><div class="mini">${x.d<1?(x.d*1000).toFixed(0)+' متر':x.d.toFixed(2)+' كم'} تقريبًا</div><div class="mini" style="margin-top:3px;color:var(--green)">✓ تم العثور عليه</div></div><div class="controls" style="margin:0"><button type="button" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${x.la},${x.lo}','_blank')">📍 مكان المسجد</button><button type="button" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${x.la},${x.lo}','_blank')">🧭 الاتجاهات</button></div></div>`).join(''):'<div class="card mini">لم نجد نتائج في هذا النطاق حتى الآن… وسنواصل البحث.</div>';
+ };
+ for(const radius of radii){
+   if(run!==v44MosqueRun)return;
+   st.textContent=`⏳ أبحث حتى ${radius/1000} كم… إذا وجدت مسجدًا سأعرضه فورًا ثم أواصل البحث.`;
+   const {lat,lon}=loc;
+   const q=`[out:json][timeout:20];(nwr[amenity=place_of_worship][religion=muslim](around:${radius},${lat},${lon});nwr[building=mosque](around:${radius},${lat},${lon});nwr[place_of_worship=musalla](around:${radius},${lat},${lon});nwr[name~"مسجد|جامع|مصلى|mosque|masjid|musalla|mushalla",i](around:${radius},${lat},${lon}););out center tags;`;
+   let els=[];try{els=await v44Overpass(q)}catch(e){console.warn(e)}
+   let added=0;
+   for(const e of els){
+     const t=e.tags||{},la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)continue;
+     const isMusalla=String(t.place_of_worship||'').toLowerCase()==='musalla'||/مصلى|musalla|mushalla/i.test(String(t.name||''));
+     if(selectedMosqueType==='women'&&!v44Women(t)&&!isMusalla)continue;
+     const key=`${Number(la).toFixed(5)},${Number(lo).toFixed(5)}`;if(seen.has(key))continue;seen.add(key);
+     all.push({d:v44Distance(loc.lat,loc.lon,la,lo),name:t.name_ar||t['name:ar']||t.name||(isMusalla?'مصلى':'مسجد'),la,lo,isMusalla});added++;
+   }
+   appendResults();
+   st.textContent=all.length?`✓ وجدت ${added?added+' أماكن جديدة، ':''}${all.length} مكانًا حتى ${radius/1000} كم — وسأكمل البحث.`:`لم أجد مسجدًا في نطاق ${radius/1000} كم — سأوسع البحث.`;
+   // Continue all the way through the radii so the user gets a growing list instead of an early stop.
  }
- st.textContent=all.length?`✓ اكتمل البحث: ${all.length} نتيجة مرتبة من الأقرب إلى الأبعد.`:'لم يتم العثور على أماكن مسجلة في المصادر المتاحة حاليًا. جرّب تحديث الموقع أو اختيار نقطة من الخريطة.';
+ appendResults();
+ st.textContent=all.length?`✓ اكتمل البحث. تم العثور على ${all.length} مكانًا، والقائمة مرتبة من الأقرب إلى الأبعد.`:'لم يتم العثور على أماكن مسجلة في المصادر المتاحة حاليًا. جرّب تحديث الموقع.';
 };
 
 // ---------- Ayah repeat: calculate global ayah index correctly from API ----------
@@ -1855,7 +1853,7 @@ document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{try{v44AddSett
   // Add two useful device settings without changing the main navigation.
   const tools=[...document.querySelectorAll('.setting')].find(x=>x.textContent.includes('🛠️ أدوات إضافية'));
   if(tools&&!document.getElementById('v46ResetLocation')){
-    const wrap=document.createElement('div');wrap.innerHTML=`<div class="v46SettingHint">خيارات إضافية للجهاز</div><div class="controls" style="margin-top:8px"><button type="button" onclick="localStorage.removeItem('muslimSelectedLocation');updateLocationLabels();alert('تم حذف الموقع المحفوظ من هذا الجهاز.')">📍 مسح الموقع المحفوظ</button><button type="button" onclick="location.reload()">🔄 إعادة تشغيل كاملة</button></div>`;tools.appendChild(wrap);
+    const wrap=document.createElement('div');wrap.innerHTML=`<div class="v46SettingHint">خيارات إضافية للجهاز</div><div class="controls" style="margin-top:8px"><button type="button" onclick="localStorage.removeItem('muslimLiveLocation');updateLocationLabels();alert('تم حذف الموقع المحفوظ من هذا الجهاز.')">📍 مسح الموقع المحفوظ</button><button type="button" onclick="location.reload()">🔄 إعادة تشغيل كاملة</button></div>`;tools.appendChild(wrap);
   }
   // High-accuracy Libya source: official public API documents 28 Libyan cities and HH:MM data.
   const LY_KEYS={
@@ -1896,265 +1894,59 @@ document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{try{v44AddSett
 })();
 </script>
 
-<style id="v47-fixes">
-/* V47: compact nav + travel mode + robust human adhkar hub */
-.nav{height:52px!important;padding:5px!important;gap:7px!important;border-radius:15px!important}
-.nav button{height:42px!important;min-height:42px!important;padding:4px 11px!important;font-size:12px!important;gap:5px!important;border-radius:11px!important}
-.nav button span{font-size:17px!important}.nav button b{font-size:11px!important}
-@media(max-width:680px){.nav{height:48px!important;bottom:5px!important}.nav button{height:38px!important;min-height:38px!important;padding:3px 9px!important}.nav button span{font-size:15px!important}.nav button b{font-size:10px!important}.app{padding-bottom:76px!important}}
-.v47Travel{border:1px solid var(--line);background:linear-gradient(135deg,#173f34,#2d7359);color:#fff;border-radius:20px;padding:18px;margin:12px 0;box-shadow:var(--shadow)}
-.v47Travel h3{margin:0 0 6px}.v47Travel .controls button{background:#fff;color:#173f34;border:0}
-.v47Audio{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.v47Audio audio{flex:1;min-width:220px}
-</style>
-<script id="v47-final-fix">
-(function(){'use strict';
-  const HUB_URL='https://raw.githubusercontent.com/rn0x/Adhkar-json/master/adhkar.json';
-  const HUB_BASE='https://raw.githubusercontent.com/rn0x/Adhkar-json/master';
-  const HUB_CACHE='muslim-adhkar-human-v47';
-  window._v47HubData=[]; window._v47HubLoaded=false;
-  const norm=s=>String(s||'').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[“”"'()\[\]{}]/g,'').replace(/\s+/g,' ').trim();
-  async function loadHub(){
-    if(window._v47HubLoaded && window._v47HubData.length)return window._v47HubData;
-    try{const r=await fetch(HUB_URL,{cache:'no-store'});if(!r.ok)throw Error('http '+r.status);const data=await r.json();
-      const rows=[]; for(const g of Array.isArray(data)?data:[]){for(const z of (g.array||[])){if(!z.text)continue;const rawAudio=String(z.audio||'').trim(); const audio=/^https?:\/\//i.test(rawAudio)?rawAudio:(rawAudio?HUB_BASE+rawAudio:''); rows.push({id:'hub-'+g.id+'-'+z.id,text:z.text,count:z.count||1,category:g.category||'أذكار',source:'حصن المسلم',audio})}}
-      window._v47HubData=rows;window._v47HubLoaded=true;return rows;
-    }catch(e){console.warn('V47 adhkar source',e);return window._v47HubData||[]}
-  }
-  function favHubId(row){return String(row.id||'').startsWith('hub-')?String(row.id):'hub-'+String(row.id||'')}
-  function isHubFav(row){return readFavStore().adhkar.some(x=>String(x.id)===favHubId(row))}
-  function toggleHubFav(id){const row=window._v47HubData.find(x=>x.id===id);if(!row)return;const fid=favHubId(row),x=readFavStore();if((x.adhkar||[]).some(a=>String(a.id)===fid))favRemove('adhkar',fid);else favAdd('adhkar',{id:fid,hub:true,text:row.text,count:row.count,source:row.source,category:row.category,audio:row.audio});renderHub();}
-  window.toggleHubFav=toggleHubFav;
-  async function playHubAudio(url,name,category){if(!url)return;const audio=document.getElementById('v43AudioElement'),bar=document.getElementById('v43AudioBar');if(!audio||!bar)return;const title=document.getElementById('v43AudioTitle'),sub=document.getElementById('v43AudioSub');if(title)title.textContent=name||'الأذكار والأدعية';if(sub)sub.textContent='🎙️ تسجيل بشري مسجل مسبقًا • '+(category||'');bar.classList.add('show');window._v43CurrentUrl=url;try{const c=await caches.open(HUB_CACHE);const r=await c.match(url);if(r){audio.src=URL.createObjectURL(await r.blob())}else audio.src=url;await audio.play().catch(()=>{})}catch(e){audio.src=url;await audio.play().catch(()=>{})}}
-  window.playHubAudio=playHubAudio;
-  async function cacheHub(url,btn){try{btn.disabled=true;btn.textContent='⏳ جاري التحميل';const c=await caches.open(HUB_CACHE);const r=await fetch(url,{mode:'cors',cache:'no-store'});if(!r.ok)throw Error('http '+r.status);await c.put(url,r.clone());localStorage.setItem('muslimHumanAudio:'+url,'1');btn.textContent='✓ تم التحميل';btn.classList.add('downloaded')}catch(e){btn.disabled=false;btn.textContent='⬇️ تحميل';alert('تعذر تحميل التسجيل الآن.')} }
-  window.cacheHubAudio=cacheHub;
-  function renderHub(filter='الكل'){
-    const list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch'),cat=document.getElementById('adhkarHubCategories');if(!list)return;
-    const q=norm(search?.value||'');const rows=window._v47HubData.filter(r=>(filter==='الكل'||r.category===filter)&&(!q||norm(r.text).includes(q)||norm(r.category).includes(q)));
-    list.innerHTML=rows.length?rows.map(r=>{const fav=isHubFav(r),audio=r.audio;return `<div class="card v47HubRow" data-id="${xSafe(r.id)}"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b>${xSafe(r.text)}</b><p class="mini">${xSafe(r.category)} • ${Number(r.count)} مرات • ${xSafe(r.source)}</p></div><button class="favBtn ${fav?'active':''}" onclick="event.stopPropagation();toggleHubFav(${JSON.stringify(r.id)})">${fav?'★':'☆'}</button></div>${audio?`<div class="v47Audio"><button class="primary" onclick="playHubAudio(${JSON.stringify(audio)},${JSON.stringify(r.text)},${JSON.stringify(r.category)})">▶ الاستماع</button><audio controls preload="none" src="${xSafe(audio)}"></audio><button class="downloadBtn" onclick="cacheHubAudio(${JSON.stringify(audio)},this)">${localStorage.getItem('muslimHumanAudio:'+audio)==='1'?'✓ تم التحميل':'⬇️ تحميل دون إنترنت'}</button></div>`:'<div class="notice" style="margin-top:10px">لا يوجد تسجيل بشري مطابق لهذا الذكر في المصدر الحالي.</div>'}</div>`}).join(''):'<div class="card favEmpty">لا توجد أذكار مطابقة.</div>';
-    cat?.querySelectorAll('.sourceChip').forEach(b=>b.onclick=()=>{cat.querySelectorAll('.sourceChip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderHub(b.dataset.cat)});
-  }
-  window.renderHub=renderHub;
-  window.initAdhkarHub=async function(){const cat=document.getElementById('adhkarHubCategories'),search=document.getElementById('adhkarHubSearch');if(!cat)return;const rows=await loadHub();const cats=['الكل',...new Set(rows.map(x=>x.category))];cat.innerHTML=cats.map((c,i)=>`<button class="sourceChip ${i===0?'active':''}" data-cat="${xSafe(c)}">${xSafe(c)}</button>`).join('');if(search&&!search.dataset.v47){search.dataset.v47='1';search.oninput=()=>renderHub(cat.querySelector('.active')?.dataset.cat||'الكل')}renderHub('الكل')};
-  // Make the Favorites category work with the real human-audio source rows.
-  const oldRenderFavorites=window.renderFavorites;
-  window.renderFavorites=function(type='readers'){
-    if(type!=='adhkar'){return oldRenderFavorites(type)}
-    const box=document.getElementById('favoritesList');if(!box)return;document.querySelectorAll('.favCategoryBtn').forEach(b=>b.classList.toggle('active',b.dataset.fav===type));const arr=readFavStore().adhkar||[];
-    box.innerHTML=`<div class="favCategoryCard"><h3>🤲 الأذكار والأدعية</h3>${arr.length?arr.map(z=>`<div class="favItem"><div class="main"><b>${xSafe(z.text||'ذكر')}</b><small class="mini">${xSafe(z.category||z.kind||'')} • ${Number(z.count||1)} مرات</small></div><div class="controls"><button class="primary" onclick="openHubFavorite(${JSON.stringify(String(z.id))})">فتح</button><button class="favBtn active" onclick="removeFavorite('adhkar',${JSON.stringify(String(z.id))})">إزالة</button></div></div>`).join(''):'<div class="v2510-empty">لم تضف أي ذكر بعد.</div>'}</div>`;
-  };
-  window.openHubFavorite=async function(id){const rows=await loadHub(),r=rows.find(x=>x.id===id);show('adhkarHub');if(r){setTimeout(()=>{const el=[...document.querySelectorAll('.v47HubRow')].find(e=>e.dataset.id===r.id);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--gold)';setTimeout(()=>el.style.outline='',1800)}},180)}};
-  // V48: وضع السفر أزيل من الإعدادات والقائمة الرئيسية بناءً على طلب المستخدم.
-  // Install guide wording: explain how to install, without calling it “BWA”.
-  function enhanceInstallText(){const box=document.querySelector('.pwaGuideBox');if(!box||box.dataset.v47)return;box.dataset.v47='1';const old=box.innerHTML;box.innerHTML=old.replace(/كيفية التثبيت عبر PWA/g,'كيفية تثبيت التطبيق').replace(/PWA/g,'التطبيق المثبت على الهاتف').replace(/BWA/gi,'التثبيت');}
-  const oldShow=window.show;window.show=function(id){oldShow(id);if(id==='adhkarHub')setTimeout(()=>initAdhkarHub(),30);if(id==='settings')setTimeout(addTravelUI,30);if(id==='travelMode')setTimeout(renderTravelMode,30);};
-})();
-</script>
-
-</body>
-<style id="v49-center-ui">
-.v49-center-card{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:16px;margin-top:12px}
-.v49-center-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
-.v49-center-stat{padding:10px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--card) 88%,var(--green) 12%)}
-.v49-center-stat b{display:block;font-size:18px}.v49-center-stat span{font-size:12px;color:var(--muted)}
-.v49-travel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v49-travel .card{margin:0}
-@media(max-width:680px){.v49-center-grid,.v49-travel{grid-template-columns:1fr}.v49-center-card{padding:13px}}
-</style>
-<script id="v49-final-fix">
-(function(){'use strict';
-const HUB_URLS=['https://raw.githubusercontent.com/rn0x/Adhkar-json/master/adhkar.json'];
-const HUB_BASE='https://raw.githubusercontent.com/rn0x/Adhkar-json/master';
-const HUB_CACHE='muslim-adhkar-human-v49';
-window._v49HubRows=[]; window._v49HubLoaded=false;
-const norm=s=>String(s||'').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[“”"'`()\[\]{}]/g,'').replace(/\s+/g,' ').trim();
-function audioUrl(path){
- const x=String(path||'').trim(); if(!x)return '';
- return /^https?:\/\//i.test(x)?x:HUB_BASE+(x.startsWith('/')?x:'/'+x);
-}
-async function loadV49Hub(){
- if(window._v49HubLoaded&&window._v49HubRows.length)return window._v49HubRows;
- let data=null;
- for(const u of HUB_URLS){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){data=await r.json();break}}catch(e){}}
- if(!Array.isArray(data)){
-  window._v49HubLoaded=false; return [];
- }
- const rows=[];
- for(const g of data){for(const z of (g.array||[])){if(!z.text)continue;rows.push({id:`hub-${g.id}-${z.id}`,text:z.text,count:z.count||1,category:g.category||'أذكار',source:'حصن المسلم — Adhkar-json',audio:audioUrl(z.audio),audioPath:z.audio||'',groupId:g.id,itemId:z.id})}}
- window._v49HubRows=rows;window._v49HubLoaded=true;return rows;
-}
-function hubFav(row){return (readFavStore().adhkar||[]).some(a=>String(a.id)===String(row.id));}
-window.toggleV49HubFav=function(id){const row=window._v49HubRows.find(x=>x.id===id);if(!row)return;const st=readFavStore();if((st.adhkar||[]).some(a=>String(a.id)===id))favRemove('adhkar',id);else favAdd('adhkar',{id,hub:true,text:row.text,count:row.count,category:row.category,source:row.source,audio:row.audio});renderV49Hub();};
-async function playV49Audio(url,name,category){
- const bar=document.getElementById('v43AudioBar'),audio=document.getElementById('v43AudioElement'),title=document.getElementById('v43AudioTitle'),sub=document.getElementById('v43AudioSub');if(!bar||!audio||!url)return;
- if(title)title.textContent=name||'الأذكار والأدعية';if(sub)sub.textContent='🎙️ تسجيل بشري • '+(category||'');bar.classList.add('show');window._v49AudioUrl=url;
- try{const c=await caches.open(HUB_CACHE);const cached=await c.match(url);if(cached){audio.src=URL.createObjectURL(await cached.blob());await audio.play().catch(()=>{});return;}}catch(e){}
- audio.src=url; audio.onerror=async function(){
-   if(audio.dataset.fallback==='1')return; audio.dataset.fallback='1';
-   const m=url.match(/\/audio\/(.+)$/);if(m){audio.src='https://raw.githubusercontent.com/rn0x/Adhkar-json/master/audio/'+m[1];await audio.play().catch(()=>{});}
- };
- await audio.play().catch(()=>{});
-}
-window.playV49Audio=playV49Audio;
-window.cacheV49Audio=async function(url,btn){if(!url)return;try{btn.disabled=true;btn.textContent='⏳ جاري التحميل';const c=await caches.open(HUB_CACHE);const r=await fetch(url,{mode:'cors',cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);await c.put(url,r.clone());localStorage.setItem('muslimHumanAudio:'+url,'1');btn.textContent='✓ تم التحميل';btn.classList.add('downloaded');}catch(e){btn.disabled=false;btn.textContent='⬇️ تحميل دون إنترنت';alert('تعذر تحميل التسجيل الآن. تحقق من الاتصال ثم حاول مرة أخرى.');}};
-window.renderV49Hub=renderV49Hub;
-function renderV49Hub(filter='الكل'){
- const list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch'),cat=document.getElementById('adhkarHubCategories');if(!list)return;
- const q=norm(search?.value||'');const rows=window._v49HubRows.filter(r=>(filter==='الكل'||r.category===filter)&&(!q||norm(r.text).includes(q)||norm(r.category).includes(q)));
- window._v49VisibleRows=rows;
- list.innerHTML=rows.length?rows.map((r,i)=>{const fav=hubFav(r),u=r.audio,loaded=u&&localStorage.getItem('muslimHumanAudio:'+u)==='1';return `<div class="card v49HubRow" data-id="${xSafe(r.id)}"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b>${xSafe(r.text)}</b><p class="mini">${xSafe(r.category)} • ${Number(r.count)} مرات • ${xSafe(r.source)}</p></div><button type="button" class="favBtn ${fav?'active':''}" onclick="event.stopPropagation();toggleV49HubFav(${JSON.stringify(r.id)})">${fav?'★':'☆'}</button></div><div class="v47Audio">${u?`<button type="button" class="primary" onclick="playV49Audio(${JSON.stringify(u)},${JSON.stringify(r.text)},${JSON.stringify(r.category)})">▶ الاستماع</button><audio controls preload="none" src="${xSafe(u)}" onerror="this.dataset.failed='1';this.nextElementSibling.style.display='block'"></audio><span class="mini" style="display:none">تعذر تشغيل الرابط الأول؛ جرّب زر الاستماع.</span><button type="button" class="downloadBtn" onclick="cacheV49Audio(${JSON.stringify(u)},this)">${loaded?'✓ تم التحميل':'⬇️ تحميل دون إنترنت'}</button>`:'<div class="notice">لا يوجد تسجيل بشري مطابق لهذا الذكر في المصدر الحالي.</div>'}</div></div>`}).join(''):'<div class="card favEmpty">لا توجد أذكار مطابقة.</div>';
- cat?.querySelectorAll('.sourceChip').forEach(b=>b.onclick=()=>{cat.querySelectorAll('.sourceChip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderV49Hub(b.dataset.cat)});
-}
-window.initAdhkarHub=async function(){
- const cat=document.getElementById('adhkarHubCategories'),search=document.getElementById('adhkarHubSearch'),list=document.getElementById('adhkarHubList');if(!cat||!list)return;
- list.innerHTML='<div class="card">⏳ جارٍ تحميل الأذكار والتسجيلات البشرية…</div>';
- const rows=await loadV49Hub();
- if(!rows.length){list.innerHTML='<div class="notice">تعذر تحميل قاعدة الأذكار الآن. تحقق من الإنترنت ثم افتح القسم مرة أخرى.</div>';return;}
- const cats=['الكل',...new Set(rows.map(x=>x.category))];cat.innerHTML=cats.map((c,i)=>`<button type="button" class="sourceChip ${i===0?'active':''}" data-cat="${xSafe(c)}">${xSafe(c)}</button>`).join('');
- if(search){search.oninput=()=>renderV49Hub(cat.querySelector('.active')?.dataset.cat||'الكل')}
- renderV49Hub('الكل');
-};
-window.openV49HubFavorite=async function(id){const rows=await loadV49Hub(),r=rows.find(x=>x.id===id);show('adhkarHub');if(!r)return;setTimeout(()=>{const el=document.querySelector(`.v49HubRow[data-id="${CSS.escape(r.id)}"]`);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--gold)';setTimeout(()=>el.style.outline='',1600)}} ,120)};
-const prevRF=window.renderFavorites;
-window.renderFavorites=function(type='readers'){
- if(type!=='adhkar'){return prevRF(type)}
- const box=document.getElementById('favoritesList');if(!box)return;document.querySelectorAll('.favCategoryBtn').forEach(b=>b.classList.toggle('active',b.dataset.fav===type));const arr=(readFavStore().adhkar||[]).filter(x=>x.hub||String(x.id||'').startsWith('hub-'));
- box.innerHTML=`<div class="favCategoryCard"><h3>🤲 الأذكار والأدعية</h3>${arr.length?arr.map(z=>`<div class="favItem"><div class="main"><b>${xSafe(z.text||'ذكر')}</b><small class="mini">${xSafe(z.category||'')} • ${Number(z.count||1)} مرات</small></div><div class="controls"><button type="button" class="primary" onclick="openV49HubFavorite(${JSON.stringify(String(z.id))})">فتح</button><button type="button" class="favBtn active" onclick="removeFavorite('adhkar',${JSON.stringify(String(z.id))})">إزالة</button></div></div>`).join(''):'<div class="favEmpty">لم تضف أي ذكر أو دعاء بعد.</div>'}</div>`;
-};
-// ---------- Settings organization / Usage Center ----------
-function removeSettingsDuplicates(){
- const settings=document.getElementById('settings');if(!settings)return;
- const removeWords=['🌙 المظهر','⬇️ التنزيلات','🛠️ أدوات إضافية','🧭 البوصلة','🕌 مواقيت الصلاة','وضع السفر','🧳 وضع السفر'];
- settings.querySelectorAll('.setting').forEach(el=>{const t=el.textContent||'';if(removeWords.some(w=>t.includes(w)))el.remove();});
- const old=document.getElementById('v49UsageCenter');if(old)old.remove();
- const grid=settings.querySelector('.settingsGrid');if(!grid)return;
- const card=document.createElement('div');card.className='v49-center-card';card.id='v49UsageCenter';card.innerHTML=`<h3>🛠️ مركز الاستخدام</h3><p class="muted">مكان واحد لإدارة التنزيلات والتخزين والاتصال، بدل تكرارها في الإعدادات.</p><div class="v49-center-grid"><div class="v49-center-stat"><b id="v49StorageUsed">—</b><span>المساحة المستخدمة</span></div><div class="v49-center-stat"><b id="v49AudioCount">—</b><span>التسجيلات المحفوظة</span></div><div class="v49-center-stat"><b id="v49CacheCount">—</b><span>مخازن التطبيق</span></div><div class="v49-center-stat"><b id="v49Connection">—</b><span>حالة الاتصال</span></div></div><div class="controls" style="margin-top:10px"><button type="button" class="primary" onclick="v49RefreshUsage()">🔄 تحديث المعلومات</button><button type="button" onclick="v49ClearAudioDownloads()">🗑️ مسح الأصوات المحمّلة</button><button type="button" onclick="v49ClearCaches()">🧹 تنظيف التخزين المؤقت</button><button type="button" onclick="v49TestConnection()">🌐 اختبار الاتصال</button></div><div id="v49UsageStatus" class="mini" style="margin-top:8px"></div>`;
- grid.appendChild(card);v49RefreshUsage();
-}
-async function v49AudioDbCount(){try{return await new Promise((resolve,reject)=>{const r=indexedDB.open('quran-m09-audio',1);r.onerror=()=>reject(r.error);r.onsuccess=()=>{const db=r.result;if(!db.objectStoreNames.contains('audio')){db.close();resolve(0);return}const tx=db.transaction('audio','readonly');const q=tx.objectStore('audio').getAllKeys();q.onsuccess=()=>{const n=q.result?.length||0;db.close();resolve(n)};q.onerror=()=>{db.close();resolve(0)}}})}catch(e){return 0}}
-async function v49RefreshUsage(){const u=document.getElementById('v49StorageUsed'),a=document.getElementById('v49AudioCount'),c=document.getElementById('v49CacheCount'),n=document.getElementById('v49Connection');if(!u)return;try{if(n)n.textContent=navigator.onLine?'متصل':'غير متصل';if(c)c.textContent='—';if(navigator.storage?.estimate){const e=await navigator.storage.estimate();u.textContent=e.usage!=null?formatBytes(e.usage):'غير متاح'}else u.textContent='غير متاح';a.textContent=String(await v49AudioDbCount());if('caches' in window){const keys=await caches.keys();c.textContent=String(keys.length)}}catch(e){u.textContent='غير متاح';a.textContent='—'}}
-function formatBytes(n){if(!Number.isFinite(n)||n<0)return'—';if(n<1024)return n+' ب';const units=['ك.ب','م.ب','ج.ب'];let x=n/1024,i=0;while(x>=1024&&i<units.length-1){x/=1024;i++}return x.toFixed(x>=10?1:2)+' '+units[i]}
-window.v49RefreshUsage=v49RefreshUsage;
-window.v49TestConnection=async function(){const s=document.getElementById('v49UsageStatus');if(s)s.textContent='⏳ جارٍ اختبار الاتصال…';try{const r=await fetch('https://raw.githubusercontent.com/rn0x/Adhkar-json/master/adhkar.json',{cache:'no-store'});if(s)s.textContent=r.ok?'✅ الاتصال بالإنترنت يعمل.':'⚠️ الاتصال موجود لكن المصدر لم يستجب.'}catch(e){if(s)s.textContent='❌ لا يوجد اتصال صالح بالمصدر الآن.'}v49RefreshUsage()};
-window.v49ClearCaches=async function(){try{if('caches' in window){const keys=await caches.keys();await Promise.all(keys.filter(k=>k.includes('muslim-adhkar-human')||k.includes('muslim-human-audio')).map(k=>caches.delete(k)))}alert('تم تنظيف مخازن الصوت المؤقتة.');v49RefreshUsage()}catch(e){alert('تعذر تنظيف التخزين المؤقت.')}};
-window.v49ClearAudioDownloads=async function(){if(!confirm('هل تريد حذف الأصوات المحمّلة من هذا الجهاز؟'))return;try{if('caches' in window){const keys=await caches.keys();await Promise.all(keys.filter(k=>k.includes('muslim-adhkar-human')||k.includes('muslim-human-audio')).map(k=>caches.delete(k)))}Object.keys(localStorage).filter(k=>k.startsWith('muslimHumanAudio:')).forEach(k=>localStorage.removeItem(k));try{const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('quran-m09-audio',1);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});if(db.objectStoreNames.contains('audio')){const tx=db.transaction('audio','readwrite');tx.objectStore('audio').clear();await new Promise(res=>tx.oncomplete=res)}db.close()}catch(e){}alert('تم حذف الأصوات المحمّلة.');v49RefreshUsage()}catch(e){alert('تعذر حذف بعض الملفات.')}};
-// ---------- Travel: main page only, never in settings ----------
-function ensureTravelCard(){
- const menu=document.querySelector('#home .menu');if(menu&&!document.getElementById('v49TravelTile')){const t=document.createElement('div');t.className='tile';t.id='v49TravelTile';t.onclick=()=>show('travelMode');t.innerHTML='<span class="ico">🧳</span><b>وضع السفر</b><small>الصلاة • القبلة • المساجد • أذكار السفر</small>';menu.appendChild(t)}
- let page=document.getElementById('travelMode');if(!page){page=document.createElement('section');page.id='travelMode';page.className='page';page.innerHTML=`<div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🧳 وضع السفر</h2><p>واجهة واحدة للأشياء التي تحتاجها أثناء السفر.</p></div></div><div class="v49-travel"><div class="card"><h3>🕌 الصلاة</h3><p class="mini">افتح مواقيت الصلاة لاختيار البلد والمدينة.</p><button class="primary" onclick="show('prayer');loadPrayerTimes()">فتح المواقيت</button></div><div class="card"><h3>🧭 القبلة</h3><p class="mini">حدد اتجاه القبلة من موقعك الحالي.</p><button class="primary" onclick="show('qibla')">فتح القبلة</button></div><div class="card"><h3>🕌 المساجد والمصليات</h3><p class="mini">ابحث عن الأماكن القريبة أثناء السفر.</p><button class="primary" onclick="show('mosques')">فتح البحث</button></div><div class="card"><h3>🤲 أذكار السفر</h3><p class="mini">اذهب مباشرة إلى قسم الأذكار والأدعية وابحث عن أذكار السفر.</p><button class="primary" onclick="show('adhkarHub');initAdhkarHub()">فتح الأذكار</button></div></div>`;document.querySelector('.app')?.appendChild(page)}
-}
-function cleanTravelFromSettings(){document.querySelectorAll('#settings .setting').forEach(el=>{if((el.textContent||'').includes('السفر'))el.remove()})}
-function applyV49Layout(){removeSettingsDuplicates();cleanTravelFromSettings();ensureTravelCard();}
-const prevShowV49=window.show;window.show=function(id){prevShowV49(id);if(id==='settings')setTimeout(()=>{applyV49Layout();},30);if(id==='adhkarHub')setTimeout(()=>initAdhkarHub(),40)};
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyV49Layout);else applyV49Layout();
-})();
-</script>
-</html>
-<style id="v43-audio-favorites-fix">
+<style id="v50-clean">
 .v43AudioBar{position:fixed;left:10px;right:10px;bottom:64px;z-index:3000;display:none;align-items:center;gap:8px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:10px 12px;box-shadow:var(--shadow)}
-.v43AudioBar.show{display:flex}.v43AudioBar .title{flex:1;min-width:0}.v43AudioBar .title b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v43AudioBar .title small{color:var(--muted)}.v43AudioBar button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}.v43AudioBar audio{display:none}
-.v43Fav{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.v43RuqyahTrack{margin:8px 0}.v43RuqyahTrack audio{width:100%}
-@media(max-width:700px){.v43AudioBar{bottom:58px;left:6px;right:6px}.v43AudioBar button{padding:8px}.v43AudioBar .title{font-size:12px}}
+.v43AudioBar.show{display:flex}.v43AudioBar .title{flex:1;min-width:0}.v43AudioBar .title b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v43AudioBar .title small{color:var(--muted)}.v43AudioBar button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+.v50HubRow{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:16px;margin:10px 0}.v50HubTop{display:flex;gap:10px;align-items:flex-start}.v50HubTop>div{flex:1}.v50HubText{font-size:20px;line-height:2}.v50Audio{display:grid;gap:8px;margin-top:12px}.v50Audio audio{width:100%}.v50Actions{display:flex;gap:8px;flex-wrap:wrap}.v50Badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#eee3cc;color:var(--green);font-size:11px}.v50Location{font-size:14px;color:var(--muted)}
+@media(max-width:680px){.v43AudioBar{bottom:58px;left:6px;right:6px}.v50HubText{font-size:18px}.v50Actions button{flex:1;min-width:120px}}
+.mosqueItem .controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.mosqueItem .controls button{padding:8px 10px;font-size:13px}
 </style>
-<div id="v43AudioBar" class="v43AudioBar" aria-label="مشغل الأذكار والأدعية"><div class="title"><b id="v43AudioTitle">الأذكار والأدعية</b><small id="v43AudioSub">تسجيل بشري</small></div><button id="v43AudioPlay">▶ تشغيل</button><button id="v43AudioClose">✕</button><audio id="v43AudioElement" preload="none"></audio></div>
-<script id="v43-final-fix">
-(function(){
-  'use strict';
-  const HUMAN_BASE='https://raw.githubusercontent.com/rn0x/Adhkar-json/master';
-  const CACHE_NAME='muslim-human-audio-v43';
-  const audio=document.getElementById('v43AudioElement'),bar=document.getElementById('v43AudioBar'),playBtn=document.getElementById('v43AudioPlay'),closeBtn=document.getElementById('v43AudioClose'),titleEl=document.getElementById('v43AudioTitle'),subEl=document.getElementById('v43AudioSub');
-  window._v43HumanMap={}; window._v43Rows=[]; window._v43CurrentUrl='';
-  function favKey(kind,i){return 'z-'+kind+'-'+i}
-  function refreshFavHub(){try{if(typeof initAdhkarHub==='function')initAdhkarHub()}catch(e){console.warn(e)} try{if(document.getElementById('favorites')?.classList.contains('active'))renderFavorites('adhkar')}catch(e){}}
-  window.toggleFavAdhkar=function(kind,i){
-    const z=(ADHKAR?.[kind]||[])[Number(i)]; if(!z)return;
-    const id=favKey(kind,i),x=readFavStore();
-    if((x.adhkar||[]).some(a=>String(a.id)===id))favRemove('adhkar',id); else favAdd('adhkar',{id,kind,index:Number(i),text:z.text,count:z.count,source:z.source});
-    refreshFavHub();
-    try{renderAdhkar(currentAdhkarKind||kind)}catch(e){}
-  };
-  window.openFavoriteAdhkar=function(kind,i){show('adhkarHub');setTimeout(()=>{initAdhkarHub();const row=document.querySelector('.v43HumanAdhkar[data-kind="'+CSS.escape(String(kind))+'"][data-index="'+Number(i)+'"]');row?.scrollIntoView({behavior:'smooth',block:'center'});},60)};
-  window.removeFavorite=function(type,id){favRemove(type,id);renderFavorites(type);try{if(type==='adhkar')initAdhkarHub();}catch(e){}};
-  async function fetchHumanMap(){
-    try{
-      const r=await fetch(V27_ADHKAR_JSON,{cache:'no-store'}); if(!r.ok)throw new Error('metadata_'+r.status); const data=await r.json(); const map={};
-      for(const g of (Array.isArray(data)?data:[])) for(const z of (g.array||[])) if(z.text&&z.audio) map[String(z.text).trim()]=HUMAN_BASE+z.audio;
-      window._v43HumanMap=map; return map;
-    }catch(e){console.warn('V43 human audio metadata failed',e);return window._v43HumanMap||{}}
-  }
-  function showBar(url,name,category){
-    window._v43CurrentUrl=url; titleEl.textContent=name||'الأذكار والأدعية'; subEl.textContent='🎙️ تسجيل بشري • '+(category||''); bar.classList.add('show');
-    playBtn.textContent='▶ تشغيل'; audio.src=''; loadCachedOrRemote(url);
-  }
-  async function loadCachedOrRemote(url){
-    try{const c=await caches.open(CACHE_NAME),r=await c.match(url); if(r){const b=await r.blob();audio.src=URL.createObjectURL(b);await audio.play().catch(()=>{});return;}}catch(e){}
-    audio.src=url; await audio.play().catch(()=>{});
-  }
-  window.playHumanAdhkar=function(url,name,category){if(!url)return;showBar(url,name,category)};
-  window.cacheV43HumanAudio=async function(url,btn){
-    if(!url)return; try{btn.disabled=true;btn.textContent='⏳ جاري التحميل';const c=await caches.open(CACHE_NAME);const r=await fetch(url,{mode:'cors',cache:'no-store'});if(!r.ok)throw new Error('http_'+r.status);await c.put(url,r.clone());localStorage.setItem('muslimHumanAudio:'+url,'1');btn.textContent='✓ تم التحميل';btn.classList.add('downloaded');if(window._v43CurrentUrl===url)await loadCachedOrRemote(url);}catch(e){console.error(e);btn.disabled=false;btn.textContent='⬇️ تحميل';alert('تعذر تحميل التسجيل الآن. جرّب مع اتصال بالإنترنت.')}};
-  playBtn.onclick=()=>{if(!audio.src)return;if(audio.paused){audio.play().catch(()=>{});playBtn.textContent='⏸ إيقاف'}else{audio.pause();playBtn.textContent='▶ تشغيل'}};
-  audio.onplay=()=>playBtn.textContent='⏸ إيقاف'; audio.onpause=()=>playBtn.textContent='▶ تشغيل'; closeBtn.onclick=()=>{audio.pause();audio.removeAttribute('src');audio.load();bar.classList.remove('show');window._v43CurrentUrl=''};
-  // Do not use speech synthesis for adhkar/duas.
-  window.speakArabic=function(){try{window.stopSpeech?.()}catch(e){}};
+<script id="v50-rebuild">
+(function(){'use strict';
+const HUB_URL='https://raw.githubusercontent.com/rn0x/Adhkar-json/master/adhkar.json';
+const HUB_BASE='https://raw.githubusercontent.com/rn0x/Adhkar-json/master';
+const HUB_CACHE='muslim-adhkar-human-v50';
+window._v50HubRows=[];window._v50HubReady=false;
+const norm=s=>String(s||'').normalize('NFKC').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[“”"'`()\[\]{}]/g,'').replace(/\s+/g,' ').trim();
+function audioUrl(v){const s=String(v||'').trim();if(!s)return '';if(/^https?:\/\//i.test(s))return s;return HUB_BASE+(s.startsWith('/')?s:'/'+s)}
+async function loadV50Adhkar(){if(window._v50HubReady)return window._v50HubRows;try{const r=await fetch(HUB_URL,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const data=await r.json();const rows=[];for(const g of (Array.isArray(data)?data:[])){for(const z of (g.array||[])){if(!z.text)continue;const u=audioUrl(z.audio);rows.push({id:`v50-${g.id}-${z.id}`,text:z.text,count:Number(z.count||1),category:g.category||'أذكار وأدعية',source:'حصن المسلم — تسجيل حمد الدريهم',audio:u,filename:z.filename||''})}}window._v50HubRows=rows;window._v50HubReady=true;return rows}catch(e){console.error('V50 adhkar source',e);return []}}
+function hubFav(r){return (readFavStore().adhkar||[]).some(x=>String(x.id)===String(r.id))}
+window.toggleV50HubFav=function(id){const r=window._v50HubRows.find(x=>String(x.id)===String(id));if(!r)return;const st=readFavStore();if((st.adhkar||[]).some(x=>String(x.id)===String(r.id)))favRemove('adhkar',r.id);else favAdd('adhkar',{id:r.id,hub:true,text:r.text,count:r.count,category:r.category,source:r.source,audio:r.audio,filename:r.filename});renderV50Hub(document.querySelector('#adhkarHubCategories .sourceChip.active')?.dataset.cat||'الكل')};
+window.playV50HubAudio=async function(url,name,category){const a=document.getElementById('v43AudioElement'),bar=document.getElementById('v43AudioBar');if(!a||!url)return;const t=document.getElementById('v43AudioTitle'),s=document.getElementById('v43AudioSub');if(t)t.textContent=name||'الأذكار والأدعية';if(s)s.textContent='🎙️ تسجيل بشري — حمد الدريهم • '+(category||'');bar?.classList.add('show');window._v43CurrentUrl=url;try{const c=await caches.open(HUB_CACHE);const cached=await c.match(url);if(cached){if(window._v50BlobUrl)URL.revokeObjectURL(window._v50BlobUrl);window._v50BlobUrl=URL.createObjectURL(await cached.blob());a.src=window._v50BlobUrl}else a.src=url;await a.play()}catch(e){a.src=url;await a.play().catch(()=>{})}};
+window.cacheV50HubAudio=async function(url,btn){if(!url)return;const old=btn.textContent;btn.disabled=true;btn.textContent='⏳ جاري التحميل';try{const c=await caches.open(HUB_CACHE);const r=await fetch(url,{mode:'cors',cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);await c.put(url,r.clone());localStorage.setItem('muslimHumanAudio:'+url,'1');btn.textContent='✓ تم التحميل';btn.classList.add('downloaded')}catch(e){btn.disabled=false;btn.textContent=old;alert('تعذر تحميل التسجيل الآن. تحقق من الاتصال ثم حاول مرة أخرى.')}};
+window.renderV50Hub=function(filter='الكل'){const list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch');if(!list)return;const q=norm(search?.value||'');const rows=window._v50HubRows.filter(r=>(filter==='الكل'||r.category===filter)&&(!q||norm(r.text).includes(q)||norm(r.category).includes(q)));list.innerHTML=rows.length?rows.map(r=>{const fav=hubFav(r),loaded=r.audio&&localStorage.getItem('muslimHumanAudio:'+r.audio)==='1';return `<div class="v50HubRow" data-id="${xSafe(r.id)}"><div class="v50HubTop"><div><div class="v50HubText">${xSafe(r.text)}</div><p class="mini">${xSafe(r.category)} • ${r.count} مرات</p><span class="v50Badge">🎙️ تسجيل بشري: حمد الدريهم</span></div><button type="button" class="favBtn ${fav?'active':''}" onclick="event.stopPropagation();toggleV50HubFav(${JSON.stringify(r.id)})">${fav?'★':'☆'}</button></div><div class="v50Audio"><audio controls preload="none" src="${xSafe(r.audio)}"></audio><div class="v50Actions"><button type="button" class="primary" onclick="playV50HubAudio(${JSON.stringify(r.audio)},${JSON.stringify(r.text)},${JSON.stringify(r.category)})">▶ الاستماع</button><button type="button" class="downloadBtn" onclick="cacheV50HubAudio(${JSON.stringify(r.audio)},this)">${loaded?'✓ تم التحميل':'⬇️ تحميل دون إنترنت'}</button></div></div></div>`}).join(''):'<div class="card">لا توجد نتائج.</div>'};
+window.initAdhkarHub=async function(){const list=document.getElementById('adhkarHubList'),cat=document.getElementById('adhkarHubCategories'),search=document.getElementById('adhkarHubSearch');if(!list||!cat)return;list.innerHTML='<div class="card">⏳ جارٍ تحميل الأذكار والتسجيلات البشرية…</div>';const rows=await loadV50Adhkar();if(!rows.length){list.innerHTML='<div class="notice">تعذر تحميل قاعدة الأذكار الآن. تحقق من الإنترنت ثم أعد فتح القسم.</div>';return}const cats=['الكل',...new Set(rows.map(r=>r.category))];cat.innerHTML=cats.map((c,i)=>`<button type="button" class="sourceChip ${i===0?'active':''}" data-cat="${xSafe(c)}">${xSafe(c)}</button>`).join('');cat.querySelectorAll('.sourceChip').forEach(b=>b.onclick=()=>{cat.querySelectorAll('.sourceChip').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderV50Hub(b.dataset.cat)});if(search){search.oninput=()=>renderV50Hub(cat.querySelector('.active')?.dataset.cat||'الكل')}renderV50Hub('الكل')};
+const prevRF=window.renderFavorites;window.renderFavorites=function(type='readers'){if(type!=='adhkar')return prevRF(type);const box=document.getElementById('favoritesList');if(!box)return;document.querySelectorAll('.favCategoryBtn').forEach(b=>b.classList.toggle('active',b.dataset.fav===type));const arr=readFavStore().adhkar||[];box.innerHTML=`<div class="favCategoryCard"><h3>🤲 الأذكار والأدعية</h3>${arr.length?arr.map(z=>`<div class="favItem"><div class="main"><b>${xSafe(z.text||'ذكر')}</b><small class="mini">${xSafe(z.category||'')} • ${Number(z.count||1)} مرات</small></div><div class="controls"><button type="button" class="primary" onclick="openV50HubFavorite(${JSON.stringify(String(z.id))})">فتح</button><button type="button" class="favBtn active" onclick="removeFavorite('adhkar',${JSON.stringify(String(z.id))})">إزالة</button></div></div>`).join(''):'<div class="favEmpty">لم تضف أي ذكر أو دعاء بعد.</div>'}</div>`};
+window.openV50HubFavorite=async function(id){await loadV50Adhkar();show('adhkarHub');setTimeout(()=>{const el=document.querySelector(`.v50HubRow[data-id="${CSS.escape(String(id))}"]`);if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.style.outline='2px solid var(--gold)';setTimeout(()=>el.style.outline='',1800)}},150)};
+// Settings: keep only true configuration; move storage/download/connectivity to Usage Center.
+function usageCenter(){
+ const s=document.getElementById('settings');if(!s)return;const grid=s.querySelector('.settingsGrid');if(!grid)return;
+ grid.querySelectorAll('.setting').forEach(el=>{const t=el.textContent||'';if(/المظهر|أدوات إضافية|البوصلة|مواقيت الصلاة|السفر/.test(t))el.remove()});
+ let old=document.getElementById('v50UsageCenter');if(old)old.remove();
+ let dl=document.getElementById('v51DownloadsSetting');if(dl)dl.remove();
+ const card=document.createElement('div');card.className='setting';card.id='v50UsageCenter';
+ card.innerHTML=`<h3>🛠️ مركز الاستخدام</h3><p class="muted">المساحة، التسجيلات المحملة، التخزين المؤقت، وحالة الاتصال في مكان واحد.</p><div class="v49-center-grid"><div class="v49-center-stat"><b id="v50Storage">—</b><span>المساحة المستخدمة</span></div><div class="v49-center-stat"><b id="v50AudioCount">—</b><span>التسجيلات المحفوظة</span></div><div class="v49-center-stat"><b id="v50CacheCount">—</b><span>مخازن التطبيق</span></div><div class="v49-center-stat"><b id="v50Online">—</b><span>الاتصال</span></div></div><div class="controls" style="margin-top:10px"><button class="primary" onclick="v50RefreshUsage()">🔄 تحديث</button><button onclick="v50ClearAudio()">🗑️ مسح الأصوات</button><button onclick="v50ClearCaches()">🧹 تنظيف المؤقت</button><button onclick="v50TestConnection()">🌐 اختبار الاتصال</button></div><div id="v50UsageStatus" class="mini" style="margin-top:8px"></div>`;
+ grid.appendChild(card);
+ dl=document.createElement('div');dl.className='setting';dl.id='v51DownloadsSetting';
+ dl.innerHTML=`<h3>⬇️ التنزيلات</h3><p class="muted">كل السور والتسجيلات التي حفظتها للاستماع دون إنترنت تظهر هنا. هذه القائمة تبقى متاحة من الإعدادات.</p><div class="controls"><button class="primary" type="button" onclick="showDownloadsInSettings()">📥 فتح التنزيلات</button></div><div id="settingsDownloads" style="margin-top:12px"></div>`;
+ grid.appendChild(dl);
+ v50RefreshUsage();
+}
 
-  window.initAdhkarHub=async function(){
-    const cat=document.getElementById('adhkarHubCategories'),list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch');if(!cat||!list)return;
-    if(!window._v43HumanLoaded){window._v43HumanLoaded=true;await fetchHumanMap();}
-    const rows=[];for(const [kind,items] of Object.entries(ADHKAR||{}))for(let i=0;i<(items||[]).length;i++){const z=items[i];rows.push({text:z.text,count:z.count,category:kind,source:z.source,kind,index:i,fav:true,audio:window._v43HumanMap[String(z.text||'').trim()]||''})}
-    window._v43Rows=rows;
-    const cats=['الكل',...new Set(rows.map(z=>z.category))];
-    cat.innerHTML=cats.map((c,i)=>`<button class="sourceChip ${i===0?'active':''}" data-cat="${xSafe(c)}">${xSafe(c)}</button>`).join('');
-    const render=(filter='الكل')=>{
-      const q=(search?.value||'').trim();const out=rows.filter(z=>(filter==='الكل'||z.category===filter)&&(!q||String(z.text).includes(q)||String(z.category).includes(q)));
-      list.innerHTML=out.map(z=>{const fav=isFavAdhkar(z.kind,z.index),u=z.audio;return `<div class="card v43HumanAdhkar" data-kind="${xSafe(z.kind)}" data-index="${z.index}"><div class="v43Fav"><div style="flex:1"><b>${xSafe(z.text)}</b><p class="mini">${xSafe(z.category)} • ${Number(z.count||1)} مرات • ${xSafe(z.source||'')}</p></div><button class="favBtn ${fav?'active':''}" onclick="event.stopPropagation();toggleFavAdhkar(${JSON.stringify(z.kind)},${z.index})">${fav?'★':'☆'}</button></div>${u?`<div class="humanRecording"><div class="mini">🎙️ تسجيل بشري</div><button class="primary" onclick="playHumanAdhkar(${JSON.stringify(u)},${JSON.stringify(z.text)},${JSON.stringify(z.category)})">▶ الاستماع</button><audio controls preload="none" src="${xSafe(u)}" style="display:none"></audio><button class="downloadBtn" onclick="event.stopPropagation();cacheV43HumanAudio(${JSON.stringify(u)},this)">${localStorage.getItem('muslimHumanAudio:'+u)==='1'?'✓ تم التحميل':'⬇️ تحميل للاستماع دون إنترنت'}</button></div>`:'<div class="mini">لا يوجد تسجيل بشري مطابق لهذا الذكر في المصدر الحالي.</div>'}</div>`}).join('')||'<div class="card">لا توجد نتائج مطابقة.</div>';
-    };
-    cat.querySelectorAll('.sourceChip').forEach(b=>b.onclick=()=>{cat.querySelectorAll('.sourceChip').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.cat)});if(search)search.oninput=()=>render(cat.querySelector('.active')?.dataset.cat||'الكل');render('الكل');
-  };
+window.v50RefreshUsage=async function(){const u=document.getElementById('v50Storage');if(!u)return;document.getElementById('v50Online').textContent=navigator.onLine?'متصل':'غير متصل';try{const e=await navigator.storage?.estimate?.();u.textContent=e?.usage!=null?formatBytes(e.usage):'غير متاح';const keys=await caches.keys();document.getElementById('v50CacheCount').textContent=keys.length;document.getElementById('v50AudioCount').textContent=String(keys.filter(k=>/adhkar-human|human-audio/i.test(k)).length)}catch(e){u.textContent='غير متاح'}};
+window.v50ClearCaches=async function(){try{const keys=await caches.keys();await Promise.all(keys.filter(k=>/adhkar-human|human-audio/i.test(k)).map(k=>caches.delete(k)));Object.keys(localStorage).filter(k=>k.startsWith('muslimHumanAudio:')).forEach(k=>localStorage.removeItem(k));alert('تم تنظيف التخزين المؤقت للأصوات.');v50RefreshUsage()}catch(e){alert('تعذر التنظيف الآن.')}};
+window.v50ClearAudio=window.v50ClearCaches;
+window.v50TestConnection=async function(){const s=document.getElementById('v50UsageStatus');if(s)s.textContent='⏳ جارٍ الاختبار…';try{const r=await fetch(HUB_URL,{cache:'no-store'});if(s)s.textContent=r.ok?'✅ الاتصال بمصدر الأذكار يعمل.':'⚠️ المصدر لم يستجب.'}catch(e){if(s)s.textContent='❌ تعذر الاتصال بمصدر الأذكار.'}v50RefreshUsage()};
+// Remove travel completely from the application.
 
-  const V43_RUQYAH=[
-    ['سورة الفاتحة كاملة','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/1.mp3'],
-    ['آية الكرسي — البقرة 255','https://everyayah.com/data/Alafasy_128kbps/002255.mp3'],
-    ['البقرة 102','https://everyayah.com/data/Alafasy_128kbps/002102.mp3'],
-    ['الأعراف 117–122','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/7.mp3'],
-    ['يونس 81–82','https://everyayah.com/data/Alafasy_128kbps/010081.mp3'],
-    ['طه 68–70','https://everyayah.com/data/Alafasy_128kbps/020068.mp3'],
-    ['آخر آيتين من البقرة','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/2.mp3'],
-    ['سورة الإخلاص كاملة','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/112.mp3'],
-    ['سورة الفلق كاملة','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/113.mp3'],
-    ['سورة الناس كاملة','https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/114.mp3']
-  ];
-  let ruqyahSequenceIndex=-1,ruqyahSequenceRunning=false;
-  function ruqyahAudioElement(){return document.getElementById('v43AudioElement')||document.getElementById('audio')}
-  async function playRuqyahItem(index){
-    const a=V43_RUQYAH[index]; if(!a)return;
-    const el=ruqyahAudioElement(); if(!el)return;
-    ruqyahSequenceIndex=index;
-    window._v43CurrentUrl=a[1];
-    const c=await caches.open(CACHE_NAME).catch(()=>null); let src=a[1];
-    try{const r=c&&await c.match(a[1]); if(r){const b=await r.blob(); src=URL.createObjectURL(b)}}catch(e){}
-    el.src=src; el.onended=async()=>{if(!ruqyahSequenceRunning)return; const next=ruqyahSequenceIndex+1; if(next<V43_RUQYAH.length) await playRuqyahItem(next); else {ruqyahSequenceRunning=false; if(window._v43AudioTitle)window._v43AudioTitle.textContent='انتهت الرقية الشرعية كاملة';}};
-    try{await el.play();}catch(e){console.warn('ruqyah play',e)}
-    const title=document.getElementById('v43AudioTitle'); if(title)title.textContent='🕋 '+a[0];
-    const sub=document.getElementById('v43AudioSub'); if(sub)sub.textContent='🎙️ مشاري راشد العفاسي • مقطع '+(index+1)+' من '+V43_RUQYAH.length;
-    const bar=document.getElementById('v43AudioBar');if(bar)bar.classList.add('show');
-  }
-  window.playRuqyahTrack=function(i){ruqyahSequenceRunning=false;playRuqyahItem(Number(i)||0)};
-  window.playFullRuqyah=function(){ruqyahSequenceRunning=true;playRuqyahItem(0)};
-  window.renderRuqyah=function(){
-    const box=document.getElementById('ruqyahList'),txt=document.getElementById('ruqyahTexts');if(!box)return;
-    box.innerHTML=`<div class="card" style="grid-column:1/-1"><h3>🕋 الرقية الشرعية الكاملة</h3><p class="mini">تسجيلات بشرية للشيخ مشاري راشد العفاسي، مرتبة في مسار متتالٍ. يمكنك تشغيلها كاملة أو فتح أي مقطع منفرد.</p><div class="controls"><button class="primary" onclick="playFullRuqyah()">▶ تشغيل الرقية كاملة</button><button class="downloadBtn" onclick="downloadAllRuqyah()">⬇️ تحميل الرقية للاستماع دون إنترنت</button></div></div>`;
-    box.innerHTML+=V43_RUQYAH.map((a,i)=>`<div class="card v43RuqyahTrack"><b>🎙️ ${xSafe(a[0])}</b><p class="mini">صوت بشري — مشاري راشد العفاسي</p><audio controls preload="none" src="${xSafe(a[1])}"></audio><div class="controls"><button class="primary" onclick="playRuqyahTrack(${i})">▶ فتح وتشغيل</button><button class="downloadBtn" onclick="cacheV43HumanAudio(${JSON.stringify(a[1])},this)">⬇️ تحميل</button></div></div>`).join('');
-    if(txt)txt.innerHTML='<div class="notice">الرقية تظهر على الهاتف والكمبيوتر، ويمكن تشغيلها متتابعة من البداية إلى النهاية. لا نستخدم تحويل النص إلى كلام.</div>';
-  };
-  window.downloadAllRuqyah=async function(){let ok=0;for(const a of V43_RUQYAH){try{const c=await caches.open(CACHE_NAME),r=await fetch(a[1],{mode:'cors',cache:'no-store'});if(r.ok){await c.put(a[1],r.clone());localStorage.setItem('muslimHumanAudio:'+a[1],'1');ok++}}catch(e){}}alert(`تم حفظ ${ok} من ${V43_RUQYAH.length} تسجيلات بشرية.`);renderRuqyah();};
-  const oldShow=window.show;window.show=function(id){oldShow(id);if(id==='adhkarHub')setTimeout(()=>initAdhkarHub(),30);if(id==='ruqyah')setTimeout(()=>renderRuqyah(),30);if(id==='favorites')setTimeout(()=>renderFavorites('readers'),30)};
-  document.addEventListener('DOMContentLoaded',()=>{try{initAdhkarHub()}catch(e){}});
+// Automatic location, no map/manual picker.
+startHighAccuracyLocationWatch();updateLocationLabels();
+const oldShow=window.show;window.show=function(id){oldShow(id);if(id==='adhkarHub')setTimeout(initAdhkarHub,30);if(id==='settings')setTimeout(usageCenter,30);if(id==='mosques')setTimeout(()=>{updateLocationLabels();if(getSelectedLocation())findMosques()},80);if(id==='qibla')setTimeout(updateLocationLabels,80)};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{usageCenter();initAdhkarHub()});else{usageCenter();initAdhkarHub()}
 })();
 </script>
-
-<style id="v45-final-fixes">
-.nav{position:fixed!important;top:auto!important;right:12px!important;left:12px!important;bottom:10px!important;width:auto!important;height:64px!important;display:flex!important;flex-direction:row!important;align-items:stretch!important;justify-content:center!important;gap:10px!important;padding:6px!important;border-radius:18px!important;z-index:9999!important;overflow:hidden!important;}
-.nav button{flex:1 1 0!important;width:auto!important;min-width:0!important;height:52px!important;min-height:52px!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:7px!important;font-size:13px!important;border-radius:13px!important;}
-.nav button span{font-size:20px!important}.nav button b{font-size:13px!important}.miniPlayerActions #miniCloseBtn{background:#8b3b35!important;color:#fff!important;border-color:#8b3b35!important;font-weight:800!important;}
-@media(max-width:680px){.nav{right:7px!important;left:7px!important;bottom:calc(7px + env(safe-area-inset-bottom))!important;height:60px!important}.nav button{height:48px!important;min-height:48px!important}.app{padding-bottom:88px!important}.globalMiniPlayer{bottom:calc(72px + env(safe-area-inset-bottom))!important;}}
-</style>
+<div id="v43AudioBar" class="v43AudioBar" aria-label="مشغل الأذكار والأدعية"><div class="title"><b id="v43AudioTitle">الأذكار والأدعية</b><small id="v43AudioSub">تسجيل بشري</small></div><button id="v43AudioPlay">▶ تشغيل</button><button id="v43AudioClose">✕</button><audio id="v43AudioElement" preload="none"></audio></div>
+<script>
+(function(){const a=document.getElementById('v43AudioElement'),p=document.getElementById('v43AudioPlay'),c=document.getElementById('v43AudioClose'),bar=document.getElementById('v43AudioBar');if(p)p.onclick=()=>{if(a.paused)a.play().catch(()=>{});else a.pause()};if(c)c.onclick=()=>{a.pause();a.removeAttribute('src');a.load();bar.classList.remove('show');window._v43CurrentUrl=null};if(a)a.onplay=()=>{if(p)p.textContent='⏸ إيقاف مؤقت'};if(a)a.onpause=()=>{if(p)p.textContent='▶ تشغيل'};})();
+</script>
+</body></html>
