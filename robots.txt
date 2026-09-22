@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://2009malek11-source.github.io/Muslim/sitemap.xml
