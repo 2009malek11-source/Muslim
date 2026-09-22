@@ -1,13 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="description" content="المسلم — موقع إسلامي متكامل للقرآن الكريم، الأذكار والأدعية، الأحاديث، القراء، مواقيت الصلاة والقبلة.">
-<meta name="keywords" content="القرآن الكريم, قرآن, أذكار, أدعية, أحاديث, قراء القرآن, مواقيت الصلاة, القبلة, إسلام">
-<meta name="author" content="المسلم">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="المسلم — القرآن الكريم">
-<meta property="og:description" content="موقع إسلامي متكامل للقرآن الكريم والأذكار والأدعية والأحاديث ومواقيت الصلاة والقبلة.">
-<meta property="og:type" content="website">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1d624f"><link rel="manifest" href="manifest.webmanifest">
 <title>المسلم</title>
@@ -2109,109 +2102,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(id==='adhkarHub')setTimeout(()=>window.initAdhkarHub(),40);
     if(id==='settings')setTimeout(()=>window.usageCenter?.(),40);
   };
-})();
-</script>
-
-<style id="v55-mobile-download-bars">
-.mediaDownloadBar{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 5px 18px rgba(23,60,49,.06)}
-.mediaDownloadBar .mediaDlIcon{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border-radius:12px;background:#eee3cc;color:var(--green);font-size:20px}
-.mediaDownloadBar .mediaDlText{flex:1;min-width:0;text-align:right}.mediaDownloadBar .mediaDlText b{display:block}.mediaDownloadBar .mediaDlText small{display:block;color:var(--muted);margin-top:2px}
-.mediaDownloadBar button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:11px;padding:9px 12px;cursor:pointer;white-space:nowrap}
-.mediaDownloadBar button.downloaded{background:#e6efe9;color:var(--green)}.dark .mediaDownloadBar button.downloaded{background:#263b31;color:#dcebe2}
-@media(max-width:680px){.mediaDownloadBar{padding:10px;gap:9px}.mediaDownloadBar .mediaDlIcon{width:36px;height:36px;flex-basis:36px}.mediaDownloadBar button{padding:9px 10px;font-size:13px}}
-</style>
-<script id="v55-fixes">
-(function(){'use strict';
-/* V55: stable mobile download bars for adhkar and ruqyah. */
-function dlBar(url,loaded,type,onclick){
- const label=type==='ruqyah'?'تحميل التسجيل للاستماع دون إنترنت':'تحميل التسجيل للاستماع دون إنترنت';
- return `<div class="mediaDownloadBar"><div class="mediaDlIcon">⬇️</div><div class="mediaDlText"><b>${loaded?'تم حفظ التسجيل':'تحميل التسجيل'}</b><small>${loaded?'محفوظ على هذا الجهاز ويمكن تشغيله لاحقًا':'يُحفظ على الجهاز للاستماع دون إنترنت'}</small></div><button type="button" class="${loaded?'downloaded':''}" onclick="${onclick}">${loaded?'✓ محفوظ':'⬇ تحميل'}</button></div>`;
-}
-
-/* Replace only the final adhkar renderer, keeping the existing source/audio/favorites. */
-if(typeof window.renderV50Hub==='function'){
- const oldHub=window.renderV50Hub;
- window.renderV50Hub=function(filter='الكل'){
-   const list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch');if(!list)return;
-   const norm2=window._v55Norm||((x)=>String(x||'').normalize('NFKC').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim());
-   const q=norm2(search?.value||'');const rows=(window._v50HubRows||[]).filter(r=>(filter==='الكل'||r.category===filter)&&(!q||norm2(r.text).includes(q)||norm2(r.category).includes(q)));
-   list.innerHTML=rows.length?rows.slice(0,45).map(r=>{
-     const fav=(typeof readFavStore==='function'&&typeof hubFav==='function')?hubFav(r):false;
-     const loaded=r.audio&&localStorage.getItem('muslimHumanAudio:'+r.audio)==='1';
-     const bar=dlBar(r.audio,loaded,'adhkar',`cacheV50HubAudio(${JSON.stringify(r.audio)},this)`);
-     return `<div class="v50HubRow" data-id="${xSafe(r.id)}"><div class="v50HubTop"><div><div class="v50HubText">${xSafe(r.text)}</div><p class="mini">${xSafe(r.category)} • ${r.count} مرات</p><span class="v50Badge">🎙️ تسجيل بشري: حمد الدريهم</span></div><button type="button" class="favBtn ${fav?'active':''}" onclick="event.stopPropagation();toggleV50HubFav(${JSON.stringify(r.id)})">${fav?'★':'☆'}</button></div><div class="v50Audio"><audio controls preload="none" src="${xSafe(r.audio)}"></audio><div class="v50Actions"><button type="button" class="primary" onclick="playV50HubAudio(${JSON.stringify(r.audio)},${JSON.stringify(r.text)},${JSON.stringify(r.category)})">▶ الاستماع</button></div>${bar}</div></div>`;
-   }).join(''):'<div class="card">لا توجد نتائج.</div>';
- };
-}
-
-/* Fix ruqyah download buttons: cache directly, verify response, update the same horizontal bar. */
-window.cacheRuqyahAudio=async function(url,btn){
- if(!url||!btn)return;const bar=btn.closest('.mediaDownloadBar');btn.disabled=true;btn.textContent='⏳ جاري التحميل';
- try{
-   const cacheName=window._humanAudioCacheName||'muslim-human-audio-v41';
-   const cache=await caches.open(cacheName);
-   let res=await fetch(url,{mode:'cors',cache:'no-store'});
-   if(!res.ok)throw new Error('HTTP '+res.status);
-   await cache.put(url,res.clone());
-   localStorage.setItem('muslimHumanAudio:'+url,'1');
-   btn.disabled=false;btn.textContent='✓ محفوظ';btn.classList.add('downloaded');
-   const title=bar?.querySelector('.mediaDlText b');if(title)title.textContent='تم حفظ التسجيل';
-   const sub=bar?.querySelector('.mediaDlText small');if(sub)sub.textContent='محفوظ على هذا الجهاز ويمكن تشغيله لاحقًا';
-   const audio=btn.closest('.ruqyahAudioItem')?.querySelector('audio');if(audio&&typeof useCachedHumanAudio==='function')await useCachedHumanAudio(url,audio);
- }catch(e){console.error('V55 ruqyah download',e);btn.disabled=false;btn.textContent='⬇ تحميل';alert('تعذر تحميل تسجيل الرقية الآن. تحقق من الاتصال ثم أعد المحاولة.');}
-};
-
-/* Rebuild the opened ruqyah detail so its download controls use the same bar as adhkar. */
-if(typeof window.openRuqyah==='function'){
- window.openRuqyah=function(i){
-   const r=RUQYAH_READERS[i];if(!r)return;const box=document.getElementById('ruqyahPlayer');if(!box)return;
-   const loadedCount=r.playlist.filter(a=>localStorage.getItem('muslimHumanAudio:'+a[1])==='1').length;
-   box.style.display='block';
-   box.innerHTML=`<div class="detailHero"><h3>🕋 ${xSafe(r.name)}</h3><p class="mini">تسجيل بشري. يمكنك تحميل كل مقطع والاستماع إليه لاحقًا دون إنترنت.</p><div class="notice">🎙️ الصوت هنا تلاوة بشرية فعلية، وليس صوتًا آليًا.</div><div class="mediaDownloadBar"><div class="mediaDlIcon">🕋</div><div class="mediaDlText"><b>تنزيل الرقية كاملة</b><small>${loadedCount} من ${r.playlist.length} مقطعًا محفوظة حاليًا</small></div><button type="button" onclick="downloadRuqyahAll(${Number(i)})">⬇ تحميل الكل</button></div><div id="ruqyahTracks" class="audioRow"></div></div>`;
-   const list=document.getElementById('ruqyahTracks');
-   list.innerHTML=r.playlist.map(a=>{
-     const url=a[1],safe=xSafe(url),loaded=localStorage.getItem('muslimHumanAudio:'+url)==='1';
-     return `<div class="card ruqyahAudioItem" data-audio-url="${safe}" style="margin:6px 0"><b>${xSafe(a[0])}</b><div class="mini">🎙️ صوت بشري — مشاري العفاسي</div><audio controls preload="none" data-human-audio="${safe}" src="${safe}"></audio>${dlBar(url,loaded,'ruqyah',`cacheRuqyahAudio(${JSON.stringify(url)},this)`)}</div>`;
-   }).join('');
-   list.querySelectorAll('audio[data-human-audio]').forEach(a=>useCachedHumanAudio(a.dataset.humanAudio,a));
-   box.scrollIntoView({behavior:'smooth',block:'start'});
- };
-}
-
-/* V55 mosque search: do not fail just because the GPS request timed out. Use GPS when available,
-   then a clearly-labelled IP fallback so the old "search and return mosques" behavior still works. */
-async function v55ApproxLocation(){
- try{const r=await fetch('https://ipapi.co/json/',{cache:'no-store'});if(!r.ok)throw Error('ip');const j=await r.json();if(Number.isFinite(Number(j.latitude))&&Number.isFinite(Number(j.longitude)))return {lat:Number(j.latitude),lon:Number(j.longitude),label:`موقع تقريبي عبر الإنترنت — ${j.city||''}`,accuracy:5000,approx:true};}catch(e){}
- return null;
-}
-async function v55GetLocation(){
- const existing=getSelectedLocation();if(existing)return existing;
- if(navigator.geolocation){
-   try{const p=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{enableHighAccuracy:true,timeout:9000,maximumAge:0}));return setSelectedLocation(p.coords.latitude,p.coords.longitude,'موقع GPS',p.coords.accuracy);
-   }catch(e){}
- }
- const approx=await v55ApproxLocation();if(approx)return setSelectedLocation(approx.lat,approx.lon,approx.label,approx.accuracy);
- return null;
-}
-window.findMosques=async function(){
- const st=document.getElementById('mosqueStatus'),list=document.getElementById('mosqueList');if(!st||!list)return;
- const loc=await v55GetLocation();if(!loc){st.textContent='تعذر تحديد الموقع. اسمح بالموقع ثم اضغط «البحث عن المساجد» مرة أخرى.';return;}
- list.innerHTML='';const all=[],seen=new Set();const radii=[500,1000,2000,3000,5000,7000,10000,15000,30000,50000];
- const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter'];
- const dist=(la,lo)=>{const R=6371,rad=Math.PI/180,a=Math.sin((la-loc.lat)*rad/2)**2+Math.cos(loc.lat*rad)*Math.cos(la*rad)*Math.sin((lo-loc.lon)*rad/2)**2;return 2*R*Math.asin(Math.sqrt(a))};
- const add=(e)=>{const la=e.lat??e.center?.lat,lo=e.lon??e.center?.lon;if(la==null||lo==null)return;const t=e.tags||{},amen=String(t.amenity||'').toLowerCase(),rel=String(t.religion||'').toLowerCase(),pow=String(t.place_of_worship||'').toLowerCase(),bld=String(t.building||'').toLowerCase(),name=String(t.name||'')+' '+String(t['name:ar']||'')+' '+String(t['name:en']||'');const muslim=(amen==='place_of_worship'&&(rel==='muslim'||rel==='islam'||!rel))||bld==='mosque'||pow==='musalla'||/مسجد|جامع|مصلى|زاوية|mosque|masjid|musalla|mushalla/i.test(name);if(!muslim)return;const isMusalla=pow==='musalla'||/مصلى|musalla|mushalla/i.test(name);if(selectedMosqueType==='women'&&!womenPlace(t,isMusalla))return;const key=Number(la).toFixed(5)+','+Number(lo).toFixed(5);if(seen.has(key))return;seen.add(key);all.push({d:dist(Number(la),Number(lo)),name:t.name_ar||t['name:ar']||t['name:en']||t.name||(isMusalla?'مصلى':'مسجد'),la:Number(la),lo:Number(lo),isMusalla});};
- for(const radius of radii){
-   st.textContent=`⏳ البحث حول موقعك حتى ${radius>=1000?radius/1000+' كم':radius+' متر'}…`;
-   const q=`[out:json][timeout:20];(nwr[amenity=place_of_worship][religion=muslim](around:${radius},${loc.lat},${loc.lon});nwr[amenity=place_of_worship][place_of_worship=musalla](around:${radius},${loc.lat},${loc.lon});nwr[building=mosque](around:${radius},${loc.lat},${loc.lon});nwr[place_of_worship=musalla](around:${radius},${loc.lat},${loc.lon});nwr[name~"مسجد|جامع|زاوية|مصلى|mosque|masjid|musalla|mushalla",i](around:${radius},${loc.lat},${loc.lon}););out center tags;`;
-   let got=false;
-   for(const ep of endpoints){try{const c=new AbortController(),tm=setTimeout(()=>c.abort(),12000);const r=await fetch(ep+'?data='+encodeURIComponent(q),{signal:c.signal,cache:'no-store'});clearTimeout(tm);if(!r.ok)continue;const j=await r.json();for(const e of (j.elements||[]))add(e);got=true;}catch(e){console.warn('V55 mosque endpoint',ep,e)}}
-   all.sort((a,b)=>a.d-b.d);
-   if(all.length){list.innerHTML=all.slice(0,150).map(x=>`<div class="mosqueItem"><div style="flex:1;min-width:0"><b>${x.isMusalla?'🤲':'🕌'} ${xSafe(x.name)}</b><div class="mini">📍 ${x.d<1?(x.d*1000).toFixed(0)+' متر':x.d.toFixed(2)+' كم'} تقريبًا</div><div class="mini">✓ تم العثور عليه وسيبقى في القائمة</div></div><div class="mosqueActions"><button type="button" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${x.la},${x.lo}','_blank','noopener')">📍 مكان المسجد</button><button type="button" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${x.la},${x.lo}','_blank','noopener')">🧭 الاتجاهات</button></div></div>`).join('');}
-   if(all.length)st.textContent=`✓ وجدنا ${all.length} مسجدًا/مصلى حتى الآن${loc.approx?' • الموقع تقريبي لأن GPS غير متاح':''} — وسأكمل البحث. ${got?'':'تعذر الوصول إلى بعض مصادر البحث، وسأتابع بالمصدر التالي.'}`;
- }
- all.sort((a,b)=>a.d-b.d);
- st.textContent=all.length?`✓ اكتمل البحث: ${all.length} مسجدًا/مصلى، مرتبة من الأقرب إلى الأبعد.${loc.approx?' الموقع المستخدم تقريبي لأن GPS غير متاح.':''}`:'لم نجد مساجد مسجلة في مصادر البيانات المتاحة قرب الموقع الحالي.';
-};
 })();
 </script>
 </body></html>
