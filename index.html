@@ -3261,4 +3261,348 @@ window.addEventListener('DOMContentLoaded',()=>{const inp=document.getElementByI
 window.addEventListener('load',()=>{try{window.initChildren()}catch(e){console.error(e)}});
 })();
 </script>
+
+<!-- V70 stability patch: daily acts, children story quizzes, iPhone adhkar, resilient hadith chapters/search, GPS fallback -->
+<style id="v70-stability-style">
+.v70-loading{padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-align:center}
+.v70Error{padding:14px;border:1px solid #b33;border-radius:16px;background:rgba(180,40,40,.06)}
+.v70HadithAudio{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(127,127,127,.06);display:grid;gap:7px}.v70HadithAudio audio{width:100%}
+</style>
+<script id="v70-stability-script">
+(function(){'use strict';
+/* ---------- 1) Daily acts: never depend on prayer-time loading to render ---------- */
+window.renderDaily=function(){
+  const box=document.getElementById('dailyList'); if(!box)return;
+  try{
+    const day=new Date().getDay(), rows=[];
+    if(day===5) rows.push({id:'kahf',title:'سورة الكهف',desc:'من أعمال يوم الجمعة',icon:'📖',when:'اليوم',action:"show('quran')"});
+    rows.push({id:'morning',title:'أذكار الصباح',desc:'تذكير يومي بأذكار الصباح',icon:'🌅',when:'كل يوم',action:"show('adhkar');renderAdhkar('صباح')"});
+    rows.push({id:'evening',title:'أذكار المساء',desc:'تذكير يومي بأذكار المساء',icon:'🌇',when:'كل يوم',action:"show('adhkar');renderAdhkar('مساء')"});
+    rows.push({id:'quran',title:'ورد القرآن',desc:'ورد متاح في جميع الأوقات',icon:'📖',when:'متاح دائمًا',action:"show('quran')"});
+    rows.push({id:'salawat',title:'الصلاة على النبي ﷺ',desc:'ذكر صالح في جميع الأوقات',icon:'🤍',when:'متاح دائمًا',action:"alert('اللهم صل وسلم على نبينا محمد ﷺ')"});
+    const fav=(()=>{try{return Array.isArray(readFavStore()?.daily)?readFavStore().daily:[]}catch(e){return[]}})();
+    box.innerHTML=rows.map(x=>`<div class="card dailyCard"><div class="dailyTop"><span class="dailyIcon">${x.icon}</span><div><h3>${xSafe(x.title)}</h3><p class="mini">${xSafe(x.desc)}</p><small class="timeBadge">${xSafe(x.when)}</small></div><button type="button" class="favBtn ${fav.includes(x.id)?'active':''}" onclick="toggleDailyFavorite('${x.id}')">${fav.includes(x.id)?'★':'☆'}</button></div><button type="button" class="primary" onclick="${x.action}">فتح</button></div>`).join('');
+  }catch(e){console.error('daily v70',e);box.innerHTML='<div class="v70Error">تعذر عرض أعمال اليوم. اضغط إعادة المحاولة.</div><button type="button" class="primary" onclick="renderDaily()">🔄 إعادة المحاولة</button>'}
+};
+
+/* ---------- 2) Children: independent, working story quiz; no auto-start ---------- */
+const P70=(typeof P66!=='undefined'?P66:(typeof P65!=='undefined'?P65:[]));
+function child70Quiz(name){
+  const m=window.ensureChildModalV64?.(); const c=document.getElementById('childContentV64');
+  if(!m||!c){const box=document.getElementById('childrenQuiz');if(box)box.innerHTML='<div class="v70Error">تعذر فتح الاختبار. أعد فتح عالم الأطفال.</div>';return}
+  let idx=0,score=0,attempts=0; const qs=(typeof shuffle65==='function'?shuffle65(P70):P70.slice()).slice(0,30);
+  function finish(){c.innerHTML=`<div class="card" style="text-align:center"><div style="font-size:46px">🏆</div><h2>انتهى اختبار قصة الأنبياء</h2><p>نتيجتك: <b>${score} / ${qs.length}</b></p><div class="controls" style="justify-content:center"><button type="button" class="primary" id="v70again">اختبار جديد</button><button type="button" id="v70back">عودة</button></div></div>`;c.querySelector('#v70again').onclick=()=>child70Quiz(name);c.querySelector('#v70back').onclick=()=>{m.style.display='none';show('children')}}
+  function render(){const q=qs[idx];attempts=0;c.innerHTML=`<div class="quizMeta"><b>📖 قصة ${esc65(name||'النبي')}</b><span class="mini">${idx+1} / ${qs.length} • النقاط ${score}</span></div><div class="quizProgress"><span style="width:${Math.round(idx/qs.length*100)}%"></span></div><h3 style="font-size:17px;line-height:1.7;margin:14px 0">${esc65(q[0])}</h3>${q[1].map((o,i)=>`<button type="button" class="quizOption" data-i="${i}">${esc65(o)}</button>`).join('')}<div id="v70fb" class="mini" style="margin-top:10px"></div>`;c.querySelectorAll('.quizOption').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(i===q[2]){b.classList.add('correct');score++;c.querySelectorAll('.quizOption').forEach(x=>x.disabled=true);c.querySelector('#v70fb').textContent='أحسنت! إجابة صحيحة 🌟';setTimeout(()=>{idx++;idx<qs.length?render():finish()},350)}else{attempts++;b.classList.add('wrong');b.disabled=true;c.querySelector('#v70fb').textContent=attempts<2?'إجابة غير صحيحة، لديك محاولة أخرى.':'انتهت المحاولتان؛ الإجابة الصحيحة محددة بالأخضر.';if(attempts>=2){c.querySelectorAll('.quizOption').forEach(x=>x.disabled=true);c.querySelectorAll('.quizOption')[q[2]]?.classList.add('correct');setTimeout(()=>{idx++;idx<qs.length?render():finish()},700)}}});m.style.display='flex'}
+  if(!qs.length){c.innerHTML='<div class="v70Error">لا توجد أسئلة متاحة الآن.</div>';m.style.display='flex';return} render();
+}
+window.startChildInteractiveV64=child70Quiz;
+window.startChildInteractiveV62=child70Quiz;
+window.startChildInteractiveV70=child70Quiz;
+window.initChildren=function(){
+ const box=document.getElementById('childrenStories');if(!box)return;
+ const stories=Array.isArray(window.V61_STORIES)?V61_STORIES:[];
+ box.innerHTML=stories.map(s=>`<div class="childStory"><div class="storyIcon">${s[1]}</div><b>${esc65(s[0])}</b><small>${esc65(s[2])}</small><div class="controls"><button type="button" class="primary" data-v70story="${esc65(s[0])}">📖 فتح القصة</button><button type="button" data-v70video="${esc65(s[3])}">🎬 مشاهدة فيديو</button><button type="button" data-v70quiz="${esc65(s[0])}">🎮 اختبار 30 سؤالًا</button></div></div>`).join('');
+ box.querySelectorAll('[data-v70story]').forEach(b=>b.onclick=()=>window.showChildStoryV64?.(b.dataset.v70story));
+ box.querySelectorAll('[data-v70video]').forEach(b=>b.onclick=()=>window.openChildVideoV64?.(b.dataset.v70video));
+ box.querySelectorAll('[data-v70quiz]').forEach(b=>b.onclick=()=>child70Quiz(b.dataset.v70quiz));
+ const q=document.getElementById('childrenQuiz');if(q){q.innerHTML='<div class="mini">اختر المسابقة التي تريدها؛ لا يبدأ أي سؤال تلقائيًا.</div><div class="controls" style="margin-top:8px"><button type="button" class="primary" id="v70dhikr">🎯 مسابقة الأذكار</button><button type="button" id="v70dua">🤲 مسابقة الأدعية</button></div>';document.getElementById('v70dhikr').onclick=()=>window.nextChildrenQuiz?.();document.getElementById('v70dua').onclick=()=>window.startChildrenDuasV65?.()}
+};
+
+/* ---------- 3) Adhkar: switch metadata/audio to jsDelivr and render local data immediately ---------- */
+const V70_ADHKAR_JSON='https://cdn.jsdelivr.net/gh/rn0x/Adhkar-json@master/adhkar.json';
+const V70_ADHKAR_BASE='https://cdn.jsdelivr.net/gh/rn0x/Adhkar-json@master';
+window.initAdhkarHub=async function(){
+ const cat=document.getElementById('adhkarHubCategories'),list=document.getElementById('adhkarHubList'),search=document.getElementById('adhkarHubSearch');if(!cat||!list)return;
+ const localRows=[];
+ try{Object.entries(ADHKAR||{}).forEach(([kind,items])=>(items||[]).forEach((z,i)=>localRows.push({text:z.text,count:z.count,category:kind,source:z.source,kind,index:i,audio:null}))) }catch(e){}
+ const extra=typeof localDuas!=='undefined'?localDuas:[];extra.forEach(z=>localRows.push({text:z[0],count:1,category:z[1],source:z[2],audio:null}));
+ let remote=null;try{const r=await fetch(V70_ADHKAR_JSON,{cache:'force-cache'});if(r.ok)remote=await r.json()}catch(e){console.warn('v70 adhkar remote',e)}
+ const rows=remote?(()=>{const a=[];for(const g of (Array.isArray(remote)?remote:[]))for(const z of (g.array||[]))a.push({...z,category:g.category,kind:g.category,index:a.length});return a.length?a:localRows})():localRows;
+ window._v70AdhkarRows=rows;
+ const cats=['الكل',...new Set(rows.map(x=>x.category).filter(Boolean))];
+ function render(filter){const q=(search?.value||'').trim();const out=rows.filter(z=>(filter==='الكل'||z.category===filter)&&(!q||String(z.text||'').includes(q)||String(z.category||'').includes(q))).slice(0,500);list.innerHTML=out.length?out.map(z=>{const audio=z.audio?(String(z.audio).startsWith('http')?z.audio:V70_ADHKAR_BASE+z.audio):'';return `<div class="card humanAdhkarItem"><b>${xSafe(z.text||'')}</b><p class="mini">${xSafe(z.category||'')} • ${Number(z.count||1)} مرات • ${xSafe(z.source||'حصن المسلم')}</p>${audio?`<div class="humanRecording"><div class="mini">🎙️ تسجيل بشري</div><audio controls preload="none" playsinline src="${xSafe(audio)}"></audio><div class="mini">المصدر الصوتي: تسجيل بشري</div></div>`:'<div class="mini">لا يوجد تسجيل صوتي لهذا النص في المصدر.</div>'}</div>`}).join(''):'<div class="card">لا توجد أذكار أو أدعية مطابقة.</div>'}
+ cat.innerHTML=cats.map((x,i)=>`<button type="button" class="sourceChip ${i===0?'active':''}" data-v70cat="${xSafe(x)}">${xSafe(x)}</button>`).join('');cat.querySelectorAll('[data-v70cat]').forEach(b=>b.onclick=()=>{cat.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.v70cat)});if(search&&!search.dataset.v70){search.dataset.v70='1';search.oninput=()=>render(cat.querySelector('.active')?.dataset.v70cat||'الكل')}render('الكل');
+};
+/* Also make the old quick adhkar page independent of the network. */
+window.renderAdhkar=function(kind='صباح'){currentAdhkarKind=kind;const box=document.getElementById('adhkarList');if(!box)return;try{const arr=ADHKAR[kind]||[];box.innerHTML=arr.length?arr.map((z,i)=>`<div class="card clickableDetail"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><b>${xSafe(z.text)}</b><p class="mini">${Number(z.count||1)} مرات • ${xSafe(z.source||'')}</p></div><button type="button" class="favBtn ${isFavAdhkar(kind,i)?'active':''}" onclick="event.stopPropagation();toggleFavAdhkar('${kind}',${i})">${isFavAdhkar(kind,i)?'★':'☆'}</button></div><div class="controls"><button type="button" class="primary" onclick="openAdhkarDetail('${kind}',${i})">فتح الذكر</button></div></div>`).join(''):'<div class="card">لا توجد أذكار في هذا القسم.</div>'}catch(e){console.error(e);box.innerHTML='<div class="v70Error">تعذر عرض الأذكار.</div>'}};
+
+/* ---------- 4) Sahihayn: reliable chapter cache + fast topic-first search ---------- */
+const V70_HBASE='https://raw.githubusercontent.com/AhmedBaset/hadith-json/v1.2.0/db/by_chapter/the_9_books';
+const V70_HCDN='https://cdn.jsdelivr.net/gh/AhmedBaset/hadith-json@v1.2.0/db/by_chapter/the_9_books';
+const V70_HAUDIO='https://api.hadith.to/v1/audio';
+const v70HCache={};
+async function v70FetchChapter(book,n){
+ const key=book+'|'+n;
+ if(v70HCache[key]) return v70HCache[key];
+ const urls=[V70_HBASE+'/'+book+'/'+n+'.json',V70_HCDN+'/'+book+'/'+n+'.json'];
+ for(const url of urls){
+  try{
+   const c=await caches.open('muslim-hadith-v70');
+   const hit=await c.match(url);
+   if(hit){const j=await hit.json();v70HCache[key]=j;return j;}
+  }catch(e){}
+ }
+ for(const url of urls){
+  const ctl=new AbortController();
+  const tm=setTimeout(()=>ctl.abort(),9000);
+  try{
+   const r=await fetch(url,{cache:'force-cache',mode:'cors',signal:ctl.signal});
+   if(!r.ok) throw Error('HTTP '+r.status);
+   const j=await r.json();
+   v70HCache[key]=j;
+   try{const c=await caches.open('muslim-hadith-v70');await c.put(url,new Response(JSON.stringify(j),{headers:{'Content-Type':'application/json','Cache-Control':'max-age=31536000'}}));}catch(e){}
+   return j;
+  }catch(e){console.warn('chapter source failed',url,e)}finally{clearTimeout(tm)}
+ }
+ throw Error('chapter_unavailable');
+}
+function v70BookTitle(j,n){return j?.metadata?.arabic?.title||j?.metadata?.arabic?.introduction||j?.metadata?.arabic?.name||'الباب '+n}
+window.h68OpenBook=function(book){show('hadithCollection');const title=document.getElementById('hadithCollectionTitle'),chap=document.getElementById('hadithCollectionChapters'),had=document.getElementById('hadithCollectionHadiths');if(title)title.textContent=book==='bukhari'?'📗 صحيح البخاري — الأبواب':'📘 صحيح مسلم — الأبواب';if(had)had.innerHTML='';if(chap){const n=book==='bukhari'?97:56;chap.style.display='block';chap.innerHTML=`<div class="card"><p class="mini">الأبواب جاهزة مباشرة. لا يتم تنزيل الكتاب كاملًا.</p><div class="h68ChapterGrid">${Array.from({length:n},(_,i)=>`<button type="button" class="h68Chapter" data-v70ch="${book}|${i+1}"><span>📖 الباب ${i+1}</span><small>فتح الباب</small></button>`).join('')}</div></div>`;chap.querySelectorAll('[data-v70ch]').forEach(b=>b.onclick=()=>window.h68OpenChapter(...b.dataset.v70ch.split('|')))}};
+window.h68OpenChapter=async function(book,n){const chap=document.getElementById('hadithCollectionChapters'),box=document.getElementById('hadithCollectionHadiths');if(box)box.innerHTML='<div class="v70-loading">⏳ جارٍ فتح الباب…</div>';try{const j=await v70FetchChapter(book,Number(n));if(chap)chap.style.display='none';const items=Array.isArray(j?.hadiths)?j.hadiths:[],title=v70BookTitle(j,n),bn=book==='bukhari'?'صحيح البخاري':'صحيح مسلم';if(box)box.innerHTML=`<div class="card"><button type="button" onclick="h68OpenBook('${book}')">← العودة إلى الأبواب</button><h2>📖 ${h67Esc(title)}</h2><p class="mini">${bn} • الباب ${n} • ${items.length} حديثًا</p></div>${items.map((h,i)=>{const id=Number(h.idInBook||h.id||i+1),txt=h.arabic?.text||h.arabic||h.text||h.text_ar||'';return `<article class="hadithFullItemV67"><div class="hadithTopicHead"><span class="v50Badge">${h67Esc(bn)}</span><span class="mini">حديث رقم ${id}</span></div><div class="hadithFullText">${h67Esc(txt)}</div><div class="v70HadithAudio"><b>🎙️ استماع بصوت بشري</b><audio controls preload="none" playsinline src="${V70_HAUDIO}/${book}/${encodeURIComponent(id)}"></audio></div></article>`}).join('')}`;window.scrollTo({top:0,behavior:'smooth'})}catch(e){if(box)box.innerHTML='<div class="v70Error">تعذر فتح هذا الباب الآن. جرّب «إعادة المحاولة»؛ إذا سبق فتحه فسيُستخدم التخزين المحلي.</div><button type="button" class="primary" onclick="h68OpenChapter(\''+book+'\','+Number(n)+')">🔄 إعادة المحاولة</button>'}};
+window.openHadithCollection=function(book){return window.h68OpenBook(book)};
+
+/* Fast topic search: show local matches immediately, then enrich from full books in the background. */
+const topicGroups70={
+ 'الصبر والحزن':[['صبر','صبر'],['حزن','حزن']], 'الأخلاق':[['خلق','أخلاق'],['صدق','أمانة','رحمة','رفق','عفو','حلم','حياء','تواضع']], 'القرآن':[['قران','قرآن','كتاب الله','سورة','اية','آية']], 'الصلاة':[['صلاه','صلاة','ركوع','سجود','فجر','ظهر','عصر','مغرب','عشاء']], 'الذكر والدعاء':[['ذكر','دعاء','استغفار','تسبيح','تهليل','تكبير']], 'الإيمان والتوحيد':[['ايمان','إيمان','توحيد','شهادة','قدر','قيامة']], 'الصيام والزكاة':[['صيام','صوم','رمضان','زكاة','صدقة']], 'الأسرة والنساء':[['زوج','نساء','مرأة','أهل','ولد','والدين','رحم']], 'المعاملات والحقوق':[['بيع','شراء','دين','حق','مال','تجارة','جار']], 'الآخرة والموت':[['موت','قبر','قيامة','جنة','نار','حساب']]
+};
+const n70=x=>String(x||'').normalize('NFKC').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim();
+function groups70(q){if(topicGroups70[q])return topicGroups70[q];const ws=n70(q).split(/[\s،,]+/).filter(Boolean);return ws.map(w=>[w])}
+function score70(row,q){const t=n70(row.text+' '+row.chapter),gs=groups70(q);let hits=0;for(const g of gs)if(g.some(w=>t.includes(n70(w))))hits++;return gs.length?hits/gs.length:0}
+function localTopic70(q){return (typeof HADITHS!=='undefined'?HADITHS:[]).map((h,i)=>({bookName:h.source||'الصحيحان',id:h.id||i+1,text:h.text,chapter:h.category||'',score:score70({text:h.text,chapter:h.category},q),local:true})).filter(x=>x.score>=1).slice(0,20)}
+function renderTopic70(rows,q,st,box){box.innerHTML=rows.length?`<div class="card"><h3>📚 نتائج: ${h67Esc(q)}</h3><p class="mini">النتائج تطابق الموضوع المطلوب، ثم تُستكمل من بيانات الصحيحين عند توفرها.</p></div>`+rows.slice(0,40).map((r,i)=>`<article class="hadithTopicItem"><div class="hadithTopicHead"><span class="v50Badge">${h67Esc(r.bookName)}</span><span class="mini">${r.id?'حديث '+r.id:''}</span></div><h4>${h67Esc(r.chapter||'')}</h4><p>${h67Esc(r.text||'')}</p>${r.local?'':'<div class="hadithTopicActions"><audio controls preload="none" playsinline src="'+V70_HAUDIO+'/'+r.book+'/'+encodeURIComponent(r.id)+'"></audio></div>'}</article>`).join(''):'<div class="card">لم أجد حديثًا يطابق الموضوع بدقة.</div>';st.textContent=`تم العثور على ${rows.length} نتيجة.`}
+window.h66SearchTopic=async function(q){q=String(q||'').trim();const box=document.getElementById('hadithTopicResults66'),st=document.getElementById('hadithTopicStatus66');if(!box||!st)return;if(!q){box.innerHTML='';st.textContent='اختر موضوعًا أو اكتب موضوعًا بنفسك.';return}const quick=localTopic70(q);renderTopic70(quick,q,st,box);try{st.textContent='⏳ جارٍ استكمال البحث في الصحيحين…';const urls=[V70_HBASE+'/bukhari/1.json',V70_HBASE+'/muslim/1.json'];const [b1,m1]=await Promise.all(urls.map(u=>fetch(u,{cache:'force-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)));let seed=[];for(const [j,bk] of [[b1,'bukhari'],[m1,'muslim']])if(j)seed.push(...(Array.isArray(j.hadiths)?j.hadiths:[]).map((h,i)=>({book:bk,bookName:bk==='bukhari'?'صحيح البخاري':'صحيح مسلم',id:Number(h.idInBook||h.id||i+1),text:h.arabic?.text||h.arabic||'',chapter:h.chapter?.arabic||'',score:score70({text:h.arabic?.text||h.arabic||'',chapter:h.chapter?.arabic||''},q)})));const full=seed.filter(x=>x.score>=1).sort((a,b)=>b.score-a.score).slice(0,40);if(full.length)renderTopic70(full,q,st,box);else if(!quick.length)renderTopic70([],q,st,box);else st.textContent=`تم العثور على ${quick.length} نتيجة سريعة.`}catch(e){console.warn('topic v70',e);if(!quick.length)renderTopic70([],q,st,box)}};
+
+/* ---------- 5) iPhone/PWA location: explicit gesture + graceful fallback message ---------- */
+window.findMosques=async function(){const st=document.getElementById('mosqueStatus');if(st)st.textContent='📍 جارٍ طلب الموقع من iPhone…';if(!window.isSecureContext){if(st)st.innerHTML='يجب فتح الموقع عبر HTTPS حتى يسمح iPhone بتحديد الموقع.';return}if(!navigator.geolocation){if(st)st.textContent='هذا الجهاز لا يتيح تحديد الموقع من المتصفح.';return}try{const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true,timeout:20000,maximumAge:60000}));setSelectedLocation(pos.coords.latitude,pos.coords.longitude,'موقع iPhone • GPS',pos.coords.accuracy);updateLocationLabels();if(typeof oldFind==='function')return oldFind();if(st)st.textContent='✓ تم تحديد الموقع.'}catch(e){console.warn('gps v70',e);if(st)st.innerHTML=(e?.code===1?'❌ لم يُسمح للموقع. فعّل الموقع للموقع المثبت من إعدادات iPhone ثم اضغط «البحث الآن».':e?.code===2?'❌ تعذر تحديد الموقع. تأكد من تفعيل خدمات الموقع.':'❌ انتهت مهلة تحديد الموقع.')+'<br><button type="button" class="primary" onclick="findMosques()" style="margin-top:8px">📍 إعادة المحاولة</button>'}};
+
+/* Keep PWA from trying to auto-open network-heavy sections on startup. */
+window.addEventListener('load',()=>{setTimeout(()=>{try{renderDaily()}catch(e){}},50);});
+})();
+</script>
+
+
+<!-- V71 final stabilization: children choices, daily timing, resilient hadith source/search -->
+<style id="v71-style">
+.v71ChildrenChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+.v71ChildrenChoices button{min-height:54px;font-weight:800}
+.v71ChildQuiz{margin-top:12px}
+.v71ChildQuiz .quizOption{display:block;width:100%;margin:7px 0;text-align:right}
+.v71Back{margin-top:10px}
+@media(max-width:680px){.v71ChildrenChoices{grid-template-columns:1fr}}
+</style>
+<script id="v71-final-script">
+(function(){'use strict';
+/* V71: Children — stories remain visible; adhkar and dua are two choices in the same section, not separate pages. */
+const v71Stories=(typeof V61_STORIES!=='undefined'&&Array.isArray(V61_STORIES))?V61_STORIES:[];
+const v71FallbackP=[
+ ['من هو النبي الذي ابتلعه الحوت؟',['يونس عليه السلام','أيوب عليه السلام','إدريس عليه السلام','صالح عليه السلام'],0],
+ ['من هو أبو البشر؟',['آدم عليه السلام','نوح عليه السلام','إبراهيم عليه السلام','إسماعيل عليه السلام'],0],
+ ['من النبي الذي صنع السفينة بأمر الله؟',['نوح عليه السلام','هود عليه السلام','لوط عليه السلام','شعيب عليه السلام'],0],
+ ['من النبي الذي أُلقي في النار فلم تضره؟',['إبراهيم عليه السلام','موسى عليه السلام','يوسف عليه السلام','زكريا عليه السلام'],0],
+ ['من النبي الذي كلّمه الله تكليمًا؟',['موسى عليه السلام','عيسى عليه السلام','داود عليه السلام','سليمان عليه السلام'],0],
+ ['من النبي الذي كان ملكًا وسخر الله له الريح؟',['سليمان عليه السلام','داود عليه السلام','يوسف عليه السلام','أيوب عليه السلام'],0],
+ ['من النبي الذي أوتي الزبور؟',['داود عليه السلام','سليمان عليه السلام','موسى عليه السلام','إبراهيم عليه السلام'],0],
+ ['من النبي الذي اشتهر بالصبر على البلاء؟',['أيوب عليه السلام','يونس عليه السلام','لوط عليه السلام','هود عليه السلام'],0],
+ ['من النبي الذي أُرسل إلى قوم عاد؟',['هود عليه السلام','صالح عليه السلام','شعيب عليه السلام','نوح عليه السلام'],0],
+ ['من النبي الذي أُرسل إلى ثمود؟',['صالح عليه السلام','هود عليه السلام','لوط عليه السلام','شعيب عليه السلام'],0],
+ ['ما اسم والد إسماعيل وإسحاق عليهما السلام؟',['إبراهيم عليه السلام','يعقوب عليه السلام','يوسف عليه السلام','نوح عليه السلام'],0],
+ ['من النبي الذي رأى في المنام أحد عشر كوكبًا والشمس والقمر؟',['يوسف عليه السلام','يعقوب عليه السلام','إسماعيل عليه السلام','إبراهيم عليه السلام'],0],
+ ['من النبي الذي كان أبوه يعقوب عليه السلام؟',['يوسف عليه السلام','موسى عليه السلام','هارون عليه السلام','إسحاق عليه السلام'],0],
+ ['من النبي الذي أُرسل إلى مدين؟',['شعيب عليه السلام','هود عليه السلام','صالح عليه السلام','لوط عليه السلام'],0],
+ ['من النبي الذي كان أخوه هارون عليه السلام؟',['موسى عليه السلام','يوسف عليه السلام','داود عليه السلام','إسماعيل عليه السلام'],0],
+ ['من النبي الذي وُلد من غير أب؟',['عيسى عليه السلام','يحيى عليه السلام','إسحاق عليه السلام','إسماعيل عليه السلام'],0],
+ ['من النبي الذي كانت أمه مريم عليها السلام؟',['عيسى عليه السلام','يحيى عليه السلام','موسى عليه السلام','إبراهيم عليه السلام'],0],
+ ['من خاتم الأنبياء والمرسلين؟',['محمد صلى الله عليه وسلم','عيسى عليه السلام','موسى عليه السلام','إبراهيم عليه السلام'],0],
+ ['من النبي الذي رفع الله ذكره وجعله إمامًا للناس في الابتلاء بالذرية؟',['إبراهيم عليه السلام','نوح عليه السلام','لوط عليه السلام','صالح عليه السلام'],0],
+ ['من النبي الذي دعا ربه: رب إني مسني الضر وأنت أرحم الراحمين؟',['أيوب عليه السلام','يونس عليه السلام','زكريا عليه السلام','يعقوب عليه السلام'],0],
+ ['من النبي الذي دعا: لا إله إلا أنت سبحانك إني كنت من الظالمين؟',['يونس عليه السلام','أيوب عليه السلام','نوح عليه السلام','موسى عليه السلام'],0],
+ ['من النبي الذي دعا ربه بالولد مع كبر سنه؟',['زكريا عليه السلام','إبراهيم عليه السلام','يعقوب عليه السلام','داود عليه السلام'],0],
+ ['من النبي الذي كانت له معجزة إحياء الموتى بإذن الله؟',['عيسى عليه السلام','موسى عليه السلام','إبراهيم عليه السلام','داود عليه السلام'],0],
+ ['من النبي الذي انشق له البحر؟',['موسى عليه السلام','نوح عليه السلام','إبراهيم عليه السلام','صالح عليه السلام'],0],
+ ['من النبي الذي كانت معجزته الناقة لقوم ثمود؟',['صالح عليه السلام','هود عليه السلام','شعيب عليه السلام','لوط عليه السلام'],0],
+ ['من النبي الذي أرسل إلى قوم لوط؟',['لوط عليه السلام','شعيب عليه السلام','هود عليه السلام','صالح عليه السلام'],0],
+ ['من النبي الذي فُتن بفتنة الإخوة ثم أصبح عزيزًا في مصر؟',['يوسف عليه السلام','موسى عليه السلام','سليمان عليه السلام','داود عليه السلام'],0],
+ ['من النبي الذي كان ابنه إسحاق عليه السلام؟',['إبراهيم عليه السلام','يعقوب عليه السلام','نوح عليه السلام','داود عليه السلام'],0],
+ ['من النبي الذي بنى الكعبة مع ابنه إسماعيل عليه السلام؟',['إبراهيم عليه السلام','نوح عليه السلام','موسى عليه السلام','يعقوب عليه السلام'],0],
+ ['من النبي الذي دعا قومه ليلًا ونهارًا فترة طويلة؟',['نوح عليه السلام','هود عليه السلام','شعيب عليه السلام','لوط عليه السلام'],0]
+];
+const v71D=(typeof D66!=='undefined'&&Array.isArray(D66))?D66:((typeof D65!=='undefined'&&Array.isArray(D65))?D65:[]);
+const v71Q=(typeof Q66!=='undefined'&&Array.isArray(Q66))?Q66:((typeof Q65!=='undefined'&&Array.isArray(Q65))?Q65:[]);
+const v71P=(typeof P66!=='undefined'&&Array.isArray(P66)&&P66.length)?P66:v71FallbackP;
+function v71esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function v71shuffle(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function v71RenderChildren(){
+ const box=document.getElementById('childrenStories');if(!box)return;
+ box.innerHTML=v71Stories.map(s=>`<div class="childStory"><div class="storyIcon">${s[1]}</div><b>${v71esc(s[0])}</b><small>${v71esc(s[2])}</small><div class="controls"><button type="button" class="primary" data-v71-story="${v71esc(s[0])}">📖 فتح القصة</button><button type="button" data-v71-video="${v71esc(s[3])}">🎬 مشاهدة فيديو</button><button type="button" data-v71-storyquiz="${v71esc(s[0])}">🎮 أسئلة القصة</button></div></div>`).join('')||'<div class="card">ستظهر قصص الأنبياء هنا.</div>';
+ box.querySelectorAll('[data-v71-story]').forEach(b=>b.onclick=()=>window.showChildStoryV64?.(b.dataset.v71Story));
+ box.querySelectorAll('[data-v71-video]').forEach(b=>b.onclick=()=>window.openChildVideoV64?.(b.dataset.v71Video));
+ box.querySelectorAll('[data-v71-storyquiz]').forEach(b=>b.onclick=()=>v71Quiz('قصص الأنبياء',v71P,b.dataset.v71Story));
+ const q=document.getElementById('childrenQuiz');if(!q)return;
+ q.innerHTML=`<div class="card"><h3>🎯 مسابقات عالم الأطفال</h3><p class="mini">اختر المسابقة التي تريدها. الأذكار والأدعية خياران داخل عالم الأطفال، وليسا قسمين مستقلين.</p><div class="v71ChildrenChoices"><button type="button" class="primary" id="v71Dhikr">📿 مسابقة الأذكار</button><button type="button" id="v71Dua">🤲 مسابقة الأدعية</button></div><div id="v71InlineQuiz" class="v71ChildQuiz"></div></div>`;
+ document.getElementById('v71Dhikr').onclick=()=>v71Quiz('مسابقة الأذكار',v71D,'الأذكار');
+ document.getElementById('v71Dua').onclick=()=>v71Quiz('مسابقة الأدعية',v71Q,'الأدعية');
+}
+function v71Quiz(title,bank,returnLabel){
+ const host=document.getElementById('v71InlineQuiz');if(!host)return;
+ const qs=v71shuffle(bank).slice(0,Math.min(30,bank.length));if(!qs.length){host.innerHTML='<div class="v70Error">لا توجد أسئلة متاحة الآن.</div>';return}
+ let idx=0,score=0,attempts=0;
+ function finish(){host.innerHTML=`<div class="card" style="text-align:center"><div style="font-size:42px">🏆</div><h3>انتهت ${v71esc(title)}</h3><p>نتيجتك: <b>${score} / ${qs.length}</b></p><button type="button" class="primary" id="v71Again">مسابقة جديدة</button><button type="button" class="v71Back" id="v71Back">← العودة إلى عالم الأطفال</button></div>`;host.querySelector('#v71Again').onclick=()=>v71Quiz(title,bank,returnLabel);host.querySelector('#v71Back').onclick=()=>{host.innerHTML='';document.getElementById('children')?.scrollIntoView({behavior:'smooth',block:'start'})}}
+ function render(){const q=qs[idx];attempts=0;host.innerHTML=`<div class="card"><div class="quizMeta"><b>🎯 ${v71esc(title)}</b><span class="mini">${idx+1} / ${qs.length} • النقاط ${score}</span></div><h3>${v71esc(q[0])}</h3>${q[1].map((o,i)=>`<button type="button" class="quizOption" data-i="${i}">${v71esc(o)}</button>`).join('')}<div id="v71fb" class="mini"></div><button type="button" class="v71Back" id="v71Exit">← خروج من المسابقة</button></div>`;host.querySelectorAll('.quizOption').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.i);if(i===q[2]){b.classList.add('correct');score++;host.querySelectorAll('.quizOption').forEach(x=>x.disabled=true);host.querySelector('#v71fb').textContent='أحسنت! إجابة صحيحة 🌟';setTimeout(()=>{idx++;idx<qs.length?render():finish()},400)}else{attempts++;b.classList.add('wrong');b.disabled=true;host.querySelector('#v71fb').textContent=attempts<2?'إجابة غير صحيحة؛ لديك محاولة أخرى.':'انتهت المحاولتان؛ الإجابة الصحيحة باللون الأخضر.';if(attempts>=2){host.querySelectorAll('.quizOption').forEach(x=>x.disabled=true);host.querySelectorAll('.quizOption')[q[2]]?.classList.add('correct');setTimeout(()=>{idx++;idx<qs.length?render():finish()},700)}}});host.querySelector('#v71Exit').onclick=()=>{host.innerHTML=''} }
+ render();host.scrollIntoView({behavior:'smooth',block:'start'});
+}
+window.initChildren=function(){v71RenderChildren()};
+/* Daily acts: all-day visibility + correct morning/evening timing + Thursday fasting reminder on Wednesday. */
+window.renderDaily=function(){const box=document.getElementById('dailyList');if(!box)return;const now=new Date(),day=now.getDay(),hour=now.getHours(),prefs=v57get('muslim-v57-daily-reminders',{morning:true,evening:true,kahf:true,jumuah:false}),rows=[];if(day===3)rows.push({id:'thu-fast',title:'صيام الخميس غدًا',desc:'تذكير بصيام يوم الخميس — يظهر طوال يوم الأربعاء',icon:'🌙',when:'طوال اليوم',action:"alert('صيام الخميس غدًا بإذن الله')"});if(prefs.morning&&hour>=5&&hour<12)rows.push({id:'morning',title:'أذكار الصباح',desc:'حان وقت أذكار الصباح',icon:'🌅',when:'الصباح',action:"show('adhkar');renderAdhkar('صباح')"});if(prefs.evening&&hour>=15&&hour<24)rows.push({id:'evening',title:'أذكار المساء',desc:'حان وقت أذكار المساء',icon:'🌇',when:'المساء',action:"show('adhkar');renderAdhkar('مساء')"});if(day===5&&prefs.kahf)rows.push({id:'kahf',title:'سورة الكهف',desc:'من أعمال يوم الجمعة',icon:'📖',when:'اليوم',action:"openKahfV57()"});rows.push({id:'quran',title:'ورد القرآن',desc:'متاح في جميع الأوقات',icon:'📖',when:'طوال اليوم',action:"show('quran')"});box.innerHTML=rows.map(x=>`<div class="card dailyCard"><div class="dailyTop"><span class="dailyIcon">${x.icon}</span><div><h3>${v71esc(x.title)}</h3><p class="mini">${v71esc(x.desc)}</p><small class="timeBadge">${v71esc(x.when)}</small></div></div><button type="button" class="primary" onclick="${x.action}">فتح</button></div>`).join('')||'<div class="card mini">لا توجد أعمال محددة لهذا الوقت.</div>'}
+/* Hadith: use pinned jsDelivr first, raw GitHub as fallback. The dataset explicitly recommends pinning v1.2.0. */
+const v71HadithCDN='https://cdn.jsdelivr.net/gh/AhmedBaset/hadith-json@v1.2.0/db/by_chapter/the_9_books';
+const v71HadithRaw='https://raw.githubusercontent.com/AhmedBaset/hadith-json/v1.2.0/db/by_chapter/the_9_books';
+const oldGet68=window.get68;
+async function v71Chapter(book,n){
+  const key=`${book}/${n}.json`;
+  const urls=[v71HadithCDN+'/'+key,v71HadithRaw+'/'+key];
+  for(const u of urls){
+    try{
+      const c=await caches.open('muslim-hadith-v71');
+      const hit=await c.match(u);
+      if(hit)return await hit.json();
+      const ctl=new AbortController();
+      const tm=setTimeout(()=>ctl.abort(),7000);
+      try{
+        const r=await fetch(u,{cache:'force-cache',signal:ctl.signal});
+        if(!r.ok)continue;
+        const j=await r.json();
+        try{await c.put(u,new Response(JSON.stringify(j),{headers:{'Content-Type':'application/json','Cache-Control':'max-age=31536000'}}));}catch(e){}
+        return j;
+      }finally{clearTimeout(tm)}
+    }catch(e){}
+  }
+  throw Error('hadith-source-failed');
+}
+window.h68OpenChapter=async function(book,n){const chap=document.getElementById('hadithCollectionChapters'),box=document.getElementById('hadithCollectionHadiths');if(box)box.innerHTML='<div class="v70-loading">⏳ جارٍ فتح الباب…</div>';try{const j=await v71Chapter(book,Number(n));if(chap)chap.style.display='none';if(typeof render68==='function')render68(j,book,Number(n));else if(window.h67OpenChapter)window.h67OpenChapter(book,n);window.scrollTo({top:0,behavior:'smooth'})}catch(e){console.error(e);if(box)box.innerHTML='<div class="v70Error">تعذر الاتصال بمصدر الأحاديث. جرّب فتح الباب مرة أخرى بعد ثوانٍ.</div><button type="button" class="primary" onclick="h68OpenChapter(\''+book+'\','+Number(n)+')">إعادة المحاولة</button>'}}
+/* Fast topic search after first query: cache both complete books in browser; subsequent queries are local. */
+const v71TopicCache={bukhari:null,muslim:null};
+async function v71Book(book){if(v71TopicCache[book])return v71TopicCache[book];const u=v71HadithCDN+'/'+book+'.json';const c=await caches.open('muslim-hadith-v71');try{const hit=await c.match(u);if(hit){return v71TopicCache[book]=await hit.json()}}catch(e){}const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),12000);try{const r=await fetch(u,{cache:'force-cache',signal:ctl.signal});if(!r.ok)throw Error('HTTP '+r.status);return v71TopicCache[book]=await r.json()}finally{clearTimeout(tm)}}
+const v71Norm=x=>String(x||'').normalize('NFKC').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/\s+/g,' ').trim();
+window.h71SearchTopic=async function(q){q=String(q||'').trim();const box=document.getElementById('hadithTopicResults66'),st=document.getElementById('hadithTopicStatus66');if(!box||!st)return;if(!q){box.innerHTML='';st.textContent='';return}const words=q.split(/[\s،,؛]+/).map(v71Norm).filter(Boolean);st.textContent='⏳ بحث سريع…';try{const [b,m]=await Promise.all([v71Book('bukhari'),v71Book('muslim')]);function rows(j,book){const ch=new Map((j.chapters||[]).map(c=>[Number(c.id),c]));return (j.hadiths||[]).map((h,i)=>{const c=ch.get(Number(h.chapterId||h.chapter?.id))||h.chapter||{};const text=h.arabic?.text||h.arabic||h.text||'';return {book,bookName:book==='bukhari'?'صحيح البخاري':'صحيح مسلم',id:Number(h.idInBook||h.id||i+1),text,chapter:String(c.arabic||c.title||'') ,chapterId:Number(h.chapterId||c.id||0)}})}const all=[...rows(b,'bukhari'),...rows(m,'muslim')];const out=all.map(r=>{const t=v71Norm(r.text+' '+r.chapter);let matched=0;for(const w of words){if(w.length>1&&t.includes(w))matched++}return {...r,matched}}).filter(r=>r.matched===words.length).sort((a,b)=>b.matched-a.matched).slice(0,30);box.innerHTML=out.length?out.map(r=>`<article class="hadithTopicItem"><div class="hadithTopicHead"><span class="v50Badge">${v71esc(r.bookName)}</span><span class="mini">حديث ${r.id}</span></div><h4>${v71esc(r.chapter)}</h4><p>${v71esc(r.text)}</p><audio controls preload="none" src="https://api.hadith.to/v1/audio/${r.book}/${encodeURIComponent(r.id)}"></audio></article>`).join(''):'<div class="card">لم أجد أحاديث تجمع كل كلمات الموضوع في النص أو الباب. جرّب عبارة أقصر أو موضوعًا محددًا.</div>';st.textContent=`تم العثور على ${out.length} نتيجة.`}catch(e){console.error(e);st.textContent='تعذر البحث الآن';box.innerHTML='<div class="v70Error">تعذر البحث في الصحيحين الآن.</div>'}}
+const inp=document.getElementById('hadithTopicSearch66');if(inp){inp.oninput=()=>{clearTimeout(inp._v71t);inp._v71t=setTimeout(()=>window.h71SearchTopic(inp.value),180)}};
+window.addEventListener('DOMContentLoaded',()=>{try{v71RenderChildren();renderDaily()}catch(e){console.error('V71 init',e)}});
+window.addEventListener('load',()=>{try{v71RenderChildren();renderDaily()}catch(e){console.error('V71 load',e)}});
+})();
+</script>
+
+
+<style id="v72-final-fix-style">
+.v72-current{border:2px solid var(--green)!important;box-shadow:0 8px 22px rgba(0,0,0,.06)}
+.v72-hadith-loading{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-align:center}
+.v72-hadith-error{padding:14px;border:1px solid #b44;border-radius:16px;background:rgba(180,40,40,.06)}
+.v72-hadith-audio{margin-top:12px;padding:11px;border:1px solid var(--line);border-radius:14px;background:rgba(127,127,127,.06)}
+.v72-hadith-audio audio{width:100%}
+.v72-topic-row{display:grid;gap:8px}
+</style>
+<script id="v72-final-fix-script">
+(function(){'use strict';
+/* V72: final repair of Daily Acts and Sahihayn. This layer intentionally replaces earlier conflicting overrides. */
+const V72_CDN='https://cdn.jsdelivr.net/gh/AhmedBaset/hadith-json@v1.2.0/db/by_chapter/the_9_books';
+const V72_RAW='https://raw.githubusercontent.com/AhmedBaset/hadith-json/v1.2.0/db/by_chapter/the_9_books';
+const V72_BOOK='https://cdn.jsdelivr.net/gh/AhmedBaset/hadith-json@v1.2.0/db/by_book/the_9_books';
+const V72_BOOK_RAW='https://raw.githubusercontent.com/AhmedBaset/hadith-json/v1.2.0/db/by_book/the_9_books';
+const V72_AUDIO='https://api.hadith.to/v1/audio';
+const V72_COUNTS={bukhari:97,muslim:56};
+const V72_MEM={};
+const v72Esc=window.h67Esc||window.xSafe||window.esc65||((x)=>String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])));
+function v72Norm(x){return String(x||'').normalize('NFKC').replace(/[ًٌٍَُِّْـ]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').toLowerCase().replace(/\s+/g,' ').trim()}
+async function v72Get(url){
+  const cache=await caches.open('muslim-hadith-v72').catch(()=>null);
+  if(cache){try{const hit=await cache.match(url);if(hit)return await hit.json()}catch(e){}}
+  const urls=[url, url.replace(V72_CDN,V72_RAW).replace(V72_BOOK,V72_BOOK_RAW)];
+  let last;
+  for(const u of urls){
+    const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),10000);
+    try{const r=await fetch(u,{mode:'cors',cache:'default',signal:ctl.signal});if(!r.ok)throw Error('HTTP '+r.status);const j=await r.json();if(cache)try{await cache.put(u,new Response(JSON.stringify(j),{headers:{'Content-Type':'application/json'}}))}catch(e){}return j}catch(e){last=e}finally{clearTimeout(tm)}
+  }
+  throw last||Error('network');
+}
+async function v72Chapter(book,n){
+ const key=book+'|'+n;if(V72_MEM[key])return V72_MEM[key];
+ const j=await v72Get(V72_CDN+'/'+book+'/'+Number(n)+'.json');V72_MEM[key]=j;return j;
+}
+function v72ChapterData(j,book,n){
+ const items=Array.isArray(j?.hadiths)?j.hadiths:Array.isArray(j?.data?.hadiths)?j.data.hadiths:[];
+ const meta=j?.metadata||j?.data?.metadata||{};
+ const title=meta?.arabic?.introduction||meta?.arabic?.title||meta?.title||('الباب '+n);
+ return {title,items:items.map((h,i)=>({id:Number(h.idInBook||h.id||h.number||i+1),text:String(h.arabic?.text||h.arabic||h.arab||h.text||h.text_ar||'').trim()}))};
+}
+function v72RenderChapter(j,book,n){
+ const ch=document.getElementById('hadithCollectionChapters'),box=document.getElementById('hadithCollectionHadiths');if(!box)return;
+ const d=v72ChapterData(j,book,n),bn=book==='bukhari'?'صحيح البخاري':'صحيح مسلم';
+ if(ch)ch.style.display='none';
+ box.innerHTML='<div class="card"><button type="button" class="back" onclick="v72OpenBook(\''+book+'\')">← العودة إلى الأبواب</button><h2>📖 '+v72Esc(d.title)+'</h2><p class="mini">'+bn+' • الباب '+n+' • '+d.items.length+' حديثًا</p></div>'+d.items.map(h=>'<article class="hadithFullItemV67"><div class="hadithTopicHead"><span class="v50Badge">'+bn+'</span><span class="mini">حديث رقم '+h.id+'</span></div><div class="hadithFullText">'+v72Esc(h.text)+'</div><div class="v72-hadith-audio"><b>🎙️ الاستماع بالصوت البشري</b><audio controls preload="none" playsinline src="'+V72_AUDIO+'/'+book+'/'+encodeURIComponent(h.id)+'"></audio></div></article>').join('');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+window.v72OpenBook=function(book){
+ const ch=document.getElementById('hadithCollectionChapters'),box=document.getElementById('hadithCollectionHadiths'),title=document.getElementById('hadithCollectionTitle');
+ if(typeof show==='function')show('hadithCollection');
+ if(title)title.textContent=book==='bukhari'?'📗 صحيح البخاري — الأبواب':'📘 صحيح مسلم — الأبواب';
+ if(box)box.innerHTML='<div class="card">اختر أي باب لفتحه. لا يتم تحميل الأحاديث حتى تختار الباب.</div>';
+ if(!ch)return;
+ ch.style.display='block';
+ const n=V72_COUNTS[book]||0;
+ ch.innerHTML='<div class="card"><p class="mini">'+n+' بابًا — أسماء الأبواب تُجلب عند فتح الباب حتى لا يتعطل القسم.</p><div class="h68ChapterGrid">'+Array.from({length:n},(_,i)=>{const num=i+1;return '<button type="button" class="h68Chapter" data-v72="'+book+'|'+num+'"><span>📖 الباب '+num+'</span><small>فتح</small></button>'}).join('')+'</div></div>';
+ ch.querySelectorAll('[data-v72]').forEach(b=>b.onclick=()=>{const [bk,num]=b.dataset.v72.split('|');v72OpenChapter(bk,Number(num))});
+};
+window.v72OpenChapter=async function(book,n){
+ const box=document.getElementById('hadithCollectionHadiths');if(!box)return;
+ box.innerHTML='<div class="v72-hadith-loading">⏳ جارٍ فتح الباب '+n+'…</div>';
+ try{const j=await v72Chapter(book,n);v72RenderChapter(j,book,n)}
+ catch(e){console.error('V72 chapter',e);box.innerHTML='<div class="v72-hadith-error"><b>تعذر الاتصال بهذا الباب الآن.</b><p class="mini">البيانات لم تُحذف، والمشكلة من الاتصال بالمصدر الخارجي.</p><button type="button" class="primary" onclick="v72OpenChapter(\''+book+'\','+Number(n)+')">🔄 إعادة المحاولة</button><button type="button" onclick="v72OpenBook(\''+book+'\')">← العودة إلى الأبواب</button></div>'}}
+window.h67OpenBook=window.h68OpenBook=window.openHadithCollection=v72OpenBook;
+window.h67OpenChapter=window.h68OpenChapter=window.showHadithChapterV62=window.showHadith65=v72OpenChapter;
+
+/* One complete-book request for topic search, then all later searches are local. */
+const V72_BOOK_MEM={bukhari:null,muslim:null};
+async function v72Book(book){if(V72_BOOK_MEM[book])return V72_BOOK_MEM[book];
+ const urls=[V72_BOOK+'/'+book+'.json',V72_BOOK_RAW+'/'+book+'.json'];let last;
+ for(const u of urls){try{const j=await v72Get(u);V72_BOOK_MEM[book]=j;return j}catch(e){last=e}}
+ throw last||Error('book search unavailable');}
+const V72_GROUPS={
+ 'الصبر والحزن':[['صبر','الصبر','صابره'],['حزن','الحزن','حزين','هم','غم','كرب','بلاء','مصيبه','مصيبة']],
+ 'الأخلاق':[['خلق','اخلاق','الخلق','حسن الخلق','ادب','امانه','أمانة','صدق','رحمه','رحمة','رفق','عفو','حلم','حياء','تواضع']],
+ 'القرآن':[['قران','القران','كتاب الله','سوره','ايه','وحي','يتلو','تلاوه','حفظ']],
+ 'الصلاة':[['صلاه','الصلاه','ركوع','سجود','مسجد','وتر','فجر','ظهر','عصر','مغرب','عشاء','امامه']],
+ 'الإيمان والتوحيد':[['ايمان','الايمان','توحيد','شهاده','ملائكه','قدر','قيامه','جنه','نار']],
+ 'الذكر والدعاء':[['ذكر','اذكار','دعاء','دعا','استغفار','تسبيح','تهليل','تكبير']],
+ 'الصيام والزكاة':[['صوم','صيام','رمضان','زكاه','فطر','صدقه']],
+ 'الأسرة والنساء':[['زوج','زوجه','نساء','مرأه','اهل','ولد','اولاد','ام','اب','رحم']],
+ 'المعاملات والحقوق':[['بيع','شراء','دين','حق','مال','تجاره','غش','جار']],
+ 'الآخرة والموت':[['موت','قبر','قيامه','جنه','نار','حساب','اخره']]
+};
+function v72Match(text,q){const t=v72Norm(text);const groups=V72_GROUPS[q];if(groups)return groups.every(g=>g.some(k=>t.includes(v72Norm(k))));const ws=v72Norm(q).split(/[\s،,؛]+/).filter(w=>w.length>1);return ws.length>0&&ws.every(w=>t.includes(w));}
+function v72Rows(j,book){
+ const chapters=new Map((j?.chapters||j?.data?.chapters||[]).map(c=>[Number(c.id),c]));
+ const hs=Array.isArray(j?.hadiths)?j.hadiths:Array.isArray(j?.data?.hadiths)?j.data.hadiths:[];
+ return hs.map((h,i)=>{const cid=Number(h.chapterId||h.chapter?.id||0),c=chapters.get(cid)||h.chapter||{};return {book,bookName:book==='bukhari'?'صحيح البخاري':'صحيح مسلم',id:Number(h.idInBook||h.id||h.number||i+1),text:String(h.arabic?.text||h.arabic||h.arab||h.text||'').trim(),chapter:String(c.arabic||c.title||c.name||''),chapterId:cid}});
+}
+window.h72SearchTopic=async function(q){q=String(q||'').trim();const box=document.getElementById('hadithTopicResults66'),st=document.getElementById('hadithTopicStatus66');if(!box||!st)return;if(!q){box.innerHTML='';st.textContent='اختر موضوعًا أو اكتب موضوعًا.';return}
+ st.textContent='⏳ بحث سريع…';box.innerHTML='<div class="card">يتم تجهيز فهرس الصحيحين مرة واحدة. بعد ذلك تصبح المواضيع سريعة جدًا.</div>';
+ try{const [b,m]=await Promise.all([v72Book('bukhari'),v72Book('muslim')]);const all=[...v72Rows(b,'bukhari'),...v72Rows(m,'muslim')];const rows=all.filter(r=>v72Match(r.text+' '+r.chapter,q)).slice(0,50);window._v72TopicRows=rows;box.innerHTML=rows.length?'<div class="card"><h3>🔎 نتائج موضوع: '+v72Esc(q)+'</h3><p class="mini">كل نتيجة تطابق الموضوع المطلوب داخل متن الحديث أو عنوان الباب.</p></div>'+rows.map(r=>'<article class="hadithTopicItem v72-topic-row"><div class="hadithTopicHead"><span class="v50Badge">'+r.bookName+'</span><span class="mini">حديث '+r.id+'</span></div><h4>'+v72Esc(r.chapter)+'</h4><p>'+v72Esc(r.text)+'</p><div class="v72-hadith-audio"><audio controls preload="none" playsinline src="'+V72_AUDIO+'/'+r.book+'/'+encodeURIComponent(r.id)+'"></audio></div></article>').join(''):'<div class="card">لم أجد حديثًا يطابق الموضوع بدقة في الصحيحين.</div>';st.textContent='تم العثور على '+rows.length+' نتيجة.'}
+ catch(e){console.error('V72 topic',e);box.innerHTML='<div class="v72-hadith-error">تعذر تجهيز فهرس الصحيحين الآن. إذا كانت الشبكة تعمل، اضغط البحث مرة أخرى.</div>';st.textContent=''}
+};
+const topicInput=document.getElementById('hadithTopicSearch66');if(topicInput){topicInput.oninput=()=>{clearTimeout(topicInput._v72t);topicInput._v72t=setTimeout(()=>window.h72SearchTopic(topicInput.value),220)}}
+
+/* Daily Acts: always render; current period is highlighted, Wednesday reminder lasts all day. */
+window.renderDaily=function(){const box=document.getElementById('dailyList');if(!box)return;const now=new Date(),day=now.getDay(),hour=now.getHours(),rows=[];
+ const currentMorning=hour>=5&&hour<15,currentEvening=hour>=15||hour<5;
+ if(day===3)rows.push({id:'thu-fast',title:'صيام الخميس غدًا',desc:'تذكير بصيام يوم الخميس — يظهر طوال يوم الأربعاء',icon:'🌙',when:'طوال اليوم',action:"alert('تذكير: صيام يوم الخميس غدًا بإذن الله')",current:true});
+ rows.push({id:'morning',title:'أذكار الصباح',desc:currentMorning?'حان وقت أذكار الصباح':'أذكار الصباح — متاحة للفتح في أي وقت',icon:'🌅',when:currentMorning?'الآن':'الصباح',action:"show('adhkar');setTimeout(()=>renderAdhkar('صباح'),60)",current:currentMorning});
+ rows.push({id:'evening',title:'أذكار المساء',desc:currentEvening?'حان وقت أذكار المساء':'أذكار المساء — متاحة للفتح في أي وقت',icon:'🌇',when:currentEvening?'الآن':'المساء',action:"show('adhkar');setTimeout(()=>renderAdhkar('مساء'),60)",current:currentEvening});
+ if(day===5)rows.push({id:'kahf',title:'سورة الكهف',desc:'من أعمال يوم الجمعة',icon:'📖',when:'طوال اليوم',action:"show('quran')",current:true});
+ rows.push({id:'quran',title:'ورد القرآن',desc:'متاح في جميع الأوقات',icon:'📖',when:'طوال اليوم',action:"show('quran')",current:false});
+ box.innerHTML=rows.map(x=>`<div class="card dailyCard ${x.current?'v72-current':''}"><div class="dailyTop"><span class="dailyIcon">${x.icon}</span><div><h3>${v72Esc(x.title)}</h3><p class="mini">${v72Esc(x.desc)}</p><small class="timeBadge">${v72Esc(x.when)}</small></div></div><button type="button" class="primary" onclick="${x.action}">فتح</button></div>`).join('');};
+
+/* Ensure the page is rendered whenever it is opened, not only once at startup. */
+const baseShowV72=window.show;window.show=function(id){baseShowV72(id);if(id==='daily')setTimeout(window.renderDaily,0);if(id==='hadithCollection')setTimeout(()=>{document.getElementById('hadithCollectionHadiths')?.scrollIntoView({block:'start'});},0);};
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>{try{window.renderDaily()}catch(e){} });}else{try{window.renderDaily()}catch(e){}}
+})();
+</script>
+
 </body></html>
