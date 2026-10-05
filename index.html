@@ -192,10 +192,22 @@ html{--mushaf-font:28px}
 <style id="human-hadith-audio-fix">.hadithRemote{padding:16px 0;border-bottom:1px solid var(--line)}.hadithRemote:last-child{border-bottom:0}</style><meta property="og:image" content="cover-muslim.png">
 <link rel="image_src" href="cover-muslim.png">
 <style id="v79-pro-splash">
-#v79Splash{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:linear-gradient(145deg,#0b2b22 0%,#124c3b 52%,#0a241d 100%);color:#fff;opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease}#v79Splash.hide{opacity:0;visibility:hidden;pointer-events:none}.v79SplashInner{text-align:center;transform:translateY(4px);animation:v79SplashIn .65s cubic-bezier(.2,.8,.2,1) both}.v79SplashMark{width:82px;height:82px;margin:0 auto 18px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(238,216,151,.35);display:grid;place-items:center;box-shadow:0 18px 50px rgba(0,0,0,.25);position:relative;overflow:hidden}.v79SplashMark:before{content:"";width:43px;height:43px;border-radius:50%;background:#efd58f;position:absolute;left:19px;top:19px}.v79SplashMark:after{content:"";width:43px;height:43px;border-radius:50%;background:#124c3b;position:absolute;left:29px;top:13px}.v79SplashTitle{font-family:Georgia,"Times New Roman",serif;font-size:38px;font-weight:800;letter-spacing:.2px}.v79SplashSub{margin-top:7px;color:#d9e7e1;font-size:12px;letter-spacing:3px;text-transform:uppercase}.v79SplashLine{width:54px;height:2px;margin:17px auto 0;background:#efd58f;border-radius:99px;animation:v79SplashLine 1.15s ease both}@keyframes v79SplashIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(4px) scale(1)}}@keyframes v79SplashLine{from{width:0;opacity:0}to{width:54px;opacity:1}}@media(prefers-reduced-motion:reduce){.v79SplashInner,.v79SplashLine{animation:none}}
+#v79Splash{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:#1d624f;color:#fff;opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease}
+#v79Splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.v79SplashInner{text-align:center;animation:v79SplashIn .72s cubic-bezier(.2,.8,.2,1) both}
+.v79SplashImage{width:132px;height:132px;display:block;margin:0 auto 18px;object-fit:contain;border-radius:24px;filter:drop-shadow(0 16px 28px rgba(0,0,0,.22));animation:v79SplashImageIn .72s cubic-bezier(.2,.8,.2,1) both}
+.v79SplashTitle{font-family:Georgia,"Times New Roman",serif;font-size:38px;font-weight:800;letter-spacing:.2px}
+.v79SplashSub{margin-top:7px;color:#f1e4bd;font-size:12px;letter-spacing:3px;text-transform:uppercase}
+@keyframes v79SplashIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes v79SplashImageIn{from{opacity:0;transform:scale(.82) rotate(-5deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@media(prefers-reduced-motion:reduce){.v79SplashInner,.v79SplashImage{animation:none}}
+</style>
+
+<style id="muslim-settings-organized">
+.settingsCategories{display:grid;gap:14px;margin-top:10px}.settingsCategory{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;box-shadow:var(--glow)}.settingsCategoryTitle{display:flex;align-items:center;gap:9px;padding:8px 8px 12px;font-size:18px;font-weight:800;color:var(--text)}.settingsCategoryTitle span{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:rgba(21,91,73,.09);color:var(--green)}.settingsCategoryGrid{display:grid;gap:10px}.settingsCategoryGrid .setting{margin:0}.settingsCategoryGrid .setting b{font-size:16px}.settingsCategoryGrid .setting:only-child{border-radius:15px}.dark .settingsCategoryTitle span{background:rgba(209,173,99,.11)}
 </style>
 </head>
-<body><div id="v79Splash" aria-label="المسلم"><div class="v79SplashInner"><div class="v79SplashMark" aria-hidden="true"></div><div class="v79SplashTitle">المسلم</div><div class="v79SplashSub">AL MUSLIM</div><div class="v79SplashLine"></div></div></div><div class="app">
+<body><div id="v79Splash" aria-label="المسلم"><div class="v79SplashInner"><img class="v79SplashImage" src="splash-program.png" alt="المسلم"><div class="v79SplashTitle">المسلم</div><div class="v79SplashSub">AL MUSLIM</div></div></div><div class="app">
 <header class="top"><div class="brand"><span class="logo" aria-label="شعار المسلم"></span><div><b>المسلم</b><small>القرآن • التلاوات • الأذكار • الأحاديث</small></div></div><div><button onclick="toggleDark()">☀</button></div></header>
 <section id="home" class="page active"><div class="hero"><div><span class="eyebrow">✦ تجربة إسلامية متكاملة</span><small style="display:block;color:#ead397;margin-top:14px">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</small><h1>مرحبًا بكم في<br>تطبيق المسلم</h1><p>قرآن • تلاوات • أذكار • أحاديث • قبلة • مواقيت الصلاة</p></div><div class="moon">☪</div></div><div class="prayerNext"><div class="nextPrayer"><small>🕌 الصلاة القادمة</small><b id="homeNextPrayer">جارٍ الحساب…</b><span id="homeNextCountdown">—</span></div><div class="elapsedPrayer"><small>⏱ مضى على الصلاة السابقة</small><b id="homeElapsedPrayer">—</b><span id="homePrayerPrev">—</span></div></div><div class="menu"><div class="tile" onclick="show('quran')"><span class="ico">📖</span><b>مصحف القرآن</b><small>قراءة بدون تفسير</small></div><div class="tile" onclick="show('readers')"><span class="ico">🎧</span><b>القراء</b><small>القارئ ثم السورة ثم الاستماع</small></div><div class="tile" onclick="show('tasmee3Unavailable')"><span class="ico">🎙️</span><b>تسميع القرآن</b><small>الميزة غير متاحة الآن</small></div><div class="tile" onclick="show('adhkar');initAdhkarV27()"><span class="ico">🤲</span><b>الأذكار والأدعية</b><small>أذكار وأدعية كثيرة مع تسجيلات بشرية</small></div><div class="tile" onclick="show('khatmah');renderKhatmah()"><span class="ico">🕋</span><b>الختمة</b><small>متابعة ختمة القرآن</small></div><div class="tile" onclick="show('ruqyah');renderRuqyah()"><span class="ico">🕋</span><b>الرقية الشرعية</b><small>اختر القارئ واستمع</small></div><div class="tile" onclick="show('hadith');loadHadith()"><span class="ico">📜</span><b>الأحاديث</b><small>أحاديث مختارة مع المصدر</small></div><div class="tile" onclick="show('children');initChildren()"><span class="ico">🧒</span><b>عالم الأطفال</b><small>قصص الأنبياء ومسابقات الأذكار</small></div><div class="tile" onclick="show('qibla')"><span class="ico">🧭</span><b>القبلة</b><small>اتجاه القبلة</small></div><div class="tile" onclick="show('repeatAyah');initRepeatAyah()"><span class="ico">🔁</span><b>تكرار الآية</b><small>من آية إلى آية مع القارئ</small></div><div class="tile" onclick="show('prayer');loadPrayerTimes()"><span class="ico">🕌</span><b>مواقيت الصلاة</b><small>اليوم والمواعيد القادمة</small></div><div class="tile" onclick="show('mosques');initNearbyMosques()"><span class="ico">🕌</span><b>المساجد القريبة</b><small>مساجد ومصليات النساء — بحث واسع ودقيق</small></div><div class="tile" onclick="show('daily');renderDaily()"><span class="ico">☀️</span><b>أعمال اليوم</b><small>طاعات وتنبيهات اليوم</small></div></div></section>
 <section id="tafsir" class="page"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>📖 التفسير</h2><p>عرض التفسير مع اسم المصدر والكتاب.</p></div></div>
@@ -4144,4 +4156,69 @@ try{
 </script>
 
 
+<script id="muslim-settings-organizer">(function(){
+  function organize(){
+    var settings=document.getElementById('settings');
+    if(!settings) return;
+    var grid=settings.querySelector('.settingsGrid');
+    if(!grid) return;
+    var cats=settings.querySelector('.settingsCategories');
+    if(!cats){
+      cats=document.createElement('div'); cats.className='settingsCategories';
+      grid.parentNode.insertBefore(cats,grid);
+    }
+    var definitions=[
+      ['account','👤','الحساب'],
+      ['appearance','🎨','المظهر والواجهة'],
+      ['language','🌐','اللغة'],
+      ['audio','🔊','الصوت والتلاوات'],
+      ['reminders','🔔','التذكيرات والتنبيهات'],
+      ['content','🗂️','المحتوى والتفضيلات'],
+      ['privacy','🔐','الخصوصية والموقع'],
+      ['reading','📖','القراءة'],
+      ['downloads','⬇️','التنزيلات والمشاركة'],
+      ['access','♿','سهولة الاستخدام'],
+      ['device','🧹','بيانات الجهاز'],
+      ['about','ℹ️','عن التطبيق']
+    ];
+    var map={}; definitions.forEach(function(d){
+      var box=cats.querySelector('[data-settings-cat="'+d[0]+'"]');
+      if(!box){
+        box=document.createElement('section'); box.className='settingsCategory'; box.dataset.settingsCat=d[0];
+        box.innerHTML='<div class="settingsCategoryTitle"><span>'+d[1]+'</span><b>'+d[2]+'</b></div><div class="settingsCategoryGrid"></div>';
+        cats.appendChild(box);
+      }
+      map[d[0]]=box.querySelector('.settingsCategoryGrid');
+    });
+    function text(el){return (el.textContent||'').replace(/\s+/g,' ').trim();}
+    function catFor(el){
+      var t=text(el);
+      if(/الحساب/.test(t)) return 'account';
+      if(/اللغا|Language|Français|English/.test(t)) return 'language';
+      if(/الصوت|الأذان/.test(t)) return 'audio';
+      if(/تذكيرات|التنبيهات|الإشعارات/.test(t)) return 'reminders';
+      if(/الخصوصية والموقع/.test(t)) return 'privacy';
+      if(/آخر قراءة|قراءة القرآن/.test(t)) return 'reading';
+      if(/QR|التنزيلات/.test(t)) return 'downloads';
+      if(/حجم الخط|الاهتزاز|سهولة الاستخدام|المظهر|الوضع/.test(t)) return /سهولة الاستخدام|الاهتزاز|حجم الخط/.test(t)?'access':'appearance';
+      if(/بيانات الجهاز/.test(t)) return 'device';
+      if(/عن التطبيق/.test(t)) return 'about';
+      if(/المناسبات|المفضلة|البحث/.test(t)) return 'content';
+      return 'content';
+    }
+    Array.from(grid.children).forEach(function(el){
+      if(el.nodeType!==1) return;
+      map[catFor(el)].appendChild(el);
+    });
+    grid.style.display='none';
+    // Remove empty categories but keep order stable.
+    Array.from(cats.children).forEach(function(cat){
+      var body=cat.querySelector('.settingsCategoryGrid');
+      cat.style.display=body&&body.children.length?'':'none';
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(organize,120);setTimeout(organize,700);});
+  else {setTimeout(organize,120);setTimeout(organize,700);}
+  window.organizeMuslimSettings=organize;
+})();</script>
 <script id="v79-pro-splash-script">(function(){function hide(){var e=document.getElementById('v79Splash');if(!e)return;e.classList.add('hide');setTimeout(function(){e.remove()},450)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(hide,2000)},{once:true})}else{setTimeout(hide,2000)}})();</script>
