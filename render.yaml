@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: muslim-media-service
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: MEDIA_API_KEY
+        generateValue: true
+      - key: MEDIA_ALLOWED_ORIGINS
+        value: https://2009malek11-source.github.io
+      - key: MEDIA_MAX_UPLOAD_MB
+        value: "500"
