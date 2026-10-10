@@ -214,7 +214,7 @@ html{--mushaf-font:28px}
 <section class="page" id="adhkarHub"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🤲 الأذكار والأدعية</h2><p>قسم مستقل جديد للنصوص والتسجيلات البشرية والمفضلة والتنزيل دون إنترنت.</p></div></div>
 <div class="card v50HubIntro"><b>🎙️ التسجيلات البشرية</b><p class="mini">كل ذكر يُربط بتسجيله الخاص من المصدر الصوتي، ولا نستخدم صوتًا آليًا. إذا كان للتسجيل ملف صوتي مستقل فسيظهر زر الاستماع والتحميل.</p><input class="field" id="adhkarHubSearch" placeholder="🔎 ابحث في الذكر أو الدعاء"/></div>
 <div class="sourceChips" id="adhkarHubCategories"></div><div id="adhkarHubList"></div></section>
-<section class="page" id="scholars"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>👳 علماء المسلمين</h2><p>مواد مرتبطة بالعلماء مع إظهار المصدر وعدم نسبة مادة بلا دليل.</p></div></div>
+<section <section="" class="page" id="scholars"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>👳 علماء المسلمين</h2><p>مواد مرتبطة بالعلماء مع إظهار المصدر وعدم نسبة مادة بلا دليل.</p></div></div>
 <div class="card"><div class="scholarGrid" id="scholarsList"></div></div><div id="scholarResults"></div></section>
 <section class="page" id="asma"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🌿 أسماء الله الحسنى</h2><p>الأسماء ومعانيها باختصار، مع التنبيه إلى اختلاف قوائم الأسماء المعيّنة.</p></div></div><input class="search" id="asmaSearch" placeholder="🔎 ابحث عن اسم"/><div class="asmaGrid" id="asmaList"></div></section>
 <section class="page" id="khatmah"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🕋 ختمة القرآن</h2><p>احفظ تقدمك على هذا الجهاز فقط.</p></div></div>
@@ -263,7 +263,7 @@ html{--mushaf-font:28px}
 <section class="page" id="repeatAyah"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🔁 تكرار الآية</h2><p>اختر السورة ونطاق الآيات والقارئ، ثم ابدأ التكرار حتى تضغط إيقاف.</p></div></div><div class="card"><label class="mini">السورة</label><select class="field" id="repeatSurah"></select><label class="mini">من الآية</label><input class="field" id="repeatFrom" min="1" type="number" value="1"/><label class="mini">إلى الآية</label><input class="field" id="repeatTo" min="1" type="number" value="1"/><label class="mini">القارئ</label><input class="field" id="repeatReaderSearch" placeholder="🔎 ابحث عن القارئ..."/><select class="field" id="repeatReciter"></select><div class="controls"><button class="primary" onclick="startAyahRepeat()">▶ بدء التكرار</button><button class="danger" onclick="stopAyahRepeat()">⏹ إيقاف نهائي</button></div><div class="notice" id="repeatAyahStatus" style="margin-top:12px">اختر السورة والقارئ ثم ابدأ.</div></div></section>
 <section class="page" id="tasmee3Unavailable"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>🎙️ تسميع القرآن</h2><p>ميزة تسميع القرآن</p></div></div><div class="card detailHero"><div class="detailIcon">🎙️</div><h2>هذه الميزة ليست متاحة الآن</h2><p class="muted">سيتم تفعيل تسميع القرآن في إصدار لاحق.</p></div></section>
 <section class="page" id="daily"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>☀️ أعمال اليوم والليلة</h2><p>أعمال وتذكيرات مرتبطة بالوقت الحالي</p></div></div><div class="extraGrid" id="dailyList"></div></section>
-<section class="page" id="calendar"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>📅 التقويم والمناسبات</h2><p>التاريخ الهجري والميلادي والمناسبات الإسلامية</p></div></div><div class="card"><div class="shareCard" id="dateInfo"></div></div><div class="card"><h3>🔄 تحويل التاريخ</h3><div class="controls"><button class="primary" onclick="convertTodayToHijri()">ميلادي ← هجري</button><button onclick="convertHijriToday()">هجري ← ميلادي</button></div><div class="notice" id="conversionResult">اختر التحويل.</div></div><div class="card"><h3>🌙 المناسبات الإسلامية</h3><div id="occasionsList"></div></div><div class="card"><h3>⏳ المناسبات القريبة</h3><div id="upcomingOccasions"></div></div></section>
+<section <section="" class="page" id="calendar"><div class="section"><button class="back" onclick="show('home')">←</button><div><h2>📅 التقويم والمناسبات</h2><p>التاريخ الهجري والميلادي والمناسبات الإسلامية</p></div></div><div class="card"><div class="shareCard" id="dateInfo"></div></div><div class="card"><h3>🔄 تحويل التاريخ</h3><div class="controls"><button class="primary" onclick="convertTodayToHijri()">ميلادي ← هجري</button><button onclick="convertHijriToday()">هجري ← ميلادي</button></div><div class="notice" id="conversionResult">اختر التحويل.</div></div><div class="card"><h3>🌙 المناسبات الإسلامية</h3><div id="occasionsList"></div></div><div class="card"><h3>⏳ المناسبات القريبة</h3><div id="upcomingOccasions"></div></div></section>
 <section class="page" id="favorites"><div class="section"><button class="back" onclick="show('settings')">←</button><div><h2>⭐ المفضلة</h2><p>كل نوع له خانة مستقلة.</p></div></div><div class="favoritesCategories"><button class="favCategoryBtn active" data-fav="readers" onclick="renderFavorites('readers')">🎙️<span>المشايخ والقراء</span></button><button class="favCategoryBtn" data-fav="hadiths" onclick="renderFavorites('hadiths')">📜<span>الأحاديث</span></button><button class="favCategoryBtn" data-fav="adhkar" onclick="renderFavorites('adhkar')">🤲<span>الأذكار</span></button><button class="favCategoryBtn" data-fav="quran" onclick="renderFavorites('quran')">📖<span>القرآن والسور</span></button><button class="favCategoryBtn" data-fav="daily" onclick="renderFavorites('daily')">☀️<span>أعمال اليوم</span></button><button class="favCategoryBtn" data-fav="ruqyah" onclick="renderFavorites('ruqyah')">🕋<span>الرقية</span></button></div><div class="favoritesList" id="favoritesList"></div></section>
 <section class="page" id="qrPage"><div class="section"><button class="back" onclick="show('settings')">←</button><div><h2>📱 QR كود</h2><p>افتح موقع المسلم من الهاتف بسرعة.</p></div></div><div class="card" style="text-align:center"><img alt="QR كود موقع المسلم" src="qr-muslim-site.png" style="width:min(100%,320px);display:block;margin:10px auto;border-radius:12px"/><b>https://2009malek11-source.github.io/Muslim/</b><p class="muted">بعد فتح الموقع، استخدم خيار «إضافة إلى الشاشة الرئيسية» أو «تثبيت التطبيق» إذا ظهر في المتصفح.</p><button class="primary" onclick="downloadMuslimQR()">⬇️ حفظ QR كصورة</button> <button class="tinyShareBtn" type="button" title="مشاركة موقع المسلم" aria-label="مشاركة موقع المسلم" onclick="shareMuslimSite()">↗</button></div></section>
 <script id="v61-utility-clean">
@@ -306,10 +306,9 @@ html{--mushaf-font:28px}
 <div class="settingsCategory"><button class="settingsCategoryToggle" onclick="toggleSettingsCategory(this)" type="button"><span>🔐</span><b>الحساب والخصوصية</b><i>＋</i></button><div class="settingsCategoryBody"><div class="setting"><b>🔐 الحساب</b><p class="muted">حساب باسم مستخدم وكلمة مرور، مع مزامنة الإعدادات بين الأجهزة عند ربط التخزين السحابي.</p><div id="accountSettingBox"></div></div><div class="setting"><b>📍 الخصوصية والموقع</b><p class="muted">لا نطلب الموقع إلا عند استخدام القبلة أو البحث عن المساجد. لا يتم استخدام الموقع في الخلفية.</p><button class="primary" onclick="show('qibla')">فتح القبلة</button></div></div></div>
 <div class="settingsCategory"><button class="settingsCategoryToggle" onclick="toggleSettingsCategory(this)" type="button"><span>♿</span><b>سهولة الاستخدام والتطبيق</b><i>＋</i></button><div class="settingsCategoryBody"><div class="setting"><b>📳 الاهتزاز</b><label><input checked="" onchange="saveLocalSetting('vibration',this.checked)" type="checkbox"/> تفعيل الاهتزاز عند توفره</label></div><div class="setting"><b>🔎 البحث</b><label><input checked="" onchange="saveLocalSetting('searchSuggestions',this.checked)" type="checkbox"/> إظهار اقتراحات البحث</label></div><div class="setting"><b>🗓️ التقويم</b><label><input checked="" onchange="saveLocalSetting('hijriCalendar',this.checked)" type="checkbox"/> إظهار التاريخ الهجري والمناسبات</label></div><div class="setting"><b>♿ سهولة الاستخدام</b><label><input onchange="document.body.classList.toggle('largeUI',this.checked);saveLocalSetting('largeUI',this.checked)" type="checkbox"/> تكبير عناصر الواجهة</label><label><input onchange="document.body.classList.toggle('reduceMotion',this.checked);saveLocalSetting('reduceMotion',this.checked)" type="checkbox"/> تقليل الحركة</label></div><div class="mini" id="v34ToolsStatus" style="margin-top:8px"></div></div></div>
 <div class="settingsCategory"><button class="settingsCategoryToggle" onclick="toggleSettingsCategory(this)" type="button"><span>🧹</span><b>البيانات وعن التطبيق</b><i>＋</i></button><div class="settingsCategoryBody"><div class="setting"><b>🧹 بيانات الجهاز</b><p class="muted">حذف إعدادات هذا الجهاز فقط.</p><button class="danger" onclick="clearLocalAppData()">مسح بيانات التطبيق المحلية</button></div><div class="setting"><b>ℹ️ عن التطبيق</b><p class="muted">تطبيق المسلم</p><p class="mini">الحساب اختياري، ويمكن مزامنة الإعدادات بين الأجهزة عند تفعيل الحساب السحابي.</p></div></div></div>
-<div class="settingsCategory" id="mediaStudioSettings"><button class="settingsCategoryToggle" onclick="toggleSettingsCategory(this)" type="button"><span>🎬</span><b>استوديو الصوت والفيديو</b><i>＋</i></button><div class="settingsCategoryBody"><div class="setting"><b>🔌 خادم المعالجة</b><p class="muted">يُكتشف الخادم تلقائيًا من نطاق الموقع عند استضافة واجهة /api/process معه. لا تحتاج إلى إدخال عنوان يدويًا عند إعداد الاستضافة بهذا الشكل.</p><label for="mediaApiBase">عنوان الخادم (يُكتشف تلقائيًا)</label><input autocomplete="url" class="field" id="mediaApiBase" placeholder="سيُكتشف تلقائيًا من نطاق الموقع" type="url"/><label for="mediaApiKey">مفتاح الوصول (اختياري)</label><input autocomplete="off" class="field" id="mediaApiKey" placeholder="مفتاح الخدمة" type="password"/><label><input checked="" id="mediaAutoSave" type="checkbox"/> حفظ العناصر تلقائيًا في المحفوظات</label><label><input checked="" id="mediaRememberSource" type="checkbox"/> الاحتفاظ باسم المصدر ورابطه في السجل</label><label for="mediaOutputFormat">صيغة الصوت الناتج المفضلة</label><select class="field" id="mediaOutputFormat"><option value="mp3">MP3 — صوت</option><option value="wav">WAV — صوت بجودة عالية</option><option value="mp4">MP4 — فيديو</option></select><div class="controls"><button class="primary" onclick="saveMediaStudioSettings()" type="button">حفظ إعدادات الاستوديو</button><button onclick="show('mediaStudio')" type="button">فتح الاستوديو</button></div><p aria-live="polite" class="mini" id="mediaSettingsStatus"></p></div></div></div></div></section>
+<div class="settingsCategory" id="mediaStudioSettings"><button class="settingsCategoryToggle" onclick="toggleSettingsCategory(this)" type="button"><span>🎬</span><b>استوديو الصوت والفيديو</b><i>＋</i></button><div class="settingsCategoryBody"><div class="setting"><b>🔌 خادم المعالجة</b><p class="muted">أدخل عنوان خادم فصل الصوت الذي تديره. تركه فارغًا يعطّل المعالجة الحقيقية بدل إظهار نتيجة وهمية.</p><label for="mediaApiBase">عنوان الخادم</label><input autocomplete="url" class="field" id="mediaApiBase" placeholder="https://your-server.example" type="url"/><label for="mediaApiKey">مفتاح الوصول (اختياري)</label><input autocomplete="off" class="field" id="mediaApiKey" placeholder="مفتاح الخدمة" type="password"/><label><input checked="" id="mediaAutoSave" type="checkbox"/> حفظ العناصر تلقائيًا في المحفوظات</label><label><input checked="" id="mediaRememberSource" type="checkbox"/> الاحتفاظ باسم المصدر ورابطه في السجل</label><label for="mediaOutputFormat">صيغة الصوت الناتج المفضلة</label><select class="field" id="mediaOutputFormat"><option value="mp3">MP3 — صوت</option><option value="wav">WAV — صوت بجودة عالية</option><option value="mp4">MP4 — فيديو</option></select><div class="controls"><button class="primary" onclick="saveMediaStudioSettings()" type="button">حفظ إعدادات الاستوديو</button><button onclick="show('mediaStudio')" type="button">فتح الاستوديو</button></div><p aria-live="polite" class="mini" id="mediaSettingsStatus"></p></div></div></div></div></section>
 </div><nav aria-label="التنقل" class="nav"><button class="navMain" onclick="show('home')"><span>🏠</span><b>الرئيسية</b></button><button class="navSettings" onclick="show('settings')"><span>⚙️</span><b>الإعدادات</b></button></nav>
-<script src="ai-config.js"></script>
-<script src="media-api-config.js"></script><script>const audio=document.getElementById('audio');
+<script src="ai-config.js"></script><script>const audio=document.getElementById('audio');
 const audioSeek=document.getElementById('audioSeek'),audioPlayBtn=document.getElementById('audioPlayBtn'),audioTime=document.getElementById('audioTime'),audioTitle=document.getElementById('audioTitle');
 function fmtTime(v){if(!Number.isFinite(v))return '0:00';const m=Math.floor(v/60),s=Math.floor(v%60);return m+':'+String(s).padStart(2,'0')}
 function updateAudioUI(){if(!audio)return;const playing=!audio.paused;audioPlayBtn.textContent=playing?'⏸ إيقاف':'▶ تشغيل';audioSeek.value=audio.duration?audio.currentTime/audio.duration*100:0;audioTime.textContent=fmtTime(audio.currentTime)+' / '+fmtTime(audio.duration);const bar=document.getElementById('globalAudioBar'),gp=document.getElementById('globalAudioPlayBtn'),gm=document.getElementById('globalAudioMuteBtn'),gt=document.getElementById('globalAudioTitle'),gr=document.getElementById('globalAudioReciter');if(bar){bar.classList.toggle('show',!!audio.src);if(gp)gp.textContent=playing?'⏸ إيقاف':'▶ تشغيل';if(gm)gm.textContent=audio.muted?'🔇 مكتوم':'🔊 الصوت';if(gt)gt.textContent=audioTitle?.textContent||'تلاوة القرآن';if(gr)gr.textContent=playerReciter?.textContent||'القارئ'}}
@@ -878,7 +877,7 @@ function filterRepeatReaders(){const q=(document.getElementById('repeatReaderSea
 const AYAH_AUDIO_EDITIONS={
   'ماهر المعيقلي':'ar.mahermuaiqly','مشاري راشد العفاسي':'ar.alafasy','مشاري العفاسي':'ar.alafasy','عبدالرحمن السديس':'ar.sudais','سعود الشريم':'ar.shuraim','أحمد بن علي العجمي':'ar.ahmedajamy','أحمد العجمي':'ar.ahmedajamy','أبو بكر الشاطري':'ar.shaatree','عبدالباسط عبدالصمد':'ar.abdulbasit','عبد الباسط عبدالصمد':'ar.abdulbasit','هاني الرفاعي':'ar.hanirifai','محمد أيوب':'ar.muhammadayyoub','محمد جبريل':'ar.muhammadjibreel','الحصري':'ar.husary'
 };
-const SURAH_AYAH_OFFSETS=[0,7,293,493,669,789,954,1160,1235,1364,1473,1596,1707,1750,1802,1901,2029,2140,2250,2348,2483,2595,2673,2791,2855,2932,3159,3252,3340,3409,3469,3503,3533,3606,3660,3705,3788,3970,4058,4133,4218,4272,4325,4414,4473,4510,4545,4583,4612,4630,4675,4735,4784,4846,4901,4979,5075,5104,5126,5150,5163,5177,5188,5199,5217,5229,5241,5271,5323,5375,5419,5447,5475,5495,5551,5591,5622,5672,5712,5758,5800,5829,5848,5884,5909,5931,5948,5967,5993,6023,6043,6058,6079,6090,6098,6106,6125,6130,6138,6146,6157,6168,6176,6179,6188,6193,6197,6204,6207,6213,6216,6221,6225,6230];
+const SURAH_AYAH_OFFSETS=[0,7,286,493,669,789,954,1160,1235,1364,1473,1596,1705,1750,1802,1900,2029,2140,2250,2348,2483,2595,2673,2791,2855,2935,3159,3252,3340,3409,3469,3503,3533,3606,3660,3705,3788,3876,3945,3994,4058,4133,4218,4272,4325,4414,4473,4517,4545,4583,4612,4630,4675,4722,4774,4799,4841,4885,4945,4983,5076,5104,5150,5168,5187,5209,5223,5264,5316,5375,5414,5455,5493,5531,5596,5622,5672,5692,5710,5731,5758,5800,5831,5851,5864,5881,5893,5909,5930,5948,5967,5993,6016,6043,6058,6073,6083,6090,6098,6106,6115,6124,6130,6138,6146,6154,6161,6168,6176,6183,6190,6197,6204,6211,6218,6225,6232];
 function ayahEditionForReader(r){const name=String(r?.name||'');for(const k of Object.keys(AYAH_AUDIO_EDITIONS)){if(name.includes(k))return AYAH_AUDIO_EDITIONS[k]}return null}
 let repeatAyahAudio=null;
 async function startAyahRepeat(){
@@ -4090,7 +4089,7 @@ const $=id=>document.getElementById(id);
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function readHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]')}catch(e){return []}}
 function writeHistory(a){try{localStorage.setItem(HISTORY_KEY,JSON.stringify(a.slice(0,100)))}catch(e){console.warn('تعذر حفظ سجل الاستوديو',e)}}
-function settings(){let cfg={};try{cfg=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{}}catch(e){};const configured=[window.MEDIA_API_BASE,window.__MEDIA_API_BASE__,document.querySelector('meta[name="media-api-base"]')?.content].find(v=>typeof v==='string'&&/^https?:\/\//i.test(v.trim()));if(configured)cfg.apiBase=configured.trim().replace(/\/$/,'');else if(location.hostname.endsWith('github.io')&&cfg.apiBase===location.origin)cfg.apiBase='';return cfg;}
+function settings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')}catch(e){return {}}}
 window.openMediaStudio=function(){show('mediaStudio');mediaGo(mediaState.step||1);renderMediaHistory()};
 window.mediaGo=function(n){mediaState.step=n;document.querySelectorAll('[data-media-panel]').forEach(p=>p.hidden=Number(p.dataset.mediaPanel)!==n);document.querySelectorAll('[data-step-indicator]').forEach(s=>{let k=Number(s.dataset.stepIndicator);s.classList.toggle('active',k===n);s.classList.toggle('done',k<n)});if(n===0){document.querySelectorAll('[data-media-panel]').forEach(p=>p.hidden=true);$('mediaHistoryCard').scrollIntoView({behavior:'smooth',block:'start'});return}const panel=document.querySelector('[data-media-panel="'+n+'"]');if(panel)panel.scrollIntoView({behavior:'smooth',block:'nearest'});};
 window.resetMediaWizard=function(){mediaState={step:1,platform:'',url:'',file:null,resultUrl:'',resultName:'',mode:'remove_music'};if($('mediaSourceUrl'))$('mediaSourceUrl').value='';if($('mediaInputFile'))$('mediaInputFile').value='';if($('mediaFileInfo'))$('mediaFileInfo').textContent='';document.querySelectorAll('.platformOption').forEach(b=>b.classList.remove('selected'));mediaGo(1)};
@@ -4703,12 +4702,12 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   function getAutoMediaBase(){
     const candidates=[window.MEDIA_API_BASE,window.__MEDIA_API_BASE__,document.querySelector('meta[name="media-api-base"]')?.content];
     for(const v of candidates){if(typeof v==='string'&&/^https?:\/\//i.test(v.trim()))return v.trim().replace(/\/$/,'');}
-    
+    if(location.protocol==='http:'||location.protocol==='https:')return location.origin.replace(/\/$/,'');
     return '';
   }
   function autoMediaConfig(){
     try{
-      const key='muslim_media_studio_settings_v1';
+      const key=typeof SETTINGS_KEY==='string'?SETTINGS_KEY:'media-studio-settings-v80';
       const cfg=JSON.parse(localStorage.getItem(key)||'{}');
       if(!cfg.apiBase){const base=getAutoMediaBase();if(base){cfg.apiBase=base;localStorage.setItem(key,JSON.stringify(cfg));}}
       return cfg;
@@ -4717,7 +4716,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   function applyMediaAutoLabel(){
     const field=$id('mediaApiBase');if(!field)return;
     const base=getAutoMediaBase();
-    if(base)field.value=base;else if(location.hostname.endsWith('github.io')&&field.value.trim()===location.origin)field.value='';
+    if(!field.value.trim()&&base)field.value=base;
     field.placeholder=base?'تلقائيًا: '+base+' (يمكن تغييره)':'سيُكتشف تلقائيًا عند استضافة الموقع مع خادم معالجة';
     const label=field.closest('.setting');
     if(label&&!label.querySelector('.mediaAutoExplain')){
@@ -4731,7 +4730,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     const field=$id('mediaApiBase');
     if(field&&!field.value.trim())field.value=getAutoMediaBase();
     if(typeof oldSaveMedia==='function')oldSaveMedia();
-    else if(field){const key='muslim_media_studio_settings_v1';localStorage.setItem(key,JSON.stringify({apiBase:field.value.trim().replace(/\/$/,''),apiKey:$id('mediaApiKey')?.value.trim()||'',autoSave:$id('mediaAutoSave')?.checked!==false,rememberSource:$id('mediaRememberSource')?.checked!==false,outputFormat:$id('mediaOutputFormat')?.value||'mp3'}));}
+    else if(field){const key=typeof SETTINGS_KEY==='string'?SETTINGS_KEY:'media-studio-settings-v80';localStorage.setItem(key,JSON.stringify({apiBase:field.value.trim().replace(/\/$/,''),apiKey:$id('mediaApiKey')?.value.trim()||'',autoSave:$id('mediaAutoSave')?.checked!==false,rememberSource:$id('mediaRememberSource')?.checked!==false,outputFormat:$id('mediaOutputFormat')?.value||'mp3'}));}
     const status=$id('mediaSettingsStatus');if(status&&!field?.value.trim())status.textContent='لم يُعثر على خادم معالجة تلقائيًا. لا يمكن استخراج الصوت من رابط خارجي دون واجهة معالجة تعمل على الخادم.';
   };
   const oldMediaContinue=window.mediaContinueToProcess;
@@ -4753,10 +4752,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     ['هاني الرفاعي','Hani_Rifai_192kbps'],['محمد أيوب','Muhammad_Ayyoub_128kbps'],['محمد جبريل','Muhammad_Jibreel_128kbps'],['الحصري','Husary_128kbps']
   ];
   const everyFolderForReader=r=>{const n=String(r?.name||'');const x=everyAyahMap.find(([k])=>n.includes(k));return x?x[1]:''};
-  // Keep a reference to the original player cleanup: V80.16 uses a dedicated audio element.
-  const stopLegacyAyahRepeat = window.stopAyahRepeat;
   window.startAyahRepeat=async function(){
-    try{if(typeof stopLegacyAyahRepeat==='function')stopLegacyAyahRepeat(true);}catch(e){}
     try{stopAyahRepeat(true);}catch(e){}
     const surah=Number($id('repeatSurah')?.value||1),from=Number($id('repeatFrom')?.value||1),to=Number($id('repeatTo')?.value||from),ri=Number($id('repeatReciter')?.value||0),r=window.RECITERS?.[ri]|| (typeof RECITERS!=='undefined'?RECITERS[ri]:null),status=$id('repeatAyahStatus');
     if(!status)return;
@@ -4786,7 +4782,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     await playIndex();try{localStorage.setItem('quran-m09-repeat-surah',String(surah));}catch(e){}
   };
   window.stopAyahRepeat=function(silent=false){
-    try{if(typeof stopLegacyAyahRepeat==='function')stopLegacyAyahRepeat(true);}catch(e){}
     if(window.repeatAyahState)window.repeatAyahState.stopped=true;window.repeatAyahState=null;
     const a=$id('v8016AyahAudio');if(a){a.onended=null;a.onerror=null;a.pause();a.removeAttribute('src');a.load();}
     if(!silent&&$id('repeatAyahStatus'))$id('repeatAyahStatus').textContent='⏹ تم إيقاف التكرار والتلاوة نهائيًا.';
@@ -4857,51 +4852,4 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   document.head.appendChild(style);
 })();
 
-</script>
-
-<script id="v8017-media-ayahr-repeat-ruqyah-download-fix">
-(function(){
- 'use strict';
- // Download direct audio for a ruqyah reader; if CORS blocks blob download, open the source safely.
- window.downloadRuqyahReader = async function(i, btn){
-   const r=(window.V80_RUQYAH_READERS||[])[Number(i)];
-   if(!r){return}
-   if(!r.audio){if(r.sourceUrl)window.open(r.sourceUrl,'_blank','noopener,noreferrer');else alert('لا يتوفر رابط تنزيل مباشر لهذا التسجيل.');return}
-   const original=btn?btn.textContent:'';
-   if(btn){btn.disabled=true;btn.textContent='⏳ جارٍ تجهيز التنزيل…'}
-   try{
-     const res=await fetch(r.audio,{mode:'cors',cache:'no-store'});
-     if(!res.ok)throw new Error('download failed');
-     const blob=await res.blob();
-     const u=URL.createObjectURL(blob),a=document.createElement('a');
-     a.href=u;a.download=('رقية-'+String(r.name||'تسجيل').replace(/[\\/:*?"<>|]/g,'-')+'.mp3');
-     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);
-     if(btn)btn.textContent='✅ بدأ التنزيل';
-   }catch(e){
-     if(r.sourceUrl)window.open(r.sourceUrl,'_blank','noopener,noreferrer');
-     if(btn)btn.textContent='↗ فتح المصدر للتنزيل';
-   }finally{if(btn){setTimeout(()=>{btn.disabled=false;if(btn.isConnected)btn.textContent=original||'⬇️ تحميل الرقية'},2200)}}
- };
- const priorRender=window.renderRuqyah;
- window.renderRuqyah=function(){
-   if(typeof priorRender==='function')priorRender();
-   setTimeout(()=>{
-     document.querySelectorAll('.v80RuqyahReader').forEach((card,i)=>{
-       const actions=card.querySelector('.v80RuqyahActions');
-       const r=(window.V80_RUQYAH_READERS||[])[i];
-       if(!actions||!r||actions.querySelector('[data-rq-download]'))return;
-       const b=document.createElement('button');b.type='button';b.className='downloadBtn';
-       b.textContent='⬇️ تحميل الرقية';b.setAttribute('data-rq-download','1');
-       b.addEventListener('click',()=>window.downloadRuqyahReader(i,b));
-       actions.appendChild(b);
-     });
-     // The complete continuous ruqyah card also gets a visible download action.
-     const full=document.getElementById('ruqyahFullCard');
-     if(full){const controls=full.querySelector('.controls');if(controls&&!controls.querySelector('[data-rq-full-download]')){
-       const b=document.createElement('button');b.type='button';b.className='downloadBtn';b.textContent='⬇️ تحميل الرقية كاملة';b.setAttribute('data-rq-full-download','1');
-       b.onclick=()=>{if(typeof window.v44DownloadRuqyah==='function')window.v44DownloadRuqyah();else alert('استخدم أزرار التحميل بجانب المقاطع المتاحة.');};controls.appendChild(b);
-     }}
-   },80);
- };
-})();
 </script>
