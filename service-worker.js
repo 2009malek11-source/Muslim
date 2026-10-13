@@ -1,4 +1,4 @@
-const CACHE='muslim-cache-v101';
+const CACHE='muslim-cache-v102';
 const CORE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./splash-program.png'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()));
