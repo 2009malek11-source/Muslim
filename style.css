@@ -55,7 +55,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline-offset:0
 :root{--hdr:56px;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--ok:#1f7a4d;--warn:#9a5b00;--bad:#b3261e;--card2:color-mix(in srgb,var(--card) 92%,var(--green) 8%)}
 html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
 html,body{background:var(--bg)!important;min-height:100%}
-body{background-image:none!important;overscroll-behavior-y:contain}
+body{background-image:none!important}
 .dark,.dark body{background:var(--bg)!important}
 /* ---- الترويسة: ثابتة بعرض الشاشة، بلا فراغ علوي ---- */
 html body header.top{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;max-width:none!important;margin:0!important;height:calc(var(--hdr) + var(--sat))!important;padding:var(--sat) max(14px,calc((100vw - 900px)/2 + 14px)) 0!important;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:3500!important;background:color-mix(in srgb,var(--bg) 94%,transparent)!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
@@ -194,3 +194,8 @@ button,.tile,.primary{min-height:44px}
 #settings .stgRow{align-items:center}
 #settings .stgBtn{min-width:84px;justify-content:center}
 input[type=range]{accent-color:var(--green)}
+
+/* ---- التمرير: html/body لا يكونان حاويتي تمرير (إصلاح عدم التمرير بالإصبع/العجلة على كروم وأندرويد) ---- */
+html{overflow-x:visible!important;overflow-y:visible!important}
+body{overflow-x:clip!important;overflow-y:visible!important;overscroll-behavior:auto!important}
+html.v6-intro,html.v6-intro body{overflow:hidden!important}
