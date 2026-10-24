@@ -325,7 +325,7 @@ html{--mushaf-font:28px}
 <button type="button" onclick="show('favorites');renderFavorites(document.getElementById('favoritesType')?.value||'readers')"><span>⭐</span><b>المفضلة</b></button>
 <button type="button" onclick="show('install')"><span class="ico-install"></span><b>تثبيت ومشاركة</b></button>
 </div>
-<div class="stgGroup"><h3>🎨 المظهر والعرض</h3>
+<details class="stgCat" id="stgcat-appearance" open><summary><span class="ci">🎨</span>المظهر والعرض والألوان<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
 <div class="stgRow"><div><b>الوضع الليلي</b><small>تبديل بين الفاتح والداكن</small></div><button type="button" class="stgBtn" onclick="toggleDark()">تبديل</button></div>
 <div class="stgRow"><div><b>حجم الخط</b><small>تكبير النصوص أو تصغيرها</small></div><div class="stgSeg"><button type="button" onclick="setFontScale(0.9)">A−</button><button type="button" onclick="setFontScale(1)">A</button><button type="button" onclick="setFontScale(1.12)">A+</button></div></div>
 <div class="stgRow"><div><b>الأرقام</b><small>شكل الأرقام داخل التطبيق</small></div><select id="digitMode" class="field stgSel" onchange="setDigitMode(this.value)"><option value="arabic">عربية (١٢٣)</option><option value="english">إنجليزية (123)</option></select></div>
@@ -333,71 +333,94 @@ html{--mushaf-font:28px}
 <div class="stgRow"><div><b>اللغة</b><small>لغة الواجهة فقط؛ المصحف يبقى بالعربية</small></div><select id="appLanguage" class="field stgSel" onchange="setAppLanguage(this.value)"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option><option value="tr">Türkçe</option><option value="ur">اردو</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="es">Español</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option><option value="bn">বাংলা</option><option value="hi">हिन्दी</option><option value="fa">فارسی</option><option value="sw">Kiswahili</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="it">Italiano</option><option value="nl">Nederlands</option></select></div>
 <label class="stgRow stgSw"><div><b>تكبير عناصر الواجهة</b><small>أزرار وبطاقات أكبر</small></div><input type="checkbox" onchange="document.body.classList.toggle('largeUI',this.checked);saveLocalSetting('largeUI',this.checked)"></label>
 <label class="stgRow stgSw"><div><b>تقليل الحركة</b><small>إيقاف التأثيرات المتحركة</small></div><input type="checkbox" onchange="document.body.classList.toggle('reduceMotion',this.checked);saveLocalSetting('reduceMotion',this.checked)"></label>
-</div>
-<div class="stgGroup"><h3>🎧 الصوت والقراءة</h3>
-<label class="stgRow stgSw"><div><b>التشغيل التلقائي للتلاوات</b><small>ابدأ التلاوة فور اختيارها</small></div><input type="checkbox" id="settingAutoplay" onchange="saveLocalSetting('autoplay',this.checked)"></label>
-<label class="stgRow stgSw"><div><b>استمرار الصوت بين الأقسام</b><small>لا يتوقف الصوت عند التنقل</small></div><input type="checkbox" id="settingKeepAudio" checked onchange="saveLocalSetting('keepAudio',this.checked)"></label>
+<div class="stgRow"><div><b>لون التطبيق</b><small>اللون الرئيسي للأزرار والعناوين</small></div><select id="stgAccent" class="field stgSel"><option value="green">أخضر</option><option value="teal">فيروزي</option><option value="blue">أزرق</option><option value="purple">بنفسجي</option><option value="brown">بني</option><option value="rose">وردي داكن</option></select></div>
+<div class="stgRow stgCol"><div><b>لون مخصص</b><small>اختر أي لون تريده بنفسك</small></div><div style="display:flex;gap:8px;align-items:center"><input type="color" id="v107ColorIn" value="#1d624f" aria-label="اختيار اللون" style="width:48px;height:40px;border:0;background:none;padding:0"><input id="v107ColorHex" class="field" placeholder="#1d624f" maxlength="7" style="width:92px;direction:ltr"><button type="button" class="stgBtn" onclick="v107ResetColor()">افتراضي</button></div></div>
+<label class="stgRow stgSw"><div><b>الوضع الدافئ</b><small>ألوان أدفأ لتقليل إجهاد العين</small></div><input type="checkbox" id="stgWarm"></label>
+<label class="stgRow stgSw"><div><b>إيقاف حركات الواجهة</b><small>انتقالات أسرع وأخف</small></div><input type="checkbox" id="stgNoAnim"></label>
+<div class="stgRow"><div><b>استدارة البطاقات</b><small>شكل زوايا البطاقات</small></div><select id="stgRadius" class="field stgSel"><option value="s">حادة</option><option value="m">متوسطة</option><option value="l">دائرية</option></select></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-prayer"><summary><span class="ci">🕌</span>مواقيت الصلاة والأذان<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<label class="stgRow stgSw"><div><b>تشغيل الأذان عند دخول الوقت</b><small>يعمل عند فتح التطبيق؛ وفي الخلفية يظهر إشعار</small></div><input type="checkbox" id="pr107Adhan" checked></label>
+<div class="stgRow"><div><b>المؤذّن</b><small>صوت الأذان</small></div><select id="pr107Muezzin" class="field stgSel"></select></div>
+<div class="stgRow stgCol"><div><b>الصلوات المفعّلة للتنبيه</b><small>اختر ما يصلك تنبيهه</small></div><div class="stgChks"><label class="chk"><input type="checkbox" id="pr107On_fajr"> الفجر</label><label class="chk"><input type="checkbox" id="pr107On_sunrise"> الشروق</label><label class="chk"><input type="checkbox" id="pr107On_dhuhr"> الظهر</label><label class="chk"><input type="checkbox" id="pr107On_asr"> العصر</label><label class="chk"><input type="checkbox" id="pr107On_maghrib"> المغرب</label><label class="chk"><input type="checkbox" id="pr107On_isha"> العشاء</label></div></div>
+<div class="stgRow"><div><b>تذكير قبل الصلاة</b><small>«بقي على الظهر 10 دقائق» — تحدد المدة</small></div><select id="pr107Before" class="field stgSel"><option value="0">بدون</option><option value="5">قبلها بـ 5 دقائق</option><option value="10">قبلها بـ 10 دقائق</option><option value="15">قبلها بـ 15 دقيقة</option><option value="20">قبلها بـ 20 دقيقة</option><option value="30">قبلها بـ 30 دقيقة</option></select></div>
+<div class="stgRow"><div><b>تذكير بعد الصلاة</b><small>«مضى على الظهر 10 دقائق» — تحدد المدة</small></div><select id="pr107After" class="field stgSel"><option value="0">بدون</option><option value="10">بعدها بـ 10 دقائق</option><option value="15">بعدها بـ 15 دقيقة</option><option value="20">بعدها بـ 20 دقيقة</option><option value="30">بعدها بـ 30 دقيقة</option><option value="45">بعدها بـ 45 دقيقة</option></select></div>
+<div class="stgRow"><div><b>طريقة الحساب</b><small>الأساس لكل مدن العالم؛ الطرق الإقليمية اختيارية</small></div><select id="pr107Method" class="field stgSel"><option value="auto">المعايرة المعتمدة (مرجع طرابلس) — لكل المدن</option><option value="egypt">الهيئة المصرية</option><option value="mwl">رابطة العالم الإسلامي</option><option value="makkah">أم القرى</option><option value="isna">أمريكا الشمالية</option><option value="karachi">كراتشي</option><option value="kuwait">الكويت</option><option value="qatar">قطر</option><option value="dubai">الإمارات</option><option value="singapore">سنغافورة/ماليزيا</option><option value="turkey">تركيا</option><option value="tehran">طهران</option><option value="morocco">المغرب</option><option value="algeria">الجزائر</option><option value="tunisia">تونس</option><option value="jordan">الأردن</option></select></div>
+<div class="stgRow"><div><b>وقت العصر</b><small>جمهور (ظل مثل) افتراضيًا</small></div><select id="pr107Asr" class="field stgSel"><option value="auto">جمهور (افتراضي)</option><option value="shafi">جمهور (ظل مثل)</option><option value="hanafi">حنفي (ظل مثلين)</option></select></div>
+<div class="stgRow stgCol"><div><b>تعديل دقيق للأوقات (دقائق)</b><small>لموافقة تقويم مسجدك أو بلدك (من −30 إلى +30)</small></div><div class="prTune"><label>الفجر<input type="number" id="pr107T_fajr" min="-30" max="30" step="1" inputmode="numeric"></label><label>الشروق<input type="number" id="pr107T_sunrise" min="-30" max="30" step="1" inputmode="numeric"></label><label>الظهر<input type="number" id="pr107T_dhuhr" min="-30" max="30" step="1" inputmode="numeric"></label><label>العصر<input type="number" id="pr107T_asr" min="-30" max="30" step="1" inputmode="numeric"></label><label>المغرب<input type="number" id="pr107T_maghrib" min="-30" max="30" step="1" inputmode="numeric"></label><label>العشاء<input type="number" id="pr107T_isha" min="-30" max="30" step="1" inputmode="numeric"></label></div></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-notif"><summary><span class="ci">🔔</span>التذكيرات والإشعارات<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow stgCol"><div><b>الإشعارات</b><small>للتذكير حتى عند إغلاق الصفحة (يختلف دعم الخلفية بحسب المتصفح والجهاز)</small></div><div class="controls" style="flex-wrap:wrap"><button type="button" class="stgBtn" onclick="v107AskNotif()">🔔 تفعيل الإشعارات</button><button type="button" class="stgBtn" onclick="v107TestNotif()">اختبار تنبيه</button><button type="button" class="stgBtn" onclick="v107PlayAdhan()">▶ تجربة الأذان</button><button type="button" class="stgBtn" onclick="v107StopAdhan()">⏹ إيقاف</button></div></div>
+<label class="stgRow stgSw"><div><b>الاهتزاز</b><small>عند توفره في جهازك</small></div><input type="checkbox" checked onchange="saveLocalSetting('vibration',this.checked)"></label>
+</div></div></details>
+<details class="stgCat" id="stgcat-mushaf"><summary><span class="ci">📖</span>المصحف<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>لون الورق</b><small>خلفية صفحة المصحف</small></div><select id="mp107Paper" class="field stgSel"><option value="cream">كريمي</option><option value="white">أبيض</option><option value="sepia">سيبيا</option><option value="gold">ذهبي</option><option value="night">ليلي</option></select></div>
+<label class="stgRow stgSw"><div><b>إطار الصفحة</b><small>الإطار الذهبي كالمصحف المطبوع</small></div><input type="checkbox" id="mp107Frame" checked></label>
+<div class="stgRow"><div><b>حجم خط المصحف</b><small>ضبط حجم كلمات الصفحة</small></div><select id="mp107Scale" class="field stgSel"><option value="0.8">صغير</option><option value="0.9">أصغر قليلًا</option><option value="1">عادي</option><option value="1.1">أكبر</option><option value="1.2">كبير جدًا</option></select></div>
+<div class="stgRow"><div><b>قارئ الآية عند اللمس</b><small>يُستخدم عند الضغط على آية للاستماع</small></div><select id="mp107Reciter" class="field stgSel"><option value="Alafasy_128kbps">مشاري العفاسي</option><option value="Husary_128kbps">محمود خليل الحصري</option><option value="Abdul_Basit_Murattal_192kbps">عبد الباسط (مرتل)</option><option value="Minshawy_Murattal_128kbps">المنشاوي (مرتل)</option><option value="Abdurrahmaan_As-Sudais_192kbps">عبد الرحمن السديس</option><option value="Saood_ash-Shuraym_128kbps">سعود الشريم</option></select></div>
 <label class="stgRow stgSw"><div><b>حفظ آخر موضع قراءة</b><small>للعودة إلى حيث توقفت</small></div><input type="checkbox" id="settingLastRead" checked onchange="saveLocalSetting('lastRead',this.checked)"></label>
 <label class="stgRow stgSw"><div><b>نص المصحف بالعربية دائمًا</b><small>لا يُترجم نص القرآن</small></div><input type="checkbox" id="settingArabicOnly" checked disabled></label>
-</div>
-<div class="stgGroup"><h3>🎛️ التشغيل والأوضاع</h3>
-<div class="stgRow"><div><b>القارئ الافتراضي للأوضاع</b><small>يُستخدم في أوضاع النوم والصباح والرقية</small></div><select id="stgModeRec" class="field stgSel"></select></div>
-<div class="stgRow"><div><b>مؤقت النوم الافتراضي</b><small>يتلاشى الصوت ثم يتوقف تلقائيًا</small></div><select id="stgSleepMin" class="field stgSel"><option value="0">بدون</option><option value="10">10 دقائق</option><option value="15">15 دقيقة</option><option value="20">20 دقيقة</option><option value="30">30 دقيقة</option><option value="45">45 دقيقة</option><option value="60">ساعة</option><option value="90">ساعة ونصف</option></select></div>
-<div class="stgRow"><div><b>الفاصل بين الأذكار المتتالية</b><small>مدة الانتظار بين ذكر وآخر</small></div><select id="stgGap" class="field stgSel"><option value="0">بلا فاصل</option><option value="0.5">نصف ثانية</option><option value="1">ثانية</option><option value="2">ثانيتان</option><option value="3">3 ثوانٍ</option><option value="5">5 ثوانٍ</option></select></div>
-<div class="stgRow"><div><b>فاصل تكرار الآية</b><small>الصمت بين كل تكرار وآخر</small></div><select id="stgRepGap" class="field stgSel"><option value="0">بلا فاصل</option><option value="0.3">0.3 ثانية</option><option value="0.6">0.6 ثانية</option><option value="1">ثانية</option><option value="2">ثانيتان</option><option value="4">4 ثوانٍ</option></select></div>
-<label class="stgRow stgSw"><div><b>إبقاء الشاشة مضيئة أثناء التشغيل</b><small>يمنع انطفاء الشاشة خلال التشغيل المتتالي</small></div><input type="checkbox" id="stgWake"></label>
-</div>
-<div class="stgGroup"><h3>🖌️ التخصيص</h3>
-<div class="stgRow"><div><b>لون التطبيق</b><small>اللون الرئيسي للأزرار والعناوين</small></div><select id="stgAccent" class="field stgSel"><option value="green">أخضر</option><option value="teal">فيروزي</option><option value="blue">أزرق</option><option value="purple">بنفسجي</option><option value="brown">بني</option><option value="rose">وردي داكن</option></select></div>
-<div class="stgRow"><div><b>حجم خط الأذكار</b><small>نص الأذكار والأدعية</small></div><select id="stgAdkFont" class="field stgSel"><option value="s">صغير</option><option value="m">عادي</option><option value="l">كبير</option><option value="xl">كبير جدًا</option></select></div>
-</div>
-<div class="stgGroup"><h3>🚀 البدء والتنقّل</h3>
-<div class="stgRow"><div><b>الصفحة التي يفتح عليها التطبيق</b><small>تُفتح تلقائيًا عند تشغيل التطبيق</small></div><select id="stgStart" class="field stgSel"><option value="home">الرئيسية</option><option value="readers">القرّاء</option><option value="adhkar">الأذكار والأدعية</option><option value="khatmah">ختمة القرآن</option><option value="modes">الأوضاع</option><option value="repeatAyah">تكرار الآية</option><option value="favorites">المفضلة</option></select></div>
-<div class="stgRow stgCol"><div><b>أقسام الصفحة الرئيسية</b><small>أزل العلامة لإخفاء القسم من الرئيسية</small></div><div id="stgTilesBox" class="stgChks"></div></div>
-</div>
-<div class="stgGroup"><h3>🔁 التكرار والصوت المتقدم</h3>
-<div class="stgRow"><div><b>عدد مرات تكرار الآية الافتراضي</b><small>«بلا نهاية» حتى تضغط إيقاف</small></div><select id="stgRepCount" class="field stgSel"><option value="0">بلا نهاية ∞</option><option value="2">مرتان</option><option value="3">3 مرات</option><option value="5">5 مرات</option><option value="7">7 مرات</option><option value="10">10 مرات</option><option value="20">20 مرة</option><option value="33">33 مرة</option><option value="40">40 مرة</option><option value="100">100 مرة</option></select></div>
-<div class="stgRow"><div><b>قارئ تكرار الآية الافتراضي</b><small>القرّاء الحقيقيون الذين لديهم تسجيل آية بآية</small></div><select id="stgRepRec" class="field stgSel"></select></div>
-<div class="stgRow"><div><b>مستوى الصوت للتشغيل المتتالي</b><small>للأوضاع والرقية والأذكار المتتالية</small></div><select id="stgVol" class="field stgSel"><option value="0.3">منخفض</option><option value="0.5">متوسط</option><option value="0.75">عالٍ</option><option value="1">أعلى مستوى</option></select></div>
-<div class="stgRow"><div><b>مدة التلاشي قبل التوقف</b><small>عند انتهاء مؤقت النوم</small></div><select id="stgFade" class="field stgSel"><option value="3">3 ثوانٍ</option><option value="7">7 ثوانٍ</option><option value="15">15 ثانية</option><option value="30">30 ثانية</option></select></div>
-<label class="stgRow stgSw"><div><b>إعادة الأوضاع من البداية تلقائيًا</b><small>يكرر وضع النوم/الصباح… حتى المؤقت أو الإيقاف</small></div><input type="checkbox" id="stgLoopAll"></label>
-<label class="stgRow stgSw"><div><b>تعتيم الشاشة تلقائيًا في وضع النوم</b><small>يمكن تغييره قبل كل تشغيل</small></div><input type="checkbox" id="stgDimDefault"></label>
-<label class="stgRow stgSw"><div><b>إظهار الساعة في شاشة النوم</b><small>الساعة الخافتة أثناء التعتيم</small></div><input type="checkbox" id="stgDimClock"></label>
+</div></div></details>
+<details class="stgCat" id="stgcat-hadith"><summary><span class="ci">📜</span>الأحاديث<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>حجم خط الحديث</b><small>للقراءة المريحة</small></div><select id="hd107Fs" class="field stgSel"><option value="17">صغير</option><option value="20">متوسط</option><option value="22">عادي</option><option value="26">كبير</option><option value="30">كبير جدًا</option><option value="36">ضخم</option></select></div>
+<label class="stgRow stgSw"><div><b>إظهار اسم الباب</b><small>أسفل مصدر كل حديث</small></div><input type="checkbox" id="hd107Ch" checked></label>
+</div></div></details>
+<details class="stgCat" id="stgcat-reader"><summary><span class="ci">🎧</span>القرّاء والتلاوات<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<label class="stgRow stgSw"><div><b>التشغيل التلقائي للتلاوات</b><small>ابدأ التلاوة فور اختيارها</small></div><input type="checkbox" id="settingAutoplay" onchange="saveLocalSetting('autoplay',this.checked)"></label>
+<label class="stgRow stgSw"><div><b>استمرار الصوت بين الأقسام</b><small>لا يتوقف الصوت عند التنقل</small></div><input type="checkbox" id="settingKeepAudio" checked onchange="saveLocalSetting('keepAudio',this.checked)"></label>
 <label class="stgRow stgSw"><div><b>استئناف الصوت تلقائيًا عند مغادرة التطبيق</b><small>إن أوقفه النظام عند التبديل بين التطبيقات</small></div><input type="checkbox" id="stgBgKeep"></label>
-</div>
-<div class="stgGroup"><h3>📿 الأذكار</h3>
+<div class="stgRow"><div><b>مستوى الصوت للتشغيل المتتالي</b><small>للأوضاع والرقية والأذكار المتتالية</small></div><select id="stgVol" class="field stgSel"><option value="0.3">منخفض</option><option value="0.5">متوسط</option><option value="0.75">عالٍ</option><option value="1">أعلى مستوى</option></select></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-adhkar"><summary><span class="ci">🤲</span>الأذكار والأدعية<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>حجم خط الأذكار</b><small>نص الأذكار والأدعية</small></div><select id="stgAdkFont" class="field stgSel"><option value="s">صغير</option><option value="m">عادي</option><option value="l">كبير</option><option value="xl">كبير جدًا</option></select></div>
 <label class="stgRow stgSw"><div><b>اهتزاز عند إتمام العدّ</b><small>عند الوصول للعدد المطلوب من الذكر</small></div><input type="checkbox" id="stgVibrate"></label>
 <label class="stgRow stgSw"><div><b>الانتقال للذكر التالي تلقائيًا</b><small>بعد إتمام العدّ ينزل إلى الذكر التالي</small></div><input type="checkbox" id="stgAdkNext"></label>
 <div class="stgRow"><div><b>تباعد أسطر الأذكار</b><small>لراحة القراءة</small></div><select id="stgAdkLh" class="field stgSel"><option value="n">عادي</option><option value="w">واسع</option><option value="x">أوسع</option></select></div>
 <div class="stgRow"><div><b>محاذاة نص الأذكار</b><small>يمين أو وسط</small></div><select id="stgAdkAlign" class="field stgSel"><option value="start">إلى اليمين</option><option value="center">في الوسط</option></select></div>
-</div>
-<div class="stgGroup"><h3>🌿 راحة العين</h3>
-<label class="stgRow stgSw"><div><b>الوضع الدافئ</b><small>ألوان أدفأ لتقليل إجهاد العين</small></div><input type="checkbox" id="stgWarm"></label>
-<label class="stgRow stgSw"><div><b>إيقاف حركات الواجهة</b><small>انتقالات أسرع وأخف</small></div><input type="checkbox" id="stgNoAnim"></label>
-<div class="stgRow"><div><b>استدارة البطاقات</b><small>شكل زوايا البطاقات</small></div><select id="stgRadius" class="field stgSel"><option value="s">حادة</option><option value="m">متوسطة</option><option value="l">دائرية</option></select></div>
-</div>
-<div class="stgGroup"><h3>💾 التخزين</h3>
-<div class="stgRow"><div><b>الملفات الصوتية المحمّلة</b><small id="stgStorage">…</small></div><button type="button" class="stgBtn stgDanger" onclick="v101ClearAudio()">حذف</button></div>
-<div class="stgRow"><div><b>إعادة الإعدادات الإضافية</b><small>التشغيل والمظهر فقط؛ المفضلة والختمة تبقى</small></div><button type="button" class="stgBtn stgDanger" onclick="v101ResetSettings()">إعادة</button></div>
-</div>
-<div class="stgGroup"><h3>🗄️ نسخة احتياطية</h3>
-<div class="stgRow"><div><b>تصدير بياناتك</b><small>المفضلة والإعدادات والتقدم في ملف على جهازك</small></div><button type="button" class="stgBtn" onclick="v100ExportData()">تصدير</button></div>
-<div class="stgRow"><div><b>استيراد نسخة</b><small>استرجاع ملف صدّرته سابقًا</small></div><button type="button" class="stgBtn" onclick="document.getElementById('stgImport').click()">استيراد</button><input type="file" id="stgImport" accept="application/json" style="display:none" onchange="v100ImportData(this)"></div>
-</div>
-<div class="stgGroup"><h3>🔔 التذكيرات والمحتوى</h3>
-<div class="stgRow stgCol"><div><b>تذكيرات أعمال اليوم</b><small>اختر ما يظهر لك في «أعمال اليوم»</small></div><div id="dailyReminderSettingsBox"></div></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-modes"><summary><span class="ci">🕋</span>الرقية والأوضاع (النوم والصباح)<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>القارئ الافتراضي للأوضاع</b><small>يُستخدم في أوضاع النوم والصباح والرقية</small></div><select id="stgModeRec" class="field stgSel"></select></div>
+<div class="stgRow"><div><b>مؤقت النوم الافتراضي</b><small>يتلاشى الصوت ثم يتوقف تلقائيًا</small></div><select id="stgSleepMin" class="field stgSel"><option value="0">بدون</option><option value="10">10 دقائق</option><option value="15">15 دقيقة</option><option value="20">20 دقيقة</option><option value="30">30 دقيقة</option><option value="45">45 دقيقة</option><option value="60">ساعة</option><option value="90">ساعة ونصف</option></select></div>
+<div class="stgRow"><div><b>الفاصل بين الأذكار المتتالية</b><small>مدة الانتظار بين ذكر وآخر</small></div><select id="stgGap" class="field stgSel"><option value="0">بلا فاصل</option><option value="0.5">نصف ثانية</option><option value="1">ثانية</option><option value="2">ثانيتان</option><option value="3">3 ثوانٍ</option><option value="5">5 ثوانٍ</option></select></div>
+<div class="stgRow"><div><b>مدة التلاشي قبل التوقف</b><small>عند انتهاء مؤقت النوم</small></div><select id="stgFade" class="field stgSel"><option value="3">3 ثوانٍ</option><option value="7">7 ثوانٍ</option><option value="15">15 ثانية</option><option value="30">30 ثانية</option></select></div>
+<label class="stgRow stgSw"><div><b>إعادة الأوضاع من البداية تلقائيًا</b><small>يكرر وضع النوم/الصباح… حتى المؤقت أو الإيقاف</small></div><input type="checkbox" id="stgLoopAll"></label>
+<label class="stgRow stgSw"><div><b>تعتيم الشاشة تلقائيًا في وضع النوم</b><small>يمكن تغييره قبل كل تشغيل</small></div><input type="checkbox" id="stgDimDefault"></label>
+<label class="stgRow stgSw"><div><b>إظهار الساعة في شاشة النوم</b><small>الساعة الخافتة أثناء التعتيم</small></div><input type="checkbox" id="stgDimClock"></label>
+<label class="stgRow stgSw"><div><b>إبقاء الشاشة مضيئة أثناء التشغيل</b><small>يمنع انطفاء الشاشة خلال التشغيل المتتالي</small></div><input type="checkbox" id="stgWake"></label>
+</div></div></details>
+<details class="stgCat" id="stgcat-repeat"><summary><span class="ci">🔁</span>تكرار الآية<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>عدد مرات تكرار الآية الافتراضي</b><small>«بلا نهاية» حتى تضغط إيقاف</small></div><select id="stgRepCount" class="field stgSel"><option value="0">بلا نهاية ∞</option><option value="2">مرتان</option><option value="3">3 مرات</option><option value="5">5 مرات</option><option value="7">7 مرات</option><option value="10">10 مرات</option><option value="20">20 مرة</option><option value="33">33 مرة</option><option value="40">40 مرة</option><option value="100">100 مرة</option></select></div>
+<div class="stgRow"><div><b>قارئ تكرار الآية الافتراضي</b><small>القرّاء الحقيقيون الذين لديهم تسجيل آية بآية</small></div><select id="stgRepRec" class="field stgSel"></select></div>
+<div class="stgRow"><div><b>فاصل تكرار الآية</b><small>الصمت بين كل تكرار وآخر</small></div><select id="stgRepGap" class="field stgSel"><option value="0">بلا فاصل</option><option value="0.3">0.3 ثانية</option><option value="0.6">0.6 ثانية</option><option value="1">ثانية</option><option value="2">ثانيتان</option><option value="4">4 ثوانٍ</option></select></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-calendar"><summary><span class="ci">📅</span>المناسك والتقويم الهجري<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
 <label class="stgRow stgSw"><div><b>المناسبات الإسلامية</b><small>إظهار الأعياد والمناسبات</small></div><input type="checkbox" id="settingOccasions" checked onchange="saveLocalSetting('occasions',this.checked)"></label>
 <label class="stgRow stgSw"><div><b>التاريخ الهجري</b><small>إظهار التاريخ الهجري داخل التطبيق</small></div><input type="checkbox" checked onchange="saveLocalSetting('hijriCalendar',this.checked)"></label>
-<label class="stgRow stgSw"><div><b>اقتراحات البحث</b><small>إظهار اقتراحات أثناء الكتابة</small></div><input type="checkbox" checked onchange="saveLocalSetting('searchSuggestions',this.checked)"></label>
-<label class="stgRow stgSw"><div><b>الاهتزاز</b><small>عند توفره في جهازك</small></div><input type="checkbox" checked onchange="saveLocalSetting('vibration',this.checked)"></label>
-</div>
-<div class="stgGroup"><h3>الخصوصية</h3>
+<div class="stgRow"><div><b>تعديل التاريخ الهجري</b><small>لموافقة رؤية الهلال في بلدك</small></div><select id="pr107HijriAdj" class="field stgSel"><option value="-2">−2 يوم</option><option value="-1">−1 يوم</option><option value="0">بدون</option><option value="1">+1 يوم</option><option value="2">+2 يوم</option></select></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-daily"><summary><span class="ci">✅</span>أعمال اليوم<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow stgCol"><div><b>تذكيرات أعمال اليوم</b><small>اختر ما يظهر لك في «أعمال اليوم»</small></div><div id="dailyReminderSettingsBox"></div></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-place"><summary><span class="ci">🧭</span>القبلة والمساجد والموقع<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
 <div class="stgRow"><div><b>الموقع</b><small>لا نطلب موقعك إلا عند استخدام القبلة أو المساجد، ولا نستخدمه في الخلفية</small></div><button type="button" class="stgBtn" onclick="show('qibla')">فتح القبلة</button></div>
-</div>
-<div class="stgGroup"><h3>🧹 البيانات وعن التطبيق</h3>
+</div></div></details>
+<details class="stgCat" id="stgcat-nav"><summary><span class="ci">🚀</span>البدء والتنقّل والبحث<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>الصفحة التي يفتح عليها التطبيق</b><small>تُفتح تلقائيًا عند تشغيل التطبيق</small></div><select id="stgStart" class="field stgSel"><option value="home">الرئيسية</option><option value="readers">القرّاء</option><option value="adhkar">الأذكار والأدعية</option><option value="khatmah">ختمة القرآن</option><option value="modes">الأوضاع</option><option value="repeatAyah">تكرار الآية</option><option value="favorites">المفضلة</option></select></div>
+<div class="stgRow stgCol"><div><b>أقسام الصفحة الرئيسية</b><small>أزل العلامة لإخفاء القسم من الرئيسية</small></div><div id="stgTilesBox" class="stgChks"></div></div>
+<label class="stgRow stgSw"><div><b>اقتراحات البحث</b><small>إظهار اقتراحات أثناء الكتابة</small></div><input type="checkbox" checked onchange="saveLocalSetting('searchSuggestions',this.checked)"></label>
+</div></div></details>
+<details class="stgCat" id="stgcat-storage"><summary><span class="ci">💾</span>التخزين والتنزيلات والنسخ الاحتياطي<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
+<div class="stgRow"><div><b>إدارة التنزيلات وحذفها</b><small>حذف أي تلاوة أو ملف محمّل واحدًا واحدًا (الحذف متاح هنا فقط)</small></div><button type="button" class="stgBtn" onclick="v107ManageDownloads()">فتح</button></div>
+<div class="stgRow"><div><b>الملفات الصوتية المحمّلة</b><small id="stgStorage">…</small></div><button type="button" class="stgBtn stgDanger" onclick="v101ClearAudio()">حذف</button></div>
+<div class="stgRow"><div><b>إعادة الإعدادات الإضافية</b><small>التشغيل والمظهر فقط؛ المفضلة والختمة تبقى</small></div><button type="button" class="stgBtn stgDanger" onclick="v101ResetSettings()">إعادة</button></div>
+<div class="stgRow"><div><b>تصدير بياناتك</b><small>المفضلة والإعدادات والتقدم في ملف على جهازك</small></div><button type="button" class="stgBtn" onclick="v100ExportData()">تصدير</button></div>
+<div class="stgRow"><div><b>استيراد نسخة</b><small>استرجاع ملف صدّرته سابقًا</small></div><button type="button" class="stgBtn" onclick="document.getElementById('stgImport').click()">استيراد</button><input type="file" id="stgImport" accept="application/json" style="display:none" onchange="v100ImportData(this)"></div>
+</div></div></details>
+<details class="stgCat" id="stgcat-about"><summary><span class="ci">ℹ️</span>بيانات الجهاز وعن التطبيق<span class="cs">▾</span></summary><div class="stgCatBody"><div class="stgGroup open">
 <div class="stgRow"><div><b>بيانات هذا الجهاز</b><small>حذف الإعدادات المحفوظة هنا فقط</small></div><button type="button" class="stgBtn stgDanger" onclick="clearLocalAppData()">مسح</button></div>
 <div class="stgRow stgCol"><div><b>عن التطبيق</b><small>تطبيق المسلم — بياناتك تبقى على جهازك فقط، بلا حساب ولا خوادم.</small></div><div id="v34ToolsStatus" class="mini"></div></div>
-</div></section>
+</div></div></details>
+</section>
 
 </div><nav class="nav" aria-label="التنقل"><button class="navMain" onclick="show('home')"><span>🏠</span><b>الرئيسية</b></button><button class="navSettings" onclick="show('settings')"><span>⚙️</span><b>الإعدادات</b></button></nav>
 </div><script>const audio=document.getElementById('audio');
@@ -6806,5 +6829,13 @@ if(document.readyState==='complete')setTimeout(boot,200);else window.addEventLis
 </script>
 
 <link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+
+<link rel="stylesheet" href="app107.css">
+<script src="adhan-config.js"></script>
+<script src="prayer.js"></script>
+<script src="mushaf.js"></script>
+<script src="hadith107.js"></script>
+<script src="mosques.js"></script>
+<script src="app107.js"></script>
 </body>
 </html>

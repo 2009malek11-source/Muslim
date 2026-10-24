@@ -5,7 +5,7 @@ var $=function(id){return document.getElementById(id)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 
 /* ===== معلومات الإصدار + جامع الأخطاء + تقرير المشكلة ===== */
-window.APP_BUILD='v106 • بناء 2026-10-22';
+window.APP_BUILD='v108 • بناء 2026-10-24';
 window.__v105Errs=[];
 window.addEventListener('error',function(e){try{window.__v105Errs.push((e.message||'error')+' @'+String(e.filename||'').split('/').pop()+':'+(e.lineno||0))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});
 window.addEventListener('unhandledrejection',function(e){try{window.__v105Errs.push('promise: '+String((e.reason&&e.reason.message)||e.reason).slice(0,120))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});

@@ -6,9 +6,9 @@
    - الإشعارات: عرض + فتح التطبيق عند النقر + فحص تذكيرات دوري (حيث يدعمه المتصفح).
    - لا تُحذف مخازن muslim-audio / muslim-files / muslim-config (تنزيلات المستخدم وإعداداته).
    ===================================================================== */
-const CACHE='muslim-cache-v112';
+const CACHE='muslim-cache-v114';
 const FONTS='muslim-fonts-v1';
-const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
+const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./adhan-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(new Request(u,{cache:'reload'})).catch(()=>{})))).then(()=>self.skipWaiting()));
 });
@@ -66,10 +66,30 @@ self.addEventListener('notificationclick',e=>{
     return self.clients.openWindow('./?open='+encodeURIComponent(page));
   }));
 });
+/* إشعارات Web Push (تعمل مع الجهاز مغلقًا إذا ربطتَ خادم دفع — اختياري) */
+self.addEventListener('push',e=>{
+  let d={};try{d=e.data?e.data.json():{}}catch(_){try{d={title:e.data.text()}}catch(__){}}
+  e.waitUntil(self.registration.showNotification(d.title||'المسلم',{body:d.body||'',tag:d.tag||'push',icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',data:{open:d.open||'prayer'}}));
+});
+async function fireFile(cache,name,window_ms){
+  const r=await cache.match(name);if(!r)return;
+  const cfg=await r.json(),now=Date.now(),fired=cfg.fired||{};let changed=false;
+  for(const ev of cfg.events||[]){
+    if(fired[ev.tag])continue;
+    if(ev.t<=now&&ev.t>=now-window_ms){
+      await self.registration.showNotification(ev.title,{body:ev.body||'',tag:ev.tag,icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',vibrate:[200,100,200],requireInteraction:ev.kind==='at',data:{open:ev.kind==='greet'?'home':'prayer'}});
+      fired[ev.tag]=1;changed=true;
+    }
+  }
+  if(changed){cfg.fired=fired;await cache.put(name,new Response(JSON.stringify(cfg),{headers:{'Content-Type':'application/json'}}))}
+}
 /* فحص التذكيرات في الخلفية (Periodic Background Sync — Chrome/Edge للتطبيق المثبّت) */
 async function checkReminders(){
   try{
-    const c=await caches.open('muslim-config-v1'),r=await c.match('./__reminders.json');if(!r)return;
+    const c=await caches.open('muslim-config-v1');
+    await fireFile(c,'./__prayer.json',25*60000);
+    await fireFile(c,'./__greet.json',6*3600e3);
+    const r=await c.match('./__reminders.json');if(!r)return;
     const cfg=await r.json(),now=new Date(),day=now.getDay(),k=now.getFullYear()+'-'+('0'+(now.getMonth()+1)).slice(-2)+'-'+('0'+now.getDate()).slice(-2);
     const fired=cfg.fired||{};let changed=false;
     for(const d of cfg.list||[]){
@@ -82,4 +102,4 @@ async function checkReminders(){
     if(changed){cfg.fired=fired;await c.put('./__reminders.json',new Response(JSON.stringify(cfg),{headers:{'Content-Type':'application/json'}}))}
   }catch(_){}
 }
-self.addEventListener('periodicsync',e=>{if(e.tag==='muslim-reminders')e.waitUntil(checkReminders())});
+self.addEventListener('periodicsync',e=>{if(e.tag==='muslim-reminders'||e.tag==='muslim-prayer')e.waitUntil(checkReminders())});
