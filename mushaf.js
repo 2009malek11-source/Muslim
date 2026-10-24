@@ -28,7 +28,7 @@ function ensure(){
    '<div class="card"><b>الرواية</b><div class="riwChips" id="mpRiw"></div><div class="mini" id="mpRiwNote"></div></div>'+
    '<div class="mbar"><button id="mpPrev" aria-label="الصفحة السابقة">→</button><input id="mpNum" type="number" min="1" max="604" style="width:84px;text-align:center"><span class="mini">/ 604</span><button id="mpNext" aria-label="الصفحة التالية">←</button><select id="mpSurah" style="flex:1;min-width:130px"></select><select id="mpJuz"></select></div>'+
    '<div class="mpWrap"><div class="mpPage" id="mpPage"><div class="mpLoad">⏳ جارٍ تحميل الصفحة…</div></div></div>'+
-   '<div class="mbar" style="justify-content:center"><button id="mpMinus">A−</button><button id="mpPlus">A+</button><select id="mpPaper"><option value="cream">ورق كريمي</option><option value="white">أبيض</option><option value="sepia">سيبيا</option><option value="gold">ذهبي</option><option value="night">ليلي</option></select><button id="mpFrame">🖼️ الإطار</button><button id="mpRead" class="primary">⛶ وضع القراءة</button></div>'+
+   '<div class="mbar" style="justify-content:center"><button id="mpMinus" aria-label="تصغير">A−</button><span id="mpZv" class="mini" style="min-width:44px;text-align:center">100%</span><button id="mpPlus" aria-label="تكبير">A+</button><select id="mpPaper"><option value="cream">ورق كريمي</option><option value="white">أبيض</option><option value="sepia">سيبيا</option><option value="gold">ذهبي</option><option value="night">ليلي</option></select><button id="mpFrame">🖼️ الإطار</button><button id="mpRead" class="primary">⛶ وضع القراءة</button></div>'+
    '<div class="mpSheet" id="mpSheet"><b id="mpSheetT"></b><button class="primary" id="mpPlay">▶ استماع للآية</button><button id="mpCopy">📋 نسخ</button><button id="mpClose">✕</button></div>';
   var ref=$('settings');(ref&&ref.parentNode?ref.parentNode:document.body).insertBefore(s,ref||null);
   /* في الواجهة العربية: الزر الأيمن = الصفحة السابقة (→)، والأيسر = التالية (←) */
@@ -38,16 +38,18 @@ function ensure(){
   $('mpNum').onchange=function(){go(parseInt(this.value,10)||1)};
   $('mpSurah').onchange=function(){var c=chapters&&chapters.chapters[+this.value-1];if(c)go(c.pages[0])};
   $('mpJuz').onchange=function(){var p=JUZ_PAGES[+this.value];if(p)go(p)};
-  $('mpMinus').onclick=function(){var c=cfg();c.scale=Math.max(.7,+(c.scale-.05).toFixed(2));save(c);fit()};
-  $('mpPlus').onclick=function(){var c=cfg();c.scale=Math.min(1.25,+(c.scale+.05).toFixed(2));save(c);fit()};
+  $('mpMinus').onclick=function(){var c=cfg();c.scale=Math.max(.6,+(c.scale-.1).toFixed(2));save(c);fit()};
+  $('mpPlus').onclick=function(){var c=cfg();c.scale=Math.min(2,+(c.scale+.1).toFixed(2));save(c);fit()};
   $('mpPaper').onchange=function(){var c=cfg();c.paper=this.value;save(c);paper()};
   $('mpFrame').onclick=function(){var c=cfg();c.frame=!c.frame;save(c);paper()};
   $('mpClose').onclick=function(){$('mpSheet').classList.remove('show');unhl()};
   $('mpRead').onclick=function(){reading(true)};
   /* عناصر التحكم العائمة داخل وضع القراءة */
   var ov=document.createElement('div');ov.id='mpOv';
-  ov.innerHTML='<button id="mpOvPrev" aria-label="الصفحة السابقة">→</button><span id="mpOvNum"></span><button id="mpOvNext" aria-label="الصفحة التالية">←</button><button id="mpOvExit" aria-label="خروج من وضع القراءة">✕ خروج</button>';
+  ov.innerHTML='<button id="mpOvMinus" aria-label="تصغير">A−</button><button id="mpOvPlus" aria-label="تكبير">A+</button><button id="mpOvPrev" aria-label="الصفحة السابقة">→</button><span id="mpOvNum"></span><button id="mpOvNext" aria-label="الصفحة التالية">←</button><button id="mpOvExit" aria-label="خروج من وضع القراءة">✕ خروج</button>';
   document.body.appendChild(ov);
+  $('mpOvMinus').onclick=function(e){e.stopPropagation();$('mpMinus').click()};
+  $('mpOvPlus').onclick=function(e){e.stopPropagation();$('mpPlus').click()};
   $('mpOvPrev').onclick=function(e){e.stopPropagation();go(page-1)};
   $('mpOvNext').onclick=function(e){e.stopPropagation();go(page+1)};
   $('mpOvExit').onclick=function(e){e.stopPropagation();reading(false)};
@@ -142,16 +144,26 @@ function draw(d){
   $('mpOvNum').textContent=d.page;
   var c=cfg();c.page=d.page;save(c);
 }
-/* ضبط حجم الخط بحيث يملأ أطول سطر عرض الصفحة تمامًا كما في المصحف */
+/* التكبير: يُضرب مقياس المصحف في مقياس خط التطبيق العام (--v105-fs) فيكبّر المصحف عند تكبير الخط من الإعدادات.
+   الصفحة نفسها هي التي تكبر/تصغر (كلمات وأسطر معًا) فتبقى أسطر المصحف سليمة، ويمكن تحريكها بالتمرير إذا زادت عن الشاشة. */
+function gfs(){var v=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--v105-fs'));return isFinite(v)&&v>0?v:1}
+function zoomVal(){return Math.max(.6,Math.min(2.4,cfg().scale*gfs()))}
 function fit(){
   var box=$('mpLines'),pg=$('mpPage');if(!box||!pg)return;
-  var W=box.clientWidth,c=cfg(),fs=Math.max(14,pg.clientWidth*0.062*c.scale);
-  box.style.fontSize=fs+'px';
+  pg.style.setProperty('--mpZ',zoomVal());
+  var W=box.clientWidth,H=box.clientHeight;if(!W)return;
+  var reading=document.body.classList.contains('mpReading');
+  /* نبدأ بحجم كبير ثم نصغّره حتى يملأ أطول سطر العرض تمامًا */
+  var fs=W*0.095;box.style.fontSize=fs+'px';
   var lines=box.querySelectorAll('.mpLine:not(.center)'),guard=0;
   function widest(){var m=0;lines.forEach(function(l){var s=0;l.querySelectorAll('.w').forEach(function(w){s+=w.offsetWidth});if(s>m)m=s});return m}
-  while(guard++<14){var m=widest();if(m<=W*0.995)break;fs*=Math.max(.9,(W*0.99)/m);box.style.fontSize=fs+'px'}
-  var sh=box.querySelectorAll('.mpLine.center .w');sh.forEach(function(w){w.style.fontSize=(fs*1.15)+'px'});
+  while(guard++<20){var m=widest();if(!m||Math.abs(m-W*0.99)<W*0.004)break;fs*=(W*0.99)/m;box.style.fontSize=fs+'px'}
+  /* لا يتجاوز الخط ارتفاع السطر (15 سطرًا) حتى لا تتداخل الأسطر */
+  var lh=H/15;if(fs>lh*0.95){fs=lh*0.95;box.style.fontSize=fs+'px'}
+  box.querySelectorAll('.mpLine.center .w').forEach(function(w){w.style.fontSize=(fs*1.1)+'px'});
+  var z=$('mpZv');if(z)z.textContent=Math.round(cfg().scale*100)+'%';
 }
+new MutationObserver(function(){if($('mpPage'))fit()}).observe(document.documentElement,{attributes:true,attributeFilter:['style']});
 var curVK=null;
 function unhl(){document.querySelectorAll('#mpLines .w.hl').forEach(function(w){w.classList.remove('hl')});curVK=null}
 function pick(vk){
@@ -181,7 +193,7 @@ function bind(){
   var c=cfg();
   var p=$('mp107Paper');if(p){p.value=c.paper;p.onchange=function(){var x=cfg();x.paper=p.value;save(x);paper()}}
   var f=$('mp107Frame');if(f){f.checked=!!c.frame;f.onchange=function(){var x=cfg();x.frame=f.checked;save(x);paper()}}
-  var s=$('mp107Scale');if(s){s.value=String(c.scale);s.onchange=function(){var x=cfg();x.scale=+s.value;save(x);fit()}}
+  var s=$('mp107Scale');if(s){s.value=String(c.scale);if(s.value!==String(c.scale))s.value='1';s.onchange=function(){var x=cfg();x.scale=+s.value;save(x);fit()}}
   var r=$('mp107Reciter');if(r){r.value=c.reciter;r.onchange=function(){var x=cfg();x.reciter=r.value;save(x)}}
 }
 var _show=window.show;

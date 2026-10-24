@@ -5,7 +5,7 @@ var $=function(id){return document.getElementById(id)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 
 /* ===== معلومات الإصدار + جامع الأخطاء + تقرير المشكلة ===== */
-window.APP_BUILD='v108 • بناء 2026-10-24';
+window.APP_BUILD='v110 • بناء 2026-10-24';
 window.__v105Errs=[];
 window.addEventListener('error',function(e){try{window.__v105Errs.push((e.message||'error')+' @'+String(e.filename||'').split('/').pop()+':'+(e.lineno||0))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});
 window.addEventListener('unhandledrejection',function(e){try{window.__v105Errs.push('promise: '+String((e.reason&&e.reason.message)||e.reason).slice(0,120))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});
@@ -724,7 +724,7 @@ function norm(s){return String(s||'').replace(/[٠-٩]/g,function(d){return AD.i
 function nf(n,d){try{return Number(n).toLocaleString('ar',{minimumFractionDigits:d||0,maximumFractionDigits:d==null?0:d})}catch(e){return String(n)}}
 
 /* ===================== حجم الخط: ٧٠٪ – ٣٠٠٪ (يكبّر الخطوط فقط، بلا zoom حتى لا يتأثر الكيبورد على iOS) ===================== */
-var FS_KEY='quran-m09-font-scale',FS_MIN=0.7,FS_MAX=3;
+var FS_KEY='quran-m09-font-scale',FS_MIN=0.8,FS_MAX=1.6;
 function fsGet(){var v=parseFloat(LSget(FS_KEY,'1'));return isFinite(v)?Math.min(FS_MAX,Math.max(FS_MIN,v)):1}
 var fsCss=document.createElement('style');fsCss.id='v105-fs';fsCss.textContent='.v105FsPrev{padding:10px;border-radius:12px;background:var(--card,#fff);border:1px dashed rgba(127,127,127,.4);margin-top:8px;text-align:center;overflow:hidden}.v105FsBtns{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}.v105FsBtns button{padding:6px 10px;border-radius:10px}';document.head.appendChild(fsCss);
 function fsApply(v){
@@ -743,9 +743,9 @@ function fsMount(){
   row.style.flexWrap='wrap';
   var seg=row.querySelector('.stgSeg');if(seg)seg.remove();
   var d=document.createElement('div');d.style.cssText='width:100%;margin-top:6px';
-  d.innerHTML='<div style="display:flex;align-items:center;gap:8px"><button type="button" id="v105FsMinus" class="stgBtn" aria-label="تصغير">A−</button><input type="range" id="v105FsRange" min="70" max="300" step="5" style="flex:1"><button type="button" id="v105FsPlus" class="stgBtn" aria-label="تكبير">A+</button></div>'
+  d.innerHTML='<div style="display:flex;align-items:center;gap:8px"><button type="button" id="v105FsMinus" class="stgBtn" aria-label="تصغير">A−</button><input type="range" id="v105FsRange" min="80" max="160" step="5" style="flex:1"><button type="button" id="v105FsPlus" class="stgBtn" aria-label="تكبير">A+</button></div>'
    +'<div style="text-align:center;margin-top:4px"><b id="v105FsVal"></b> <span class="mini">(الافتراضي ١٠٠٪)</span></div>'
-   +'<div class="v105FsBtns">'+[[80,'صغير جدًا'],[90,'صغير'],[100,'عادي'],[115,'متوسط+'],[130,'كبير'],[150,'كبير جدًا'],[175,'ضخم'],[200,'ضخم جدًا'],[250,'عملاق'],[300,'الأقصى']].map(function(x){return '<button type="button" class="stgBtn" data-fs="'+x[0]+'">'+x[1]+'</button>'}).join('')+'<button type="button" class="stgBtn" data-fs="100">↺ الافتراضي</button></div>'
+   +'<div class="v105FsBtns">'+[[80,'صغير'],[90,'أصغر قليلًا'],[100,'عادي'],[115,'كبير'],[130,'أكبر'],[160,'الأقصى']].map(function(x){return '<button type="button" class="stgBtn" data-fs="'+x[0]+'">'+x[1]+'</button>'}).join('')+'<button type="button" class="stgBtn" data-fs="100">↺ الافتراضي</button></div>'
    +'<div id="v105FsPrev" class="v105FsPrev">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ — هذه معاينة لحجم النص</div>';
   row.appendChild(d);
   var rg=$('v105FsRange');

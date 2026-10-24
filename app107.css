@@ -124,8 +124,8 @@ body:not(.dlManage) #downloads .danger,body:not(.dlManage) #downloads [data-del]
 #mushaf107 .mbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0}
 #mushaf107 .mbar select,#mushaf107 .mbar input,#mushaf107 .mbar button{min-height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:inherit;font:inherit;padding:0 10px}
 #mushaf107 .mbar button.primary{background:var(--green);color:#fff;border-color:var(--green)}
-.mpWrap{display:flex;justify-content:center;perspective:1200px}
-.mpPage{width:min(100%,640px);aspect-ratio:1/1.5;position:relative;padding:3.2% 4.2%;background:var(--mp-bg,#fbf6e8);color:var(--mp-fg,#111);border-radius:6px;box-shadow:0 0 0 1px #0002,0 0 0 6px var(--mp-bg,#fbf6e8),0 0 0 7px var(--mp-frame,#c8a15b),0 22px 50px #0004;display:flex;flex-direction:column;animation:mpIn .45s ease;overflow:hidden}
+.mpWrap{display:block;overflow:auto;max-width:100%;-webkit-overflow-scrolling:touch;text-align:center}
+.mpPage{--mpZ:1;width:calc(min(100%,640px)*var(--mpZ));min-width:min(100%,640px);margin:0 auto;aspect-ratio:1/1.5;text-align:start;position:relative;padding:3.2% 4.2%;background:var(--mp-bg,#fbf6e8);color:var(--mp-fg,#111);border-radius:6px;box-shadow:0 0 0 1px #0002,0 0 0 6px var(--mp-bg,#fbf6e8),0 0 0 7px var(--mp-frame,#c8a15b),0 22px 50px #0004;display:flex;flex-direction:column;animation:mpIn .45s ease;overflow:hidden}
 .mpPage.noFrame{box-shadow:0 10px 30px #0003}
 .mpPage:before{content:"";position:absolute;inset:7px;border:1.5px solid var(--mp-frame,#c8a15b);border-radius:3px;pointer-events:none;opacity:.8}
 .mpPage.noFrame:before{display:none}
@@ -175,9 +175,9 @@ body.mpReading.mpShowBars #mpOv{display:flex}
 body.mpReading header.top,body.mpReading nav.nav,body.mpReading #v101Dock,body.mpReading #v107Burger,body.mpReading #globalMiniPlayer,body.mpReading #v107InstallBar,body.mpReading #mushaf107>.section,body.mpReading #mushaf107>.card,body.mpReading #mushaf107>.mbar{display:none!important}
 body.mpReading.mpShowBars header.top{display:flex!important;position:fixed;top:0;inset-inline:0;z-index:99001}
 body.mpReading{overflow:hidden;background:var(--mp-bg,#fbf6e8)}
-body.mpReading #mushaf107{position:fixed;inset:0;z-index:98000;padding:0!important;margin:0!important;background:var(--mp-bg,#fbf6e8);display:flex!important;align-items:center;justify-content:center;overflow:hidden}
-body.mpReading .mpWrap{width:100%;height:100dvh;align-items:center}
-body.mpReading .mpPage{width:min(100vw,calc(100dvh/1.5));height:min(100dvh,calc(100vw*1.5));aspect-ratio:auto;border-radius:0;box-shadow:none;padding:2.4% 3.4%}
+body.mpReading #mushaf107{position:fixed;inset:0;z-index:98000;padding:0!important;margin:0!important;background:var(--mp-bg,#fbf6e8);display:block!important;overflow:hidden}
+body.mpReading .mpWrap{width:100%;height:100dvh;overflow:auto}
+body.mpReading .mpPage{width:calc(100vw*var(--mpZ));min-width:100vw;height:calc(100dvh*var(--mpZ));min-height:100dvh;aspect-ratio:auto;border-radius:0;box-shadow:none;padding:2.2% 3%;margin:0}
 body.mpReading .mpPage:before{inset:4px}
 
 .v107Strip{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:0 0 14px}
@@ -207,3 +207,19 @@ html[dir=ltr] .stgSw input[type=checkbox]::before{right:auto!important;left:3px!
 html[dir=ltr] .stgSw input[type=checkbox]:checked::before{left:22px!important;right:auto!important}
 .stgSw{align-items:center!important}
 .stgChks input[type=checkbox]{width:20px;height:20px;accent-color:var(--green)}
+
+/* ---------- سلامة التخطيط عند تكبير الخط الشديد ---------- */
+html,body{max-width:100vw;overflow-x:hidden}
+.page,.card,.tile,.stgRow,.stgCatBody,.stgGroup,.notice{min-width:0;overflow-wrap:anywhere}
+.stgRow>div:first-child{min-width:0}
+.stgRow.stgCol .stgSeg,.stgRow.stgCol .v105FsBtns{flex-wrap:wrap}
+.stgSel{max-width:100%!important}
+.v107Strip{grid-template-columns:repeat(auto-fit,minmax(78px,1fr))}
+.v107HeroNext{flex-wrap:wrap}
+.menu,.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))!important}
+.nav{overflow-x:auto}
+.mbar,.controls,.hdTabs,.riwChips{flex-wrap:wrap}
+img,video,canvas,svg{max-width:100%}
+.stgRow.stgCol>div{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+#v105FsRange{min-width:0!important;width:auto!important;flex:1 1 0!important}
+.stgRow.stgCol .stgBtn{flex:0 0 auto}

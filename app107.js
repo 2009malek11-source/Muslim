@@ -164,11 +164,6 @@ function homeSections(){
    '<div class="v107HeroNext v107Rv" id="v107Next" role="button" tabindex="0"><div><small>الصلاة القادمة</small><b id="v107NextName">حدّد موقعك</b><small id="v107NextTime">اضغط لعرض مواقيت الصلاة</small></div><div class="cd" id="v107NextCd">--:--:--</div></div><div class="v107Strip" id="v107Strip"></div>';
   if(menu)menu.parentNode.insertBefore(wrap,menu);else home.appendChild(wrap);
   $('v107Next').onclick=function(){show('prayer')};
-  /* قسم المميزات */
-  var f=document.createElement('div');f.className='v107Sec v107Rv';
-  f.innerHTML='<h3>✨ مميزات التطبيق</h3><div class="v107Feat">'+
-   [['🕌','مواقيت دقيقة','بحسب موقعك تلقائيًا مع تذكير وأذان'],['📖','مصحف المدينة','صفحات كالمصحف الورقي بالتشكيل والوقوف'],['📜','الصحيحان','البخاري ومسلم مع بحث وتخريج'],['🎧','قرّاء وتلاوات','عشرات القرّاء والروايات وتحميل للاستماع بلا إنترنت'],['🤲','أذكار بصوت بشري','تسجيلات حقيقية وعدّاد وتنبيهات'],['🔒','خصوصية','بياناتك على جهازك فقط']].map(function(x){return '<div class="f"><span>'+x[0]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></div>'}).join('')+'</div>';
-  home.appendChild(f);
   /* التواصل: ميزة مخفية حتى يوضع بريد الاستلام في app-config.js (window.CONTACT_EMAIL) */
   if(window.CONTACT_EMAIL){
     var c=document.createElement('div');c.className='v107Sec v107Rv';

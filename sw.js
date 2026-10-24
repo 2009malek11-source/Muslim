@@ -6,7 +6,7 @@
    - الإشعارات: عرض + فتح التطبيق عند النقر + فحص تذكيرات دوري (حيث يدعمه المتصفح).
    - لا تُحذف مخازن muslim-audio / muslim-files / muslim-config (تنزيلات المستخدم وإعداداته).
    ===================================================================== */
-const CACHE='muslim-cache-v114';
+const CACHE='muslim-cache-v116';
 const FONTS='muslim-fonts-v1';
 const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./adhan-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
 self.addEventListener('install',e=>{
