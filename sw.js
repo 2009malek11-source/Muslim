@@ -6,9 +6,9 @@
    - الإشعارات: عرض + فتح التطبيق عند النقر + فحص تذكيرات دوري (حيث يدعمه المتصفح).
    - لا تُحذف مخازن muslim-audio / muslim-files / muslim-config (تنزيلات المستخدم وإعداداته).
    ===================================================================== */
-const CACHE='muslim-cache-v117';
+const CACHE='muslim-cache-v118';
 const FONTS='muslim-fonts-v1';
-const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./abloop.js','./adhan-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
+const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./abloop.js','./qibla.js','./adhan-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(new Request(u,{cache:'reload'})).catch(()=>{})))).then(()=>self.skipWaiting()));
 });
