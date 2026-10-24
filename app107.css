@@ -223,3 +223,11 @@ img,video,canvas,svg{max-width:100%}
 .stgRow.stgCol>div{width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 #v105FsRange{min-width:0!important;width:auto!important;flex:1 1 0!important}
 .stgRow.stgCol .stgBtn{flex:0 0 auto}
+
+/* ---------- تكرار مقطع من التلاوة ---------- */
+#abTrack{position:absolute;pointer-events:none;z-index:3}
+#abSeg{position:absolute;top:50%;height:10px;margin-top:-5px;background:color-mix(in srgb,var(--gold,#d9a92e) 55%,transparent);border-radius:6px;display:none}
+#abTrack b{position:absolute;top:-4px;width:18px;height:18px;margin-inline:-9px;border-radius:50%;background:var(--green);color:#fff;font-size:11px;line-height:18px;text-align:center;display:none;box-shadow:0 1px 4px #0005}
+#abCatch{position:absolute;z-index:4;display:none;cursor:crosshair;border:2px dashed var(--green);border-radius:12px;background:color-mix(in srgb,var(--green) 10%,transparent);touch-action:none}
+#abPanel{margin-top:8px}
+#abHint{min-height:20px;margin:4px 0}
