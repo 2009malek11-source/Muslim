@@ -132,7 +132,7 @@ function buildDrawer(){
   var sc=document.createElement('div');sc.id='v107Scrim';
   var d=document.createElement('nav');d.id='v107Drawer';d.setAttribute('aria-label','القائمة الجانبية');
   var items=[['🏠','الرئيسية',"home"],['🕌','مواقيت الصلاة',"prayer"],['📖','المصحف',"mushaf107"],['🎧','القراء',"readers"],['📜','الأحاديث',"hadith107"],['🤲','الأذكار والأدعية',"adhkar"],['🕋','الرقية الشرعية',"ruqyah"],['🧭','القبلة',"qibla"],['🔁','تكرار الآية',"repeatAyah"],['📅','المناسك والتقويم',"manasik"],['📥','تنزيلاتي',"downloads"],['💬','مساعد المسلم',"assistant"],['📲','تثبيت ومشاركة',"install"],['⚙️','الإعدادات',"settings"]];
-  d.innerHTML='<div class="dh"><img src="icon-192.png" alt=""><div><b>المسلم</b><br><small>AL-MUSLIM</small></div></div>'+items.map(function(x){return '<button class="dl" data-go="'+x[2]+'"><span>'+x[0]+'</span>'+x[1]+'</button>'}).join('');
+  d.innerHTML='<div class="dh"><img src="app-icon-v112-192.png" alt=""><div><b>المسلم</b><br><small>AL-MUSLIM</small></div></div>'+items.map(function(x){return '<button class="dl" data-go="'+x[2]+'"><span>'+x[0]+'</span>'+x[1]+'</button>'}).join('');
   var hb=document.querySelector('header.top > div:last-child');
   if(hb){b.classList.add('inHeader');hb.style.display='flex';hb.style.gap='8px';hb.style.alignItems='center';hb.appendChild(b)}else document.body.appendChild(b);
   document.body.appendChild(sc);document.body.appendChild(d);
@@ -278,7 +278,7 @@ window.v107ManageDownloads=function(){document.body.classList.add('dlManage');sh
     var snooze=LG('muslim-v107-install-snooze',0);if(Date.now()<snooze)return;
     if(!bar){
       bar=document.createElement('div');bar.id='v107InstallBar';
-      bar.innerHTML='<img src="icon-192.png" width="40" height="40" alt="" style="border-radius:10px"><div style="flex:1"><b>ثبّت تطبيق المسلم</b><br><small>يعمل بلا متصفح، ويصلك التذكير بسهولة</small></div><button class="primary" id="v107InstBtn">تثبيت</button><button class="x" id="v107InstX" aria-label="إغلاق">✕</button>';
+      bar.innerHTML='<img src="app-icon-v112-192.png" width="40" height="40" alt="" style="border-radius:10px"><div style="flex:1"><b>ثبّت تطبيق المسلم</b><br><small>يعمل بلا متصفح، ويصلك التذكير بسهولة</small></div><button class="primary" id="v107InstBtn">تثبيت</button><button class="x" id="v107InstX" aria-label="إغلاق">✕</button>';
       document.body.appendChild(bar);
       $('v107InstBtn').onclick=async function(){
         if(dp){dp.prompt();try{var r=await dp.userChoice;if(r.outcome==='accepted')LS('muslim-v107-installed',1)}catch(e){}dp=null;bar.classList.remove('show')}
@@ -315,7 +315,7 @@ window.v107Greetings=function(){
   LS('muslim-v107-greeted',key);
   var el=document.createElement('div');el.className='v107Greet';el.innerHTML='<b>'+g[0]+'</b><span>'+g[1]+'</span><br><button class="primary" id="v107GrOk">آمين 🤲</button>';
   document.body.appendChild(el);$('v107GrOk').onclick=function(){el.remove()};setTimeout(function(){el.remove()},20000);
-  try{if('Notification' in window&&Notification.permission==='granted')navigator.serviceWorker.ready.then(function(r){r.showNotification(g[0],{body:g[1],tag:'greet-'+key,icon:'./icon-192.png',lang:'ar',dir:'rtl'})})}catch(e){}
+  try{if('Notification' in window&&Notification.permission==='granted')navigator.serviceWorker.ready.then(function(r){r.showNotification(g[0],{body:g[1],tag:'greet-'+key,icon:'./app-icon-v112-192.png',lang:'ar',dir:'rtl'})})}catch(e){}
 };
 /* جدول التهاني للأيام القادمة (للخلفية) يُخزَّن مع جدول الصلاة */
 window.v107GreetSchedule=async function(){
@@ -396,6 +396,21 @@ function moveDiag(){
   if(prev&&/الإصدار|التشخيص/.test(prev.textContent)&&prev.children.length<4)about.appendChild(prev);
   about.appendChild(el);
 }
+/* ---------- تحديث التطبيق المثبّت تلقائيًا ---------- */
+(function(){
+  if(!('serviceWorker' in navigator))return;
+  function check(){navigator.serviceWorker.getRegistration('./').then(function(r){if(r)r.update()}).catch(function(){})}
+  window.addEventListener('load',function(){setTimeout(check,1500)});
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check()});
+  setInterval(check,30*60*1000);
+  var had=!!navigator.serviceWorker.controller,reloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){
+    if(!had||reloaded)return;reloaded=true;
+    var playing=[].some.call(document.querySelectorAll('audio'),function(x){return !x.paused&&!x.ended});
+    if(!playing)location.reload();
+  });
+})();
+
 function boot(){
   setTimeout(moveDiag,300);setTimeout(moveDiag,2500);
   document.querySelectorAll('details.stgCat .stgGroup').forEach(function(g){g.classList.add('open')});

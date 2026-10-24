@@ -6,21 +6,76 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["standalone", "fullscreen"],
+  "display_override": [
+    "standalone",
+    "fullscreen"
+  ],
   "orientation": "portrait",
   "dir": "rtl",
   "lang": "ar",
-  "categories": ["lifestyle", "education", "utilities"],
+  "categories": [
+    "lifestyle",
+    "education",
+    "utilities"
+  ],
   "theme_color": "#176f7d",
   "background_color": "#f8f4ea",
   "icons": [
-    {"src": "icon.png", "sizes": "192x192 512x512", "type": "image/png", "purpose": "any"},
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+    {
+      "src": "app-icon-v112-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "app-icon-v112-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "app-icon-v112-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    {"name": "أذكار الصباح", "short_name": "أذكار الصباح", "url": "./?open=adhkar-morning", "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}]},
-    {"name": "القبلة", "short_name": "القبلة", "url": "./?open=qibla", "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}]},
-    {"name": "تثبيت ومشاركة", "short_name": "تثبيت", "url": "./?open=install", "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}]}
+    {
+      "name": "أذكار الصباح",
+      "short_name": "أذكار الصباح",
+      "url": "./?open=adhkar-morning",
+      "icons": [
+        {
+          "src": "app-icon-v112-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "القبلة",
+      "short_name": "القبلة",
+      "url": "./?open=qibla",
+      "icons": [
+        {
+          "src": "app-icon-v112-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "تثبيت ومشاركة",
+      "short_name": "تثبيت",
+      "url": "./?open=install",
+      "icons": [
+        {
+          "src": "app-icon-v112-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }

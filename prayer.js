@@ -219,7 +219,7 @@ async function notify(e){
   if(e.adhan)playAdhan(e.key);
   if(document.visibilityState==='visible')toast('🔔 '+e.title);
   if('Notification' in window&&Notification.permission==='granted'){
-    var reg=await getReg(),opt={body:e.body,tag:e.tag,icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',vibrate:[200,100,200],data:{open:'prayer'},requireInteraction:e.kind==='at'};
+    var reg=await getReg(),opt={body:e.body,tag:e.tag,icon:'./app-icon-v112-192.png',badge:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',vibrate:[200,100,200],data:{open:'prayer'},requireInteraction:e.kind==='at'};
     try{if(reg)await reg.showNotification(e.title,opt);else new Notification(e.title,opt)}catch(x){}
   }
 }
@@ -242,7 +242,7 @@ async function schedule(){
       var reg=await getReg();
       if(reg&&reg.showNotification){
         ev.filter(function(e){return e.t>now}).slice(0,60).forEach(function(e){
-          try{reg.showNotification(e.title,{body:e.body,tag:e.tag,icon:'./icon-192.png',lang:'ar',dir:'rtl',showTrigger:new TimestampTrigger(e.t),data:{open:'prayer'}})}catch(x){}
+          try{reg.showNotification(e.title,{body:e.body,tag:e.tag,icon:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',showTrigger:new TimestampTrigger(e.t),data:{open:'prayer'}})}catch(x){}
         });
       }
     }

@@ -7,3 +7,5 @@ window.AUDIO_PROXY = '';
 */
 /* ميزة «تواصل معنا» مخفية الآن. عند وضع بريد الاستلام هنا يظهر نموذج التواصل في الرئيسية تلقائيًا:
    window.CONTACT_EMAIL = 'name@example.com'; */
+/* خرائط Google كمصدر داخل قائمة المساجد (اختياري): ضع مفتاح Places API (New) هنا وقيّده بنطاق موقعك من Google Cloud.
+   window.GOOGLE_PLACES_KEY = 'YOUR_KEY'; */

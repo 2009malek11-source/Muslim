@@ -6,9 +6,9 @@
    - الإشعارات: عرض + فتح التطبيق عند النقر + فحص تذكيرات دوري (حيث يدعمه المتصفح).
    - لا تُحذف مخازن muslim-audio / muslim-files / muslim-config (تنزيلات المستخدم وإعداداته).
    ===================================================================== */
-const CACHE='muslim-cache-v118';
+const CACHE='muslim-cache-v119';
 const FONTS='muslim-fonts-v1';
-const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./abloop.js','./qibla.js','./adhan-config.js','./icon.png','./icon-192.png','./icon-512.png','./splash-program.png'];
+const CORE=['./','./index.html','./manifest.json','./style.css','./script.js','./app-config.js','./app107.css','./app107.js','./prayer.js','./mushaf.js','./hadith107.js','./mosques.js','./abloop.js','./qibla.js','./adhan-config.js','./app-icon-v112-180.png','./app-icon-v112-maskable-512.png','./app-icon-v112-192.png','./app-icon-v112-512.png','./splash-program.png'];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>Promise.all(CORE.map(u=>c.add(new Request(u,{cache:'reload'})).catch(()=>{})))).then(()=>self.skipWaiting()));
 });
@@ -52,7 +52,7 @@ self.addEventListener('fetch',e=>{
   if(url.origin===self.location.origin){
     if(url.pathname.endsWith('/sw.js')||url.pathname.endsWith('/service-worker.js'))return;
     const d=req.destination;
-    if(req.mode==='navigate'||d==='script'||d==='style'||d==='document'){e.respondWith(netFirst(e));return}
+    if(req.mode==='navigate'||d==='script'||d==='style'||d==='document'||d==='manifest'||url.pathname.endsWith('manifest.json')){e.respondWith(netFirst(e));return}
     e.respondWith(swr(e,CACHE));return;
   }
   if(url.hostname==='fonts.googleapis.com'||url.hostname==='fonts.gstatic.com'){e.respondWith(swr(e,FONTS))}
@@ -69,7 +69,7 @@ self.addEventListener('notificationclick',e=>{
 /* إشعارات Web Push (تعمل مع الجهاز مغلقًا إذا ربطتَ خادم دفع — اختياري) */
 self.addEventListener('push',e=>{
   let d={};try{d=e.data?e.data.json():{}}catch(_){try{d={title:e.data.text()}}catch(__){}}
-  e.waitUntil(self.registration.showNotification(d.title||'المسلم',{body:d.body||'',tag:d.tag||'push',icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',data:{open:d.open||'prayer'}}));
+  e.waitUntil(self.registration.showNotification(d.title||'المسلم',{body:d.body||'',tag:d.tag||'push',icon:'./app-icon-v112-192.png',badge:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',data:{open:d.open||'prayer'}}));
 });
 async function fireFile(cache,name,window_ms){
   const r=await cache.match(name);if(!r)return;
@@ -77,7 +77,7 @@ async function fireFile(cache,name,window_ms){
   for(const ev of cfg.events||[]){
     if(fired[ev.tag])continue;
     if(ev.t<=now&&ev.t>=now-window_ms){
-      await self.registration.showNotification(ev.title,{body:ev.body||'',tag:ev.tag,icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',vibrate:[200,100,200],requireInteraction:ev.kind==='at',data:{open:ev.kind==='greet'?'home':'prayer'}});
+      await self.registration.showNotification(ev.title,{body:ev.body||'',tag:ev.tag,icon:'./app-icon-v112-192.png',badge:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',vibrate:[200,100,200],requireInteraction:ev.kind==='at',data:{open:ev.kind==='greet'?'home':'prayer'}});
       fired[ev.tag]=1;changed=true;
     }
   }
@@ -96,7 +96,7 @@ async function checkReminders(){
       if(d.days&&d.days.indexOf(day)<0)continue;
       const hm=String(d.time||'').split(':'),at=new Date(now.getFullYear(),now.getMonth(),now.getDate(),+hm[0],+hm[1],0).getTime();
       if(!(at<=now.getTime()&&at>=now.getTime()-2*3600e3)||fired[d.id]===k)continue;
-      await self.registration.showNotification('حان وقت: '+d.t,{body:d.b||'',tag:'deed-'+d.id,icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',data:{open:'daily'}});
+      await self.registration.showNotification('حان وقت: '+d.t,{body:d.b||'',tag:'deed-'+d.id,icon:'./app-icon-v112-192.png',badge:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',data:{open:'daily'}});
       fired[d.id]=k;changed=true;
     }
     if(changed){cfg.fired=fired;await c.put('./__reminders.json',new Response(JSON.stringify(cfg),{headers:{'Content-Type':'application/json'}}))}

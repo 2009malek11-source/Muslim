@@ -5,7 +5,7 @@ var $=function(id){return document.getElementById(id)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 
 /* ===== معلومات الإصدار + جامع الأخطاء + تقرير المشكلة ===== */
-window.APP_BUILD='v112 • بناء 2026-10-24';
+window.APP_BUILD='v113 • بناء 2026-10-24';
 window.__v105Errs=[];
 window.addEventListener('error',function(e){try{window.__v105Errs.push((e.message||'error')+' @'+String(e.filename||'').split('/').pop()+':'+(e.lineno||0))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});
 window.addEventListener('unhandledrejection',function(e){try{window.__v105Errs.push('promise: '+String((e.reason&&e.reason.message)||e.reason).slice(0,120))}catch(x){}if(window.__v105Errs.length>12)window.__v105Errs.shift()});
@@ -323,6 +323,8 @@ document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.t
       var b=document.createElement('div');b.style.cssText='position:fixed;left:10px;right:10px;bottom:84px;z-index:99999;background:#1d624f;color:#fff;padding:10px 14px;border-radius:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:calc(14px*var(--v105-fs,1))';
       b.innerHTML='<span>🔄 يتوفر تحديث جديد للتطبيق</span><button type="button" style="background:#fff;color:#1d624f;border:0;border-radius:10px;padding:6px 12px;font-weight:700">تحديث الآن</button>';
       b.querySelector('button').onclick=function(){location.reload()};document.body.appendChild(b);
+      /* تحديث تلقائي إن لم يكن هناك صوت يُشغَّل، حتى يصل التحديث (والأيقونة) للتطبيق المثبّت دون تدخل */
+      setTimeout(function(){var playing=[].some.call(document.querySelectorAll('audio'),function(a){return !a.paused&&!a.ended});if(!playing)location.reload()},2500);
     });
   }catch(e){}
 })();
@@ -1874,7 +1876,7 @@ function regPeriodic(){
 function perm(){return ('Notification' in window)?Notification.permission:'unsupported'}
 function notify(title,body,tag){
   if(perm()!=='granted')return Promise.resolve(false);
-  var opts={body:body||'',tag:tag||'muslim',icon:'./icon-192.png',badge:'./icon-192.png',lang:'ar',dir:'rtl',data:{open:'daily'},renotify:false};
+  var opts={body:body||'',tag:tag||'muslim',icon:'./app-icon-v112-192.png',badge:'./app-icon-v112-192.png',lang:'ar',dir:'rtl',data:{open:'daily'},renotify:false};
   if(navigator.serviceWorker&&navigator.serviceWorker.ready){
     return navigator.serviceWorker.ready.then(function(r){return r.showNotification(title,opts)}).then(function(){return true}).catch(function(){try{new Notification(title,opts);return true}catch(e){return false}});
   }
