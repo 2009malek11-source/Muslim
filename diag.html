@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>فحص الاتصال والصوت — المسلم</title>
+<meta name="robots" content="noindex">
+<style>
+:root{color-scheme:light dark}
+body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;margin:0;padding:calc(14px + env(safe-area-inset-top)) 14px calc(24px + env(safe-area-inset-bottom));line-height:1.7;background:#f6f2e8;color:#111}
+@media(prefers-color-scheme:dark){body{background:#0b1713;color:#f2f2f2}.box{background:#15251f!important;border-color:#2a4a3e!important}input{background:#15251f;color:#fff}}
+h1{font-size:22px;margin:6px 0}
+.box{background:#fff;border:1px solid #ddd;border-radius:14px;padding:12px;margin:10px 0}
+button{font-size:18px;padding:12px 16px;border-radius:12px;border:0;background:#1d624f;color:#fff;width:100%;margin:6px 0}
+button.alt{background:#555}
+input{font-size:16px;width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:1px solid #999}
+.ln{font-size:15px;padding:3px 0;word-break:break-word}
+.ok{color:#0a7a3b}.bad{color:#c0392b}.warn{color:#b9770e}
+.sec{font-weight:700;margin-top:10px;font-size:17px}
+#rep{width:100%;height:160px;direction:ltr;font-size:12px;box-sizing:border-box}
+</style>
+</head>
+<body>
+<h1>🩺 فحص الاتصال والصوت</h1>
+<div class="box">اضغط «ابدأ الفحص» وانتظر نحو دقيقة، ثم أرسل لي لقطة شاشة لكل النتائج (أو انسخ التقرير).</div>
+<div class="box"><b>اختبار الكيبورد:</b><input id="kb" placeholder="اضغط هنا واكتب شيئًا" autocomplete="off"><div id="kbs" class="ln">لم تُلمس الخانة بعد</div></div>
+<button id="go">▶ ابدأ الفحص</button>
+<button class="alt" id="cp">📋 نسخ التقرير</button>
+<button class="alt" onclick="location.href='./'">← العودة للتطبيق</button>
+<div id="out" class="box"></div>
+<textarea id="rep" readonly></textarea>
+<script>
+(function(){
+'use strict';
+var out=document.getElementById('out'),rep=document.getElementById('rep'),REP=[];
+function ln(cls,txt){var d=document.createElement('div');d.className='ln '+(cls||'');d.textContent=txt;out.appendChild(d);REP.push(txt);rep.value=REP.join('\n');window.scrollTo(0,document.body.scrollHeight)}
+function sec(t){var d=document.createElement('div');d.className='sec';d.textContent=t;out.appendChild(d);REP.push('\n## '+t)}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function withTimeout(p,ms,label){return Promise.race([p,new Promise(function(_,rej){setTimeout(function(){rej(new Error('مهلة '+label))},ms)})])}
+var kb=document.getElementById('kb'),kbs=document.getElementById('kbs'),kf=0,ki=0;
+kb.addEventListener('focus',function(){kf++;kbs.textContent='✅ استلمت الخانة التركيز ('+kf+') — إن ظهر الكيبورد فهو يعمل'});
+kb.addEventListener('input',function(){ki++;kbs.textContent='✅ تم استلام '+ki+' حرف/حدث كتابة'});
+function audioTest(url,label){
+  return new Promise(function(res){
+    var a=new Audio();a.muted=true;a.preload='auto';a.setAttribute('playsinline','');
+    var done=false,t0=Date.now();
+    function fin(ok,m){if(done)return;done=true;clearTimeout(t);try{a.pause();a.removeAttribute('src');a.load()}catch(e){}res({ok:ok,m:m,ms:Date.now()-t0})}
+    a.addEventListener('playing',function(){fin(true,'بدأ التشغيل')});
+    a.addEventListener('loadedmetadata',function(){if(!done)setTimeout(function(){fin(a.readyState>=2,'تحميل بيانات الملف (المدة '+(isFinite(a.duration)?Math.round(a.duration)+'ث':'؟')+')')},1500)});
+    a.addEventListener('error',function(){fin(false,'خطأ وسائط '+(a.error?a.error.code:'?')+(a.error&&a.error.message?' '+a.error.message:''))});
+    var t=setTimeout(function(){fin(false,'انتهت المهلة (networkState='+a.networkState+' readyState='+a.readyState+')')},12000);
+    a.src=url;var p=a.play();if(p&&p.catch)p.catch(function(e){if(e&&e.name==='NotAllowedError')fin(false,'منع المتصفح التشغيل')});
+  });
+}
+async function rangeFetch(url,bytes){
+  var r=await fetch(url,{headers:{Range:'bytes=0-'+(bytes||1)}});
+  var info='HTTP '+r.status+' | '+(r.headers.get('content-type')||'?')+' | range:'+(r.headers.get('content-range')||'-')+' | '+(r.url||'').replace(/^https?:\/\//,'').slice(0,60);
+  return {r:r,info:info};
+}
+async function run(){
+  out.innerHTML='';REP=[];
+  sec('الجهاز');
+  ln('',navigator.userAgent);
+  ln('','standalone: '+((navigator.standalone||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches))?'نعم':'لا')+' | متصل: '+(navigator.onLine?'نعم':'لا'));
+  ln('','Service Worker يتحكم بهذه الصفحة: '+((navigator.serviceWorker&&navigator.serviceWorker.controller)?'نعم':'لا'));
+  sec('الموقع (للمساجد)');
+  try{if(navigator.permissions){var pm=await navigator.permissions.query({name:'geolocation'});ln('','إذن الموقع: '+pm.state)}}catch(e){ln('warn','إذن الموقع: غير معروف')}
+  if(!navigator.geolocation)ln('bad','❌ المتصفح لا يدعم تحديد الموقع');
+  else{
+    try{
+      var pos=await withTimeout(new Promise(function(res,rej){navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true,timeout:20000,maximumAge:0})}),22000,'الموقع');
+      var acc=Math.round(pos.coords.accuracy);
+      ln(acc>150?'warn':'ok',(acc>150?'⚠️':'✅')+' '+pos.coords.latitude.toFixed(5)+', '+pos.coords.longitude.toFixed(5)+' — الدقة '+acc+' م'+(acc>150?' (ضعيفة: فعّل «الموقع الدقيق»)':''));
+    }catch(e){ln('bad','❌ الموقع: '+(e.message||e.code))}
+  }
+  sec('خوادم الخرائط (Overpass)');
+  var eps=['https://overpass-api.de/api/interpreter','https://z.overpass-api.de/api/interpreter','https://lz4.overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter','https://overpass.openstreetmap.fr/api/interpreter'];
+  for(var i=0;i<eps.length;i++){
+    var t0=Date.now();
+    try{
+      var r=await withTimeout(fetch(eps[i],{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'data='+encodeURIComponent('[out:json][timeout:10];node(1);out;')}),12000,'الخادم');
+      ln(r.ok?'ok':'bad',(r.ok?'✅':'❌')+' '+eps[i].replace('https://','').split('/')[0]+' — HTTP '+r.status+' — '+(Date.now()-t0)+'ms');
+    }catch(e){ln('bad','❌ '+eps[i].replace('https://','').split('/')[0]+' — '+(e.message||e))}
+  }
+  sec('Nominatim (بحث بديل)');
+  try{var rn=await withTimeout(fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=mosque'),12000,'Nominatim');ln(rn.ok?'ok':'bad',(rn.ok?'✅':'❌')+' HTTP '+rn.status)}catch(e){ln('bad','❌ '+(e.message||e))}
+  sec('قرّاء archive.org (الثلاثة المثبّتون)');
+  var items=[['أحمد خضر','012_20221105_202211'],['عبد الرحمن مسعد','010_20221110'],['حسام الدين عبادي','Abbadi-Houssem-Eddine']];
+  for(var k=0;k<items.length;k++){
+    var nm=items[k][0],id=items[k][1];ln('sec','— '+nm+' ('+id+')');
+    var meta=null;
+    try{
+      var rm=await withTimeout(fetch('https://archive.org/metadata/'+encodeURIComponent(id)),12000,'metadata');
+      if(!rm.ok)throw new Error('HTTP '+rm.status);
+      var j=await rm.json();
+      var mp3=(j.files||[]).filter(function(f){return /\.mp3$/i.test(f.name||'')}).map(function(f){return f.name});
+      meta={files:mp3,d1:j.d1||j.server,dir:j.dir};
+      ln(mp3.length?'ok':'bad',(mp3.length?'✅':'❌')+' metadata: '+mp3.length+' ملف mp3 | مثال: '+(mp3[0]||'—')+' | الخادم: '+(meta.d1||'?')+meta.dir);
+    }catch(e){ln('bad','❌ metadata: '+(e.message||e));continue}
+    if(!meta.files.length)continue;
+    var f=meta.files[0],enc=f.split('/').map(encodeURIComponent).join('/');
+    var dl='https://archive.org/download/'+encodeURIComponent(id)+'/'+enc;
+    var direct=(meta.d1&&meta.dir)?('https://'+meta.d1+meta.dir+'/'+enc):null;
+    try{var a1=await withTimeout(rangeFetch(dl,1),15000,'/download/');ln(a1.r.ok||a1.r.status===206?'ok':'bad',(a1.r.ok?'✅':'❌')+' fetch /download/ → '+a1.info)}catch(e){ln('bad','❌ fetch /download/ → '+(e.message||e)+'  (غالبًا CORS)')}
+    if(direct){try{var a2=await withTimeout(rangeFetch(direct,1),15000,'direct');ln(a2.r.ok||a2.r.status===206?'ok':'bad',(a2.r.ok?'✅':'❌')+' fetch مباشر → '+a2.info)}catch(e){ln('bad','❌ fetch مباشر → '+(e.message||e))}}
+    var r1=await audioTest(dl,'/download/');ln(r1.ok?'ok':'bad',(r1.ok?'✅':'❌')+' صوت <audio> /download/ → '+r1.m+' ('+r1.ms+'ms)');
+    if(direct){var r2=await audioTest(direct,'direct');ln(r2.ok?'ok':'bad',(r2.ok?'✅':'❌')+' صوت <audio> مباشر → '+r2.m+' ('+r2.ms+'ms)')}
+    try{
+      var rb=await withTimeout(rangeFetch(direct||dl,300000),25000,'blob');
+      var blob=await rb.r.blob();var bu=URL.createObjectURL(new Blob([blob],{type:'audio/mpeg'}));
+      var r3=await audioTest(bu,'blob');ln(r3.ok?'ok':'bad',(r3.ok?'✅':'❌')+' صوت من Blob ('+Math.round(blob.size/1024)+'KB) → '+r3.m);
+    }catch(e){ln('bad','❌ Blob → '+(e.message||e))}
+  }
+  sec('قارئ عادي للمقارنة (mp3quran)');
+  try{var rq=await withTimeout(fetch('https://server8.mp3quran.net/afs/001.mp3',{headers:{Range:'bytes=0-1'}}),12000,'mp3quran');ln(rq.ok||rq.status===206?'ok':'bad',(rq.ok||rq.status===206?'✅':'❌')+' fetch → HTTP '+rq.status)}catch(e){ln('bad','❌ fetch → '+(e.message||e))}
+  var r4=await audioTest('https://server8.mp3quran.net/afs/001.mp3','mp3quran');ln(r4.ok?'ok':'bad',(r4.ok?'✅':'❌')+' صوت <audio> → '+r4.m);
+  sec('انتهى');ln('ok','أرسل لي لقطة شاشة لكل النتائج أعلاه.');
+}
+document.getElementById('go').onclick=function(){this.disabled=true;var b=this;run().catch(function(e){ln('bad','❌ توقف الفحص: '+(e.message||e))}).then(function(){b.disabled=false})};
+document.getElementById('cp').onclick=function(){rep.select();try{navigator.clipboard.writeText(rep.value).then(function(){alert('تم النسخ')},function(){document.execCommand('copy')})}catch(e){try{document.execCommand('copy')}catch(x){}}};
+})();
+</script>
+</body>
+</html>
