@@ -1,4 +1,4 @@
-/* ===== أيقونات SVG المخصصة ===== */
+
 .vi{width:1.2em;height:1.2em;display:inline-block;vertical-align:-.22em;color:var(--green,#176f7d);transition:transform .28s cubic-bezier(.3,1.5,.5,1),color .2s;flex:none}
 body.dark .vi{color:var(--gold,#e4c77a)}
 .ico.vIco{display:inline-grid;place-items:center}
@@ -19,7 +19,6 @@ body.dark .vi{color:var(--gold,#e4c77a)}
 .vBtn:active{transform:scale(.98)}
 .vBtn.primary .vi{color:#fff}
 @media(prefers-reduced-motion:reduce){.vi,.vi-settings,.vBtn{transition:none!important}.tile:hover .vi,.nav button:hover .vi-settings{transform:none!important}}
-/* ===== صفحة التثبيت والمشاركة ===== */
 #install .card h3{display:flex;align-items:center;gap:8px;margin:0 0 6px}
 .vHero{text-align:center}
 .vHeroIc{width:64px;height:64px;margin:4px auto 6px;border-radius:20px;display:grid;place-items:center;background:linear-gradient(135deg,var(--green,#176f7d),var(--green2,#28785d))}
@@ -37,34 +36,23 @@ body.dark .vi{color:var(--gold,#e4c77a)}
 #vIosHint .vi{color:#fff}
 .vHintBtns{display:flex;gap:6px;flex:none}
 .vHintBtns button{border:0;border-radius:10px;padding:8px 12px;background:#fff;color:#176f7d;font-weight:700;min-height:36px}
-/* ===== ملء الشاشة عند التثبيت (مناطق الأمان) ===== */
 html.standalone body{overscroll-behavior-y:none}
 html.standalone .top{padding-top:env(safe-area-inset-top,0px)}
-
-/* ===== خط Cairo (Google Fonts) مع بدائل نظام ===== */
 body,button,input,select,textarea{font-family:"Cairo","Tajawal",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
-/* ===== حالات التركيز للوصول بلوحة المفاتيح (Focus) ===== */
 :focus-visible{outline:3px solid var(--gold,#c8a15b);outline-offset:2px;border-radius:10px}
 input:focus-visible,select:focus-visible,textarea:focus-visible{outline-offset:0}
-/* ===== نقش هندسي خفيف (SVG مضمّن على نمط Hero Patterns) ===== */
 .vHero{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M22 2l4.4 15.6L42 22l-15.6 4.4L22 42l-4.4-15.6L2 22l15.6-4.4z' fill='%23176f7d' fill-opacity='0.08'/%3E%3C/svg%3E");background-size:44px 44px}
-
-/* =====================================================================
-   V106 — الطبقة النهائية (تُحمَّل آخر شيء فتتغلّب على الطبقات القديمة)
-   ===================================================================== */
 :root{--hdr:56px;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--ok:#1f7a4d;--warn:#9a5b00;--bad:#b3261e;--card2:color-mix(in srgb,var(--card) 92%,var(--green) 8%)}
 html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
 html,body{background:var(--bg)!important;min-height:100%}
 body{background-image:none!important}
 .dark,.dark body{background:var(--bg)!important}
-/* ---- الترويسة: ثابتة بعرض الشاشة، بلا فراغ علوي ---- */
 html body header.top{position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;max-width:none!important;margin:0!important;height:calc(var(--hdr) + var(--sat))!important;padding:var(--sat) max(14px,calc((100vw - 900px)/2 + 14px)) 0!important;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:3500!important;background:color-mix(in srgb,var(--bg) 94%,transparent)!important;border-bottom:1px solid var(--line)!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html body header.top .brand{display:flex;align-items:center;gap:10px;min-width:0}
 html body header.top .brand small{display:none}
 html body header.top .logo{width:36px;height:36px;border-radius:11px;flex:none}
 html body header.top button{min-width:44px;min-height:44px;border-radius:12px}
 html body .app{max-width:900px!important;margin:0 auto!important;padding:calc(var(--hdr) + var(--sat) + 14px) 14px calc(var(--dockH,72px) + 22px)!important}
-/* ---- الشريط السفلي ---- */
 #v101Dock{padding:0!important;gap:0!important;background:transparent}
 #v101Dock .nav{width:100%!important;max-height:none!important;height:auto!important;border-radius:0!important;border:0!important;border-top:1px solid var(--line)!important;background:color-mix(in srgb,var(--card) 96%,transparent)!important;box-shadow:0 -6px 24px rgba(23,60,49,.08)!important;padding:6px max(10px,calc((100vw - 560px)/2)) calc(6px + var(--sab))!important;display:grid!important;grid-template-columns:1fr 1fr;gap:6px;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 #v101Dock .nav button{position:relative;width:100%!important;min-width:0!important;height:54px!important;flex:none;display:flex!important;flex-direction:column!important;align-items:center;justify-content:center;gap:2px!important;border:0;border-radius:14px!important;background:transparent;color:var(--muted);font-weight:700;font-size:calc(12px*var(--v105-fs,1));cursor:pointer;transition:background .18s,color .18s}
@@ -75,25 +63,21 @@ html body .app{max-width:900px!important;margin:0 auto!important;padding:calc(va
 #v101Dock .nav button:active{transform:scale(.97)}
 .dark #v101Dock .nav{background:color-mix(in srgb,var(--card) 98%,transparent)!important;box-shadow:0 -6px 24px rgba(0,0,0,.4)!important}
 #v101Dock #globalMiniPlayer,#v101Dock .v43AudioBar{margin:0 8px 6px!important;width:auto!important;border-radius:16px!important}
-/* ---- أداء الجوال: بلا blur ولا ظلال ثقيلة ولا خلفيات ثابتة ---- */
 html.v6lite *,html.v6lite *::before,html.v6lite *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 html.v6lite .card,html.v6lite .tile,html.v6lite .hero{box-shadow:0 1px 3px rgba(23,60,49,.08)!important}
 html.v6lite *{animation-duration:.01ms!important;animation-iteration-count:1!important}
 .page{content-visibility:auto;contain-intrinsic-size:auto 800px}
 .page.active{content-visibility:visible}
-/* ---- وصول ---- */
 a,button,[role=button],input,select,textarea{touch-action:manipulation}
 button,.tile,.primary{min-height:44px}
 .mini,small{color:var(--muted)}
 .dark .mini,.dark small{color:#b9c9c0}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-/* ---- إشعارات/نصوص حالة ---- */
 .notice{padding:11px 13px;border-radius:14px;border:1px solid var(--line);background:var(--card2);line-height:1.9;font-size:calc(14px*var(--v105-fs,1))}
 .notice.ok{border-color:color-mix(in srgb,var(--ok) 40%,var(--line));background:color-mix(in srgb,var(--ok) 8%,var(--card))}
 .notice.warn{border-color:color-mix(in srgb,var(--warn) 45%,var(--line));background:color-mix(in srgb,var(--warn) 9%,var(--card))}
 .notice .vi{vertical-align:-.25em}
 .vi-spin{animation:v6spin 1s linear infinite}@keyframes v6spin{to{transform:rotate(360deg)}}
-/* ---- المساجد ---- */
 .m6Card{display:grid;gap:10px}
 .m6Seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--green) 8%,var(--card))}
 .m6Seg button{border:0;border-radius:11px;background:transparent;color:var(--text);font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -124,7 +108,6 @@ button,.tile,.primary{min-height:44px}
 .m6Acts{display:flex;gap:6px;flex-wrap:wrap}
 .m6Btn{flex:1 1 90px;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
 .m6Btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.m6Btn.primary .vi{color:#fff}
-/* ---- أعمال اليوم ---- */
 #dailyList{display:grid;gap:10px}
 .v6Sum{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
 .v6Ring{--p:0;width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) calc(var(--p)*1%),color-mix(in srgb,var(--green) 14%,transparent) 0)}
@@ -153,7 +136,6 @@ button,.tile,.primary{min-height:44px}
 .v6Days button{flex:1 1 40px;padding:0 4px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-weight:700;font-size:calc(12px*var(--v105-fs,1))}
 .v6Days button.on{background:var(--green);color:#fff;border-color:var(--green)}
 @media(max-width:420px){.v6Row{grid-template-columns:auto 1fr auto}.v6Row .dailyIcon{display:none}}
-/* ---- إعدادات التذكير ---- */
 .v6SetTop{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
 .v6Ok{color:var(--ok);font-weight:700}.v6No{color:var(--bad);font-weight:700}
 .v6Master{display:flex;gap:8px;align-items:center;padding:8px 0}
@@ -162,16 +144,13 @@ button,.tile,.primary{min-height:44px}
 .v6SetL{display:flex;align-items:center;gap:10px;flex:1;min-width:0}.v6SetL span{display:grid}
 .v6SetL input[type=checkbox],.v6Master input,.stgSw input[type=checkbox]{width:22px;height:22px;accent-color:var(--green)}
 .v6Time{width:112px;flex:none;min-height:40px;padding:4px 6px}
-/* ---- الإعدادات (أزرار سريعة) ---- */
 .stgQuick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .stgQuick button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);font:inherit;font-weight:700}
 .stgQuick button .vi{width:22px;height:22px}
 .stgGroup h3{display:flex;align-items:center;gap:8px}
-/* ---- تكرار الآية: وسم الرواية ---- */
 .v6Riw{display:inline-block;margin-inline-start:6px;padding:0 8px;border-radius:999px;font-size:.78em;background:color-mix(in srgb,var(--gold) 28%,transparent);color:var(--text);vertical-align:middle}
 #v79Splash{display:none!important}
 @media(prefers-reduced-motion:reduce){#v6Intro *{animation-duration:.01ms!important}}
-/* ---- التنزيلات ---- */
 .dlHead{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
 .dlGroup{margin-top:10px;display:grid;gap:6px}
 .dlGroupHead{display:flex;align-items:center;gap:10px}
@@ -184,8 +163,6 @@ button,.tile,.primary{min-height:44px}
 .dlTag,.dlBadge{display:inline-block;padding:1px 8px;border-radius:999px;font-size:calc(11px*var(--v105-fs,1));font-weight:700;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .dark .dlTag,.dark .dlBadge{color:#7fe0ae}
 .songRow.isDl .num{outline:2px solid var(--ok);outline-offset:1px;border-radius:50%}
-
-/* ---- الإعدادات: محاذاة موحّدة ---- */
 #settings .stgGroup>h3{justify-content:flex-start!important;gap:10px;text-align:start;padding:10px 4px!important;min-height:52px}
 #settings .stgGroup>h3::after{content:""!important;margin-inline-start:auto;width:9px;height:9px;border:solid var(--muted);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);transition:transform .2s;flex:none;margin-bottom:3px}
 #settings .stgGroup.open>h3::after{transform:rotate(-135deg);margin-bottom:-3px}
@@ -194,8 +171,6 @@ button,.tile,.primary{min-height:44px}
 #settings .stgRow{align-items:center}
 #settings .stgBtn{min-width:84px;justify-content:center}
 input[type=range]{accent-color:var(--green)}
-
-/* ---- التمرير: html/body لا يكونان حاويتي تمرير (إصلاح عدم التمرير بالإصبع/العجلة على كروم وأندرويد) ---- */
 html{overflow-x:visible!important;overflow-y:visible!important}
 body{overflow-x:clip!important;overflow-y:visible!important;overscroll-behavior:auto!important}
 html.v6-intro,html.v6-intro body{overflow:hidden!important}
