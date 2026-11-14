@@ -5,10 +5,10 @@
  *  3) صفحة التنقّل (index.html): الشبكة أولاً (إعادة تحقق دائماً) مع مهلة 3 ثوانٍ ثم نسخة هذا الإصدار نفسه فقط.
  *     لا يُعاد أبداً أي إصدار أقدم (أُزيلت دالة legacyShell التي كانت تُظهر نسخاً قديمة بلا مصحف).
  */
-const BID = '2b8e676754';
+const BID = '23a96d8591', BT = 1794631645;
 const CACHE = 'muslim-shell-' + BID;
 const FONTS = 'muslim-fonts-v1';
-const CORE = ["./", "./index.html", "./manifest.json", "./app-config.5438345603.js?h=5438345603", "./style.5e6a7fc83f.css?h=5e6a7fc83f", "./script.09b8869e46.js?h=09b8869e46", "./assistant-cmd.2559bdf697.js?h=2559bdf697", "./travel.29a9f31f1a.js?h=29a9f31f1a", "./reciters-nationality.0f368e57f8.js?h=0f368e57f8", "./playlist.29cb6d27a9.js?h=29cb6d27a9", "./app107.9343421283.css?h=9343421283", "./adhan-config.409fbf9787.js?h=409fbf9787", "./prayer.c5beb1abed.js?h=c5beb1abed", "./push-client.4214f64b48.js?h=4214f64b48", "./audio-manager.6c123ab5bd.js?h=6c123ab5bd", "./notifications.ccce094b18.js?h=ccce094b18", "./notification-settings.bc601aaa58.js?h=bc601aaa58", "./prayer-notifications.610021a76a.js?h=610021a76a", "./iqama-notifications.8e8180306f.js?h=8e8180306f", "./adhkar-notifications.a924207814.js?h=a924207814", "./backgrounds.23ef74adcf.js?h=23ef74adcf", "./updater.7fe5f79a6d.js?h=7fe5f79a6d", "./calendar.abb99a59d5.js?h=abb99a59d5", "./mushaf.d3009ce653.js?h=d3009ce653", "./hadith107.d369358c44.js?h=d369358c44", "./mosques.23a604f42d.js?h=23a604f42d", "./abloop.aa1b7fb463.js?h=aa1b7fb463", "./qibla.072f17e922.js?h=072f17e922", "./app107.e899836125.js?h=e899836125", "./ic-192.png", "./ic-512.png"];
+const CORE = ["./", "./index.html", "./manifest.json", "./app-config.5438345603.js?h=5438345603", "./style.782c53b7fb.css?h=782c53b7fb", "./script.09b8869e46.js?h=09b8869e46", "./assistant-cmd.2559bdf697.js?h=2559bdf697", "./travel.29a9f31f1a.js?h=29a9f31f1a", "./reciters-nationality.0f368e57f8.js?h=0f368e57f8", "./playlist.29cb6d27a9.js?h=29cb6d27a9", "./app107.382beae071.css?h=382beae071", "./adhan-config.409fbf9787.js?h=409fbf9787", "./prayer.c5beb1abed.js?h=c5beb1abed", "./push-client.4214f64b48.js?h=4214f64b48", "./audio-manager.6c123ab5bd.js?h=6c123ab5bd", "./notifications.ccce094b18.js?h=ccce094b18", "./notification-settings.bc601aaa58.js?h=bc601aaa58", "./prayer-notifications.610021a76a.js?h=610021a76a", "./iqama-notifications.8e8180306f.js?h=8e8180306f", "./adhkar-notifications.a924207814.js?h=a924207814", "./backgrounds.23ef74adcf.js?h=23ef74adcf", "./updater.7398951739.js?h=7398951739", "./calendar.abb99a59d5.js?h=abb99a59d5", "./mushaf.16e40563ce.js?h=16e40563ce", "./hadith107.d369358c44.js?h=d369358c44", "./mosques.23a604f42d.js?h=23a604f42d", "./abloop.aa1b7fb463.js?h=aa1b7fb463", "./qibla.07d4df4660.js?h=07d4df4660", "./app107.e899836125.js?h=e899836125", "./ic-192.png", "./ic-512.png"];
 const KEEP = ['muslim-audio', 'muslim-files', 'muslim-config', 'muslim-hadith', 'muslim-human-audio', 'muslim-adhkar-audio', 'muslim-data', 'muslim-v80-ruqyah', 'muslim-fonts', 'muslim-notify'];
 const keepName = k => k === CACHE || KEEP.some(p => k.indexOf(p) === 0);
 const cm = (req, opt) => caches.open(CACHE).then(c => c.match(req, opt));
@@ -55,7 +55,7 @@ self.addEventListener('activate', e => {
         await self.clients.claim();
         if (hadOld) {
             const cs = await self.clients.matchAll({ type: 'window' });
-            cs.forEach(c => c.postMessage({ t: 'updated', type: 'updated', b: BID }));
+            cs.forEach(c => c.postMessage({ t: 'updated', type: 'updated', b: BID, bt: BT }));
         }
         precacheSoft();
         await checkDue('activate');
@@ -64,7 +64,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('message', e => {
     const d = e.data || {};
     if (d.type === 'skip-waiting') self.skipWaiting();
-    if (d.type === 'get-bid' && e.source) e.source.postMessage({ t: 'bid', b: BID });
+    if (d.type === 'get-bid' && e.source) e.source.postMessage({ t: 'bid', b: BID, bt: BT });
     if (d.type === 'notify-sync' || d.type === 'wake') e.waitUntil(checkDue('message'));
     if (d.type === 'reminders-updated') e.waitUntil(checkReminders());
 });
