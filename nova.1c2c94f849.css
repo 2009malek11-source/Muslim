@@ -1,0 +1,459 @@
+/* nova.css — الواجهة الجديدة. هاتف عمودي (< 560) ← لوح/أفقي (≥ 560) ← حاسوب بقائمة جانبية (≥ 1024). */
+body.nova{
+  --bg:#124f3e;--bg2:#1a604c;--card:rgba(28,100,80,.72);--text:#f4fdfa;--muted:#b4ded2;--line:rgba(191,240,226,.18);
+  --green:#e8b855;--green2:#c8902d;--gold:#e8b855;--gold2:#ffe3a1;--ink:#1a5242;--hfg:#fff;--hbg:rgba(16,68,53,.62);
+  --shadow:0 18px 50px rgba(6,26,20,.5);--glow:0 0 0 1px rgba(232,184,85,.12),0 16px 44px rgba(6,26,20,.4);
+  --nvSb:clamp(220px,15vw,260px);--nvTop:calc(64px + env(safe-area-inset-top,0px));--nvPad:12px;
+  color:var(--text);
+}
+body.nova:not(.dark){
+  --bg:#a9d0c5;--bg2:#fff;--card:rgba(255,255,255,.62);--text:#1c4d3f;--muted:#557f73;--line:rgba(35,110,89,.15);
+  --green:#319478;--green2:#49c8a4;--gold:#9a6a1c;--gold2:#f2c765;--ink:#fff;
+  --shadow:0 14px 40px rgba(30,110,87,.16);--glow:0 10px 30px rgba(30,110,87,.12);
+}
+body.nova{background-color:var(--bg)!important}
+html:has(body.nova.dark){background:#104234!important}
+html:has(body.nova:not(.dark)){background:#b3d5cb!important}
+body.nova{background-image:linear-gradient(180deg,#1b5c4a 0,#165140 45%,#104234 100%)!important;background-attachment:fixed!important}
+body.nova:not(.dark){background-image:linear-gradient(180deg,#7cab9e 0,#a0cabe 420px,#b3d5cb 100%)!important}
+body.nova .nv{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;flex:none}
+body.nova .nv .f{fill:currentColor;fill-opacity:.22}
+body.nova *{-webkit-tap-highlight-color:transparent}
+body.nova img{-webkit-user-drag:none;user-select:none}
+body.nova :where(b,h1,h2,h3,h4,p,small,span,label,summary){overflow-wrap:break-word;word-break:normal}
+
+/* ---------- الرأس ---------- */
+body.nova header.top{position:fixed!important;top:0!important;left:0!important;right:0;width:auto!important;max-width:none!important;height:var(--nvTop)!important;margin:0!important;padding:env(safe-area-inset-top,0px) max(14px,env(safe-area-inset-right,0px)) 0 max(14px,env(safe-area-inset-left,0px))!important;box-sizing:border-box!important;
+  display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;z-index:100;background:color-mix(in srgb,var(--bg) 86%,transparent)!important;
+  backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid var(--line)!important;--hfg:var(--text);--hbg:var(--card)}
+body.nova[data-pg=home] header.top{background:linear-gradient(180deg,rgba(9,40,31,.6),transparent)!important;border-bottom-color:transparent!important;backdrop-filter:none;-webkit-backdrop-filter:none;--hfg:#fff;--hbg:rgba(16,68,53,.62)}
+body.nova .nvBrand{grid-column:2;display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--hfg)}
+body.nova .nvBrand b{font-size:calc(24px*var(--v105-fs,1));font-weight:800;color:var(--hfg);text-shadow:0 2px 10px #0006}
+body.nova:not(.dark):not([data-pg=home]) .nvBrand b{text-shadow:none;color:var(--green)}
+body.nova .nvLogo{height:38px;width:38px;border-radius:11px;display:block;box-shadow:0 2px 10px #0005,0 0 0 1.5px rgba(232,184,85,.7)}
+body.nova .nvSearch{display:none;grid-column:2;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:var(--hbg);color:var(--hfg);align-items:center;gap:10px;padding:0 18px;cursor:pointer;font-size:calc(14px*var(--v105-fs,1));opacity:.95;backdrop-filter:blur(10px)}
+body.nova .nvSearch .nv{font-size:21px}
+body.nova .nvTools{grid-column:3;justify-self:end;display:flex;flex-direction:row-reverse;align-items:center;gap:14px}
+body.nova .nvPill{display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:var(--hbg);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(10px)}
+body.nova .nvPill button,body.nova .nvBack{position:relative;width:40px;height:40px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--hfg);display:grid;place-items:center;cursor:pointer;font-size:23px;transition:transform .15s}
+body.nova .nvPill button:active,body.nova .nvBack:active{transform:scale(.9)}
+body.nova .nvPill .nvMoon{background:linear-gradient(160deg,#d2f4eb,#87d8c1);color:#fff;box-shadow:0 2px 10px #0004}
+body.nova .nvPill .nvGear{display:none}
+body.nova .nvBack{display:none;background:transparent}
+body.nova .nvBadge{position:absolute;top:1px;right:2px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#e5484d;color:#fff;font:700 10.5px/17px system-ui,sans-serif;font-style:normal;text-align:center;box-shadow:0 0 0 2px #1a604c}
+body.nova .nvBadge[hidden]{display:none}
+
+/* ---------- القائمة السفلية (هاتف) ---------- */
+body.nova nav.nav{position:fixed!important;top:auto!important;left:12px!important;right:12px!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;width:auto!important;height:70px!important;
+  display:flex!important;flex-direction:row!important;align-items:center;justify-content:space-around;gap:0;padding:0 8px!important;overflow:visible!important;border-radius:34px!important;
+  background:rgba(22,78,62,.93)!important;border:1px solid rgba(191,240,226,.2)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 14px 40px rgba(0,0,0,.4)!important;z-index:9000!important;max-width:560px;margin-inline:auto}
+body.nova nav.nav>button{all:unset;direction:rtl;box-sizing:border-box;flex:1;min-width:0;height:100%;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;padding:0!important;cursor:pointer;color:#c3ece0;position:relative;font-family:inherit;transition:color .15s}
+body.nova nav.nav>button .nvIc{position:relative;display:grid;place-items:center;width:auto;height:auto;font-size:24px;line-height:1}
+body.nova nav.nav .nvIc .nv{width:24px;height:24px}
+body.nova nav.nav>button .nvIc+b{font-size:calc(11.5px*var(--v105-fs,1))!important;font-weight:700!important;line-height:1.2!important;white-space:nowrap;display:block}
+body.nova nav.nav>button.on{color:#f2c765}
+body.nova nav.nav>button.on .nv .f{fill-opacity:.85}
+body.nova nav.nav>button[data-n=home]{order:1}body.nova nav.nav>button[data-n=more]{order:2}body.nova nav.nav>button[data-n=prayer]{order:3}body.nova nav.nav>button[data-n=settings]{order:4}body.nova nav.nav>button[data-n=notif]{order:5}
+body.nova nav.nav>button.nvDx{display:none!important}
+body.nova nav.nav>button.nvS:not([data-n=settings]){display:none!important}
+body.nova nav.nav>button.nvC{flex:0 0 84px;height:84px;margin-top:-38px;border-radius:50%;color:#fff!important;background:radial-gradient(circle at 50% 35%,#2d866d,#145240 75%);box-shadow:0 0 0 3px #e8b855,0 0 0 6px rgba(22,78,62,.9),0 12px 30px rgba(232,184,85,.35)}
+body.nova nav.nav>button.nvC .nvIc .nv{display:none}
+body.nova nav.nav>button.nvC .nvCi{display:block;width:46px;height:46px}
+body.nova nav.nav>button.nvC b{display:none}
+body.nova .nvCi{display:none}
+body.nova .nvSbBrand,body.nova .nvSbArt{display:none}
+body.nova nav.nav .nvBadge{top:-5px;right:-8px}
+
+/* ---------- الصفحة ---------- */
+body.nova .app{max-width:none!important;margin:0!important;padding:calc(var(--nvTop) + 10px) var(--nvPad) calc(120px + env(safe-area-inset-bottom))!important}
+body.nova[data-pg=home] .app{padding-top:0!important}
+body.nova .app>.page{max-width:1180px;margin-inline:auto}
+body.nova .section{margin:4px 0 12px;gap:10px}
+body.nova .section h2{font-size:calc(21px*var(--v105-fs,1))}
+body.nova .section p{font-size:calc(12.5px*var(--v105-fs,1))}
+body.nova .back{width:42px;height:42px;padding:0;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--card);border:1px solid var(--line);color:var(--gold2);font-size:19px}
+body.nova:not(.dark) .back{color:var(--green)}
+body.nova .tile,body.nova .card{background:var(--card);border:1px solid var(--line);box-shadow:var(--glow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px}
+body.nova .card{padding:14px;margin:8px 0}
+body.nova .primary{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a5242;font-weight:800;border-radius:13px}
+body.nova:not(.dark) .primary,body.nova:not(.dark) .controls .active{color:#fff;background:linear-gradient(135deg,#53d7b1,#319478)}
+body.nova .danger{background:#a0363a}
+body.nova .notice,body.nova .downloadPanel{background:rgba(232,184,85,.12);color:var(--text);border:1px solid rgba(232,184,85,.26)}
+body.nova .num{background:rgba(232,184,85,.16);color:var(--gold2)}
+body.nova:not(.dark) .num{color:var(--green)}
+body.nova .search,body.nova .field,body.nova select,body.nova textarea,body.nova input[type=text],body.nova input[type=search],body.nova input[type=number],body.nova input[type=time],body.nova input[type=date]{background:var(--card);color:var(--text);border-color:var(--line);border-radius:13px}
+body.nova .controls button,body.nova .downloadBtn,body.nova .favBtn,body.nova .tabs button,body.nova .rewayaBtn,body.nova .pill{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:12px}
+body.nova .controls .active,body.nova .tabs .active,body.nova .rewayaBtn.active,body.nova .pill.active,body.nova .downloadBtn.downloaded,body.nova .favBtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a5242;border-color:transparent}
+body.nova .reader,body.nova .setting,body.nova .settingsCategory{background:var(--card);border-color:var(--line)}
+body.nova .reader{padding:12px}
+body.nova .player{background:color-mix(in srgb,var(--bg2) 94%,transparent);bottom:100px;border-color:var(--line)}
+body.nova .progress{background:rgba(255,255,255,.14)}body.nova .progress>span{background:var(--gold)}
+body.nova .listrow{border-color:var(--line)}
+body.nova .listrow>*,body.nova .rowMain>*,body.nova .readerTop>*{min-width:0}
+body.nova #v101Dock{bottom:calc(88px + env(safe-area-inset-bottom));padding:0 12px;transform:none}
+body.nova #v107InstallBar{bottom:calc(94px + env(safe-area-inset-bottom))!important;max-width:560px;margin-inline:auto}
+
+/* ---------- البطل: صورة واقعية ---------- */
+body.nova .nvHero{position:relative;overflow:hidden;isolation:isolate;margin:0 calc(-1*var(--nvPad));border-radius:0 0 30px 30px;height:clamp(540px,72vh,700px);--ph:420px;
+  background:linear-gradient(180deg,#124f3e 0,#186751 40%,#1e7f64 78%,#1a6d56);box-shadow:0 18px 40px rgba(0,0,0,.25)}
+body.nova .nvHero picture{display:contents}
+body.nova .nvPh{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:var(--ph);width:auto;max-width:none;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 20%),linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 20%),linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-composite:intersect}
+body.nova .nvHero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(8,34,27,.35),transparent 30%,transparent 78%,rgba(11,47,37,.45))}
+body.nova .nvCres{display:none}
+body.nova .nvHt{position:absolute;inset:0;text-align:center;color:#fff}
+body.nova #nvSl{position:absolute;inset:0;padding:calc(var(--nvTop) + 4px) 16px 0;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+body.nova #nvSl .nvCta{pointer-events:auto}
+body.nova #nvSl.in{animation:nvIn .6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes nvIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+body.nova #nvSl h1{margin:0;display:flex;flex-direction:column;align-items:center;line-height:1.05;font-family:inherit}
+body.nova #nvSl h1 .a{font-size:calc(21px*var(--v105-fs,1));font-weight:700;color:#fff;text-shadow:0 2px 12px #0009}
+body.nova #nvSl h1 .m{font-style:normal;font-size:calc(clamp(52px,17vw,70px)*var(--v105-fs,1));font-weight:900;background:linear-gradient(180deg,#fff2c0,#eab84e 55%,#b9832a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 14px #000a)}
+body.nova #nvSl h1 .d{display:none;font-style:normal}
+body.nova #nvSl p{margin:2px 0 0;max-width:24ch;font-size:calc(14.5px*var(--v105-fs,1));color:#eefbf7;text-shadow:0 2px 10px #000b;line-height:1.7}
+body.nova .nvDia{display:block;position:relative;width:170px;height:10px;margin-top:4px;background:linear-gradient(90deg,transparent,#e8b855 38%,#e8b855 62%,transparent) center/100% 1px no-repeat}
+body.nova .nvDia::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;background:#e8b855;transform:translate(-50%,-50%) rotate(45deg)}
+body.nova .nvCta{position:absolute;left:5%;bottom:62px;border:0;border-radius:999px;padding:0 26px;height:54px;font:inherit;font-weight:800;font-size:calc(18px*var(--v105-fs,1));color:#1c5e4b;background:linear-gradient(180deg,#ffeaa8,#e8b855);box-shadow:0 8px 26px rgba(232,184,85,.45),inset 0 1px 0 #fff8;cursor:pointer;display:inline-flex;gap:12px;align-items:center;justify-content:center;white-space:nowrap}
+body.nova .nvCta i{font-style:normal;font-size:14px}
+body.nova .nvDots{position:absolute;left:0;right:0;bottom:24px;display:flex;gap:9px;justify-content:center}
+body.nova .nvDots button{width:11px;height:11px;min-width:0!important;min-height:0!important;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.4);cursor:pointer;transition:width .25s,background .25s}
+body.nova .nvDots button.on{width:30px;background:#e8b855}
+
+/* ---------- الأقسام ---------- */
+body.nova .menu.nvMenu{display:grid!important;grid-template-columns:repeat(12,1fr)!important;gap:10px!important;margin-top:14px;position:relative;z-index:2}
+body.nova .nvMenu>.tile{grid-column:span 6;min-height:0;position:relative;display:grid!important;grid-template-columns:40px minmax(0,1fr) auto;column-gap:10px;row-gap:0;align-items:center;padding:10px 12px;text-align:start;overflow:hidden;order:9;transition:transform .18s,border-color .18s;cursor:pointer}
+body.nova .nvMenu>.tile:hover{transform:translateY(-2px);border-color:rgba(232,184,85,.5)}
+body.nova .nvMenu>.tile:active{transform:scale(.97)}
+body.nova .nvMenu>.tile .ico{grid-row:1/3;grid-column:1;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:23px;background:rgba(232,184,85,.14);color:var(--gold2);margin:0}
+body.nova:not(.dark) .nvMenu>.tile .ico{color:var(--green);background:rgba(49,148,120,.1)}
+body.nova .nvMenu>.tile b{grid-column:2;grid-row:1;margin:0;font-size:calc(14px*var(--v105-fs,1));display:block;min-width:0}
+body.nova .nvMenu>.tile small{grid-column:2;grid-row:2;display:none;margin:2px 0 0;font-size:calc(11.5px*var(--v105-fs,1));color:var(--muted);line-height:1.4}
+body.nova .nvMenu>.tile .nvGo{grid-column:3;grid-row:1/3;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:var(--gold2);font-size:14px}
+body.nova .nvMenu>.tile .nvGo .nv{transform:scaleX(-1)}
+body.nova .nvMenu>.tile .d{display:none}
+/* الأقسام الستة المميّزة */
+body.nova .nvMenu>.tile.nf{display:flex!important;grid-column:span 4;flex-direction:column;align-items:center;justify-content:flex-start;gap:3px;min-height:128px;padding:10px 6px 10px;text-align:center;color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:20px;
+  box-shadow:0 12px 28px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.28)}
+body.nova .nvMenu>.tile.nf::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% -10%,rgba(255,255,255,.3),transparent 55%);pointer-events:none}
+body.nova .nvMenu>.tile.nf .ico{width:auto;height:auto;background:none;border-radius:0;color:#fff;margin:0}
+body.nova .nvMenu>.tile.nf .nvPic{display:block;height:48px;width:48px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.3))}
+body.nova .nvMenu>.tile.nf b{font-size:calc(13px*var(--v105-fs,1));color:#fff;line-height:1.3;margin-top:2px}
+body.nova .nvMenu>.tile.nf small{display:block;color:rgba(255,255,255,.86);font-size:calc(11px*var(--v105-fs,1));margin:0;line-height:1.3;min-height:1.3em}
+body.nova .nvMenu>.tile.nf .nvGo{margin-top:auto;width:28px;height:28px;background:rgba(255,255,255,.26);color:#fff;font-size:16px}
+body.nova .nvMenu>.tile.nf .nvGo .nv{transform:none}
+body.nova .nvMenu>.tile.nf b,body.nova .nvMenu>.tile.nf small{text-align:center!important;width:100%;grid-column:auto!important;grid-row:auto!important}
+body.nova .nvMenu>.tile.nf .m{display:inline}body.nova .nvMenu>.tile.nf .d{display:none}
+/* ألوان الشاشة الضيقة (من صورة الهاتف) */
+body.nova .nvMenu>.tile[data-nv=quran]{order:1;background:linear-gradient(165deg,#4ad0aa,#229373)}
+body.nova .nvMenu>.tile[data-nv=mosques]{order:2;background:linear-gradient(165deg,#4f956e,#2c6048)}
+body.nova .nvMenu>.tile[data-nv=qtest]{order:3;background:linear-gradient(165deg,#58b399,#3a7c69)}
+body.nova .nvMenu>.tile[data-nv=adhkar]{order:4;background:linear-gradient(165deg,#64c6aa,#47927d)}
+body.nova .nvMenu>.tile[data-nv=prayer]{order:5;background:linear-gradient(165deg,#c9954c,#8b6038)}
+body.nova .nvMenu>.tile[data-nv=qibla]{order:6;background:linear-gradient(165deg,#3a9bbc,#258a6d)}
+body.nova .nvMenu>.nvRow{grid-column:1/-1;order:7;display:grid;gap:10px;grid-template-columns:1fr}
+body.nova .nvMenu>.nvHd{grid-column:1/-1;order:8;display:flex;align-items:center;gap:12px;margin:8px 2px 0;font-weight:800;font-size:calc(17px*var(--v105-fs,1));color:var(--gold2)}
+body.nova:not(.dark) .nvMenu>.nvHd{color:#fff;text-shadow:0 1px 6px #0004}
+body.nova .nvHd::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+body.nova #v107Home{display:none!important}
+
+/* ---------- البطاقات الفاتحة (آية + مواقيت) ---------- */
+body.nova .nvCard{position:relative;overflow:hidden;border-radius:26px;padding:12px 14px;color:#1a473a;border:1px solid rgba(255,255,255,.65);box-shadow:0 14px 36px rgba(13,57,44,.3),inset 0 1px 0 #fff9;
+  background:linear-gradient(180deg,rgba(237,250,246,.95),rgba(208,238,230,.93))}
+body.nova .nvCh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+body.nova .nvCh h3{margin:0;font-size:calc(16px*var(--v105-fs,1));color:#1a473a;font-weight:800}
+body.nova .nvLoc{display:flex;align-items:center;gap:4px;font-size:calc(12px*var(--v105-fs,1));color:#3b7867}
+body.nova .nvLoc:empty{display:none}
+body.nova .nvPin{font-size:14px;color:#26705b}
+body.nova #nvNextBox .v107HeroNext{margin:0 0 8px;padding:7px 12px;border-radius:14px;background:rgba(49,148,120,.1);border:0;color:#1a473a;box-shadow:none;gap:8px}
+body.nova #nvNextBox .v107HeroNext b{font-size:calc(14px*var(--v105-fs,1));color:#319478;display:inline}
+body.nova #nvNextBox .v107HeroNext small{opacity:.8;font-size:calc(11px*var(--v105-fs,1))}
+body.nova #nvNextBox .v107HeroNext .cd{color:#1a473a;font-size:calc(15px*var(--v105-fs,1))}
+body.nova .nvTimes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
+body.nova .nvTimes>div{display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 1px;min-width:0}
+body.nova .nvTimes>div+div{border-inline-start:1px solid rgba(49,148,120,.14)}
+body.nova .nvTimes .pi{display:grid}
+body.nova .nvTimes .nv{font-size:24px}
+body.nova .nvTimes small{font-size:calc(11.5px*var(--v105-fs,1));color:#1a473a;margin:0;font-weight:700;white-space:nowrap}
+body.nova .nvTimes b{font-size:calc(11.5px*var(--v105-fs,1));font-weight:600;color:#3b7867;font-variant-numeric:tabular-nums;direction:ltr;white-space:nowrap}
+body.nova .nvTimes .cur{background:rgba(232,184,85,.32);border-radius:14px;border-color:transparent}
+body.nova .nvTimes .cur b{color:#1a473a;font-weight:800}
+body.nova .nvSet{grid-column:1/-1;border:1px dashed rgba(49,148,120,.35);background:none;color:#319478;padding:12px;border-radius:14px;cursor:pointer;font:inherit;font-weight:700}
+body.nova .nvMore{margin-top:8px;border:0;background:#1d6651;color:#fff;border-radius:999px;padding:0 18px;height:36px;font:inherit;font-weight:700;font-size:calc(14px*var(--v105-fs,1));cursor:pointer;display:inline-flex;align-items:center;gap:10px;box-shadow:0 6px 16px rgba(21,89,70,.3)}
+body.nova .nvMore .nv{font-size:15px}
+body.nova .nvPray .nvMore{display:none}
+body.nova .nvVerse{display:flex;flex-direction:column;justify-content:center;min-height:150px;padding:12px 14px}
+body.nova .nvQp{position:absolute;inset:0 auto 0 0;width:46%;background:url(nv-quran-p.webp) left center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent);pointer-events:none}
+body.nova .nvVb{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;margin-inline:0 44%}
+body.nova .nvVh{display:flex;align-items:center;gap:7px;font-weight:800;font-size:calc(15px*var(--v105-fs,1));color:#1a473a;align-self:flex-end}
+body.nova .nvVh .nv{font-size:21px;color:#1d6651}
+body.nova .nvBs{display:none;font-size:calc(12px*var(--v105-fs,1));color:#3b7867}
+body.nova .nvV{font-family:"Amiri Quran","Amiri","Scheherazade New",serif;font-size:calc(clamp(20px,5.6vw,26px)*var(--v105-fs,1));line-height:1.8;color:#1a473a;font-weight:700}
+body.nova .nvV i{font-style:normal;color:#3aa687;font-size:.9em}
+body.nova .nvVerse small{color:#3b7867;margin:0;font-size:calc(12px*var(--v105-fs,1))}
+body.nova .nvPrev{display:flex;justify-content:space-between;gap:8px;margin:0 0 8px;padding:6px 12px;border-radius:14px;background:rgba(232,184,85,.22);color:#1a473a;font-size:calc(12px*var(--v105-fs,1))}
+body.nova .nvPrev[hidden]{display:none}
+body.nova .nvPrev b{color:#8a5d17}
+body.dark.nova .nvPrev{color:#1a473a}
+
+/* ---------- لوحات الإشعارات و«المزيد» ---------- */
+#nvBack{position:fixed;inset:0;z-index:9500;background:rgba(6,28,22,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s}
+#nvBack.open{opacity:1;pointer-events:auto}
+#nvNotif{position:fixed;z-index:9600;top:calc(var(--nvTop,64px) + 8px);left:10px;right:10px;max-height:min(70vh,560px);overflow:auto;border-radius:24px;padding:6px 6px 8px;color:#1a473a;direction:rtl;
+  background:linear-gradient(180deg,#f0fbf8,#d6f1e9);border:1px solid #fff9;box-shadow:0 24px 60px rgba(8,36,28,.55);transform:translateY(-8px) scale(.98);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s;transform-origin:top left}
+#nvNotif.open{transform:none;opacity:1;pointer-events:auto}
+#nvNotif .nvNh{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px 8px}
+#nvNotif .nvNh b{font-size:17px;font-weight:800}
+#nvNotif .nvNh button{border:0;background:#1d6651;color:#fff;border-radius:999px;height:32px;padding:0 14px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+#nvNotif .nvNi{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border-radius:16px}
+#nvNotif .nvNi+.nvNi{border-top:1px solid rgba(49,148,120,.1)}
+#nvNotif .nvNi .ni{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#53d7b1,#319478);color:#fff;font-size:22px}
+#nvNotif .nvNi .ni.ad{background:linear-gradient(160deg,#e8b855,#b9832a)}
+#nvNotif .nvNi b{display:block;font-size:14.5px;font-weight:800}
+#nvNotif .nvNi small{display:block;color:#468271;font-size:12px;margin-top:2px;line-height:1.5}
+#nvNotif .nvNi time{font-size:11.5px;color:#468271;white-space:nowrap;direction:ltr;align-self:start;padding-top:2px}
+#nvNotif .nvNe{padding:26px 16px;text-align:center;color:#468271;font-size:13.5px;line-height:1.8}
+#nvMore{position:fixed;z-index:9600;left:0;right:0;bottom:0;max-height:78vh;overflow:auto;border-radius:30px 30px 0 0;padding:8px 14px calc(22px + env(safe-area-inset-bottom));direction:rtl;color:#1a473a;
+  background:linear-gradient(180deg,#f0fbf8,#d3efe7);box-shadow:0 -20px 60px rgba(8,36,28,.5);transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+#nvMore.open{transform:none;pointer-events:auto}
+#nvMore .nvMh{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 0 12px}
+#nvMore .nvMh i{width:44px;height:5px;border-radius:9px;background:rgba(49,148,120,.3)}
+#nvMore .nvMh b{font-size:17px;font-weight:800}
+#nvMGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#nvMGrid button{border:0;background:rgba(255,255,255,.65);border-radius:18px;padding:12px 4px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;color:#1a473a;font:inherit}
+#nvMGrid button span{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(160deg,#53d7b1,#319478);color:#fff;font-size:24px}
+#nvMGrid button b{font-size:12.5px;font-weight:700;text-align:center;line-height:1.3}
+#nvMGrid .nv{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+#nvMGrid .nv .f,#nvNotif .nv .f{fill:currentColor;fill-opacity:.22}
+#nvNotif .nv{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+
+/* ---------- ≥ 560: لوح / أفقي ---------- */
+@media(min-width:560px){
+  body.nova{--nvPad:20px}
+  body.nova .nvHero{height:clamp(380px,46vw,480px);border-radius:0 0 34px 34px}
+  body.nova .nvPh{left:auto;right:0;transform:none;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 22%),linear-gradient(90deg,transparent,#000 24%);mask-image:linear-gradient(180deg,transparent 0,#000 22%),linear-gradient(90deg,transparent,#000 24%)}
+  body.nova .nvHero{background:radial-gradient(900px 400px at 18% 70%,#5c639a55,transparent 70%),linear-gradient(180deg,#1b634f 0,#347f6a 48%,#6ea696 90%,#82ada1)}
+  body.nova .nvHt{inset:0 auto 0 0;width:min(52%,560px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(var(--nvTop) - 10px) 4% 24px}
+  body.nova #nvSl{position:static;inset:auto;padding:0;gap:8px;pointer-events:auto}
+  body.nova #nvSl h1{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:0 10px}
+  body.nova #nvSl h1 .a,body.nova #nvSl h1 .d{display:inline;font-size:calc(clamp(26px,4.4vw,52px)*var(--v105-fs,1));font-weight:800;color:#fff;font-style:normal}
+  body.nova #nvSl h1 .m{display:none}
+  body.nova #nvSl p{font-size:calc(clamp(14px,1.8vw,20px)*var(--v105-fs,1));max-width:30ch}
+  body.nova .nvDia{display:none}
+  body.nova .nvCta{position:static;margin-top:10px;height:48px;font-size:calc(16px*var(--v105-fs,1))}
+  body.nova .nvDots{position:static;margin-top:16px}
+  body.nova .nvCres{display:block;position:absolute;top:calc(var(--nvTop) - 18px);right:5%;width:clamp(70px,8vw,120px);height:auto;z-index:-1;opacity:.95}
+  body.nova .menu.nvMenu{margin-top:-46px;gap:12px!important}
+  body.nova .nvMenu>.tile{grid-column:span 4}
+  body.nova .nvMenu>.tile small{display:block}
+  body.nova .nvMenu>.tile.nf{min-height:176px;padding:16px 10px 14px;gap:6px}
+  body.nova .nvMenu>.tile.nf .nvPic{height:60px;width:60px}
+  body.nova .nvMenu>.tile.nf b{font-size:calc(17px*var(--v105-fs,1))}
+  body.nova .nvMenu>.tile.nf small{font-size:calc(13px*var(--v105-fs,1))}
+  body.nova .nvMenu>.tile.nf .m{display:none}body.nova .nvMenu>.tile.nf .d{display:inline}
+  body.nova .nvMenu>.tile.nf .nvGo{width:34px;height:34px}
+  body.nova .nvRow{grid-template-columns:1fr 1fr}
+  body.nova .nvCard{padding:16px 20px}
+  body.nova .nvCh h3{font-size:calc(19px*var(--v105-fs,1))}
+  body.nova .nvTimes .nv{font-size:28px}
+  body.nova .nvTimes small{font-size:calc(14px*var(--v105-fs,1))}body.nova .nvTimes b{font-size:calc(13.5px*var(--v105-fs,1))}
+  body.nova .nvPray .nvMore{display:inline-flex;margin-top:10px;flex-direction:row-reverse}
+  body.nova .nvVerse{min-height:210px;padding:18px 22px}
+  body.nova .nvQp{inset:0 auto 0 0;width:42%;background:url(nv-quran-l.webp) left center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 50%,transparent);mask-image:linear-gradient(90deg,#000 50%,transparent)}
+  body.nova .nvVb{margin-inline:0 42%;align-items:center}
+  body.nova .nvVh{display:none}
+  body.nova .nvBs{display:block}
+  body.nova .nvV{font-size:calc(clamp(24px,3vw,32px)*var(--v105-fs,1))}
+  #nvNotif{width:390px;right:auto;left:16px}
+  #nvMore{left:50%;right:auto;width:min(560px,100%);transform:translate(-50%,105%)}
+  #nvMore.open{transform:translate(-50%,0)}
+}
+/* ---------- ≥ 1024: قائمة جانبية يمنى ---------- */
+@media(min-width:1024px){
+  body.nova{--nvPad:28px;--nvTop:68px}
+  body.nova header.top{right:var(--nvSb)!important;padding:0 26px!important;grid-template-columns:1fr minmax(280px,460px) 1fr}
+  body.nova .nvBrand{display:none}
+  body.nova .nvSearch{display:flex}
+  body.nova .nvPill .nvGear{display:grid}
+  body.nova .nvBack{display:grid;background:transparent}
+  body.nova nav.nav{top:0!important;bottom:0!important;left:auto!important;right:0!important;width:var(--nvSb)!important;height:auto!important;max-width:none;margin:0;border-radius:0!important;border:0!important;border-left:1px solid rgba(191,240,226,.14)!important;
+    flex-direction:column!important;align-items:stretch;justify-content:flex-start;gap:4px;padding:16px 12px 0!important;overflow-y:auto!important;overflow-x:hidden!important;
+    background:linear-gradient(180deg,#1f5a49,#2d584c 55%,#164034)!important;box-shadow:-10px 0 40px rgba(0,0,0,.25)!important}
+  body.nova .nvSbBrand{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 6px 16px;cursor:pointer;direction:rtl}
+  body.nova .nvSbBrand b{font-size:calc(27px*var(--v105-fs,1));font-weight:800;color:#fff}
+  body.nova .nvSbBrand .nvLogo{height:50px}
+  body.nova nav.nav>button{flex:none;height:46px;flex-direction:row!important;justify-content:flex-start!important;gap:14px!important;padding:0 14px!important;border-radius:14px;color:#e9faf5;order:0!important}
+  body.nova nav.nav>button:hover{background:rgba(255,255,255,.08)}
+  body.nova nav.nav>button .nvIc{font-size:22px}
+  body.nova nav.nav .nvIc .nv{width:22px;height:22px;color:#b4eddd}
+  body.nova nav.nav>button .nvIc+b{font-size:calc(15px*var(--v105-fs,1))!important;font-weight:600!important}
+  body.nova nav.nav>button.on{background:linear-gradient(180deg,#f6dfa4,#d9a85a);color:#1a5242!important;box-shadow:0 8px 22px rgba(232,184,85,.3)}
+  body.nova nav.nav>button.on .nv{color:#1a5242}
+  body.nova nav.nav>button.nvMo{display:none!important}
+  body.nova nav.nav>button.nvDx,body.nova nav.nav>button.nvS:not([data-n=settings]){display:flex!important}
+  body.nova nav.nav>button.nvC{flex:none;width:auto;height:46px;margin:0;border-radius:14px;background:transparent;box-shadow:none;color:#e9faf5!important}
+  body.nova nav.nav>button.nvC.on{background:linear-gradient(180deg,#f6dfa4,#d9a85a);color:#1a5242!important}
+  body.nova nav.nav>button.nvC .nvIc .nv{display:block}
+  body.nova nav.nav>button.nvC .nvCi{display:none}
+  body.nova nav.nav>button.nvC b{display:block}
+  body.nova .nvSbArt{display:block;flex:1 0 120px;min-height:120px;margin:0 -12px;background:url(nv-sky.webp) center bottom/cover no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%);mask-image:linear-gradient(180deg,transparent,#000 40%)}
+  body.nova .app{margin-right:var(--nvSb)!important;padding:calc(var(--nvTop) + 14px) var(--nvPad) 40px!important}
+  body.nova[data-pg=home] .app{padding-top:0!important}
+  body.nova .player{bottom:14px}
+  body.nova #v101Dock{right:var(--nvSb);bottom:0;padding-bottom:10px}
+  body.nova #v107InstallBar{bottom:16px!important;inset-inline:auto 16px!important;margin:0}
+  body.nova .nvHero{height:clamp(420px,54vh,540px)}
+  body.nova .menu.nvMenu{margin-top:-78px}
+  body.nova .nvMenu>.tile[data-nv=adhkar]{display:none!important}
+  body.nova .nvMenu>.tile.nf{min-height:196px}
+  body.nova .nvMenu>.tile[data-nv=quran]{order:1;background:linear-gradient(165deg,#4e9680,#2d6a5a)}
+  body.nova .nvMenu>.tile[data-nv=prayer]{order:2;background:linear-gradient(165deg,#b9945a,#7d5c38)}
+  body.nova .nvMenu>.tile[data-nv=qibla]{order:3;background:linear-gradient(165deg,#3fb090,#258469)}
+  body.nova .nvMenu>.tile[data-nv=mosques]{order:4;background:linear-gradient(165deg,#4c8a6e,#2f5f4b)}
+  body.nova .nvMenu>.tile[data-nv=qtest]{order:5;background:linear-gradient(165deg,#76ceb5,#428e78)}
+  #nvNotif{left:24px}
+}
+@media(min-width:1024px){body.nova .menu.nvMenu{grid-template-columns:repeat(20,1fr)!important}body.nova .nvMenu>.tile.nf{grid-column:span 4}body.nova .nvMenu>.tile:not(.nf){grid-column:span 5}body.nova .nvMenu>.nvRow,body.nova .nvMenu>.nvHd{grid-column:1/-1}}
+/* هاتف أفقي قصير */
+@media(max-height:500px) and (orientation:landscape) and (max-width:1023px){
+  body.nova .nvHero{height:min(330px,86vh)}
+  body.nova nav.nav{height:58px!important}body.nova nav.nav>button b{display:none}
+  body.nova nav.nav>button.nvC{flex-basis:64px;height:64px;margin-top:-22px}body.nova nav.nav>button.nvC .nvCi{width:36px}
+}
+@media(max-width:360px){
+  body.nova .nvMenu>.tile.nf{min-height:116px;padding:8px 4px}
+  body.nova .nvMenu>.tile.nf .nvPic{height:38px;width:38px}
+  body.nova .nvMenu>.tile.nf b{font-size:12px}body.nova .nvMenu>.tile.nf small{font-size:10.5px}
+  body.nova .nvTimes small,body.nova .nvTimes b{font-size:10.5px}body.nova .nvTimes .nv{font-size:21px}
+  body.nova .nvCta{height:48px;font-size:16px;padding:0 20px}
+}
+@media(prefers-reduced-motion:reduce){body.nova *{animation:none!important;transition:none!important}}
+
+/* ---------- شاشة البداية ---------- */
+#v6Intro{background:radial-gradient(ellipse at 50% 40%,#2b8f73 0,#155745 55%,#0a2a21 100%)!important}
+
+/* ---------- الإعدادات: بطاقات + صفحة داخلية ---------- */
+body.nova #settings .nvSetBar{display:none;align-items:center;gap:10px;margin:0 0 12px}
+body.nova #settings .nvSetBar h2{margin:0;font-size:18px;color:var(--text);flex:1;min-width:0}
+body.nova #settings .nvSetBar .back{width:40px;height:40px;min-height:0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--gold);display:grid;place-items:center;padding:0;flex:none}
+body.nova #settings .nvSetBar .back svg{width:20px;height:20px}
+body.nova #settings .nvSetGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:8px 0}
+body.nova #settings .nvSetGrid button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:92px;padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--text);text-align:right;position:relative;font:inherit}
+body.nova #settings .nvSetGrid .si{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405}
+body.nova #settings .nvSetGrid .si svg{width:22px;height:22px}
+body.nova #settings .nvSetGrid b{font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+body.nova #settings .nvSetGrid .sg{position:absolute;left:10px;top:12px;color:var(--muted)}
+body.nova #settings .nvSetGrid .sg svg{width:16px;height:16px}
+body.nova #settings[data-sub] .nvSetGrid,body.nova #settings[data-sub] .stgQuick,body.nova #settings[data-sub] details.stgCat:not([data-act]){display:none!important}
+body.nova #settings[data-sub] .nvSetBar{display:flex}
+body.nova #settings:not([data-sub]) details.stgCat{display:none!important}
+body.nova #settings details.stgCat[data-act]>summary{display:none}
+body.nova #settings details.stgCat[data-act]{border:0;background:none;box-shadow:none;padding:0}
+body.nova #settings[data-sub]>.section:first-child{display:none!important}
+body.nova .qtGrid>*{min-width:0;overflow-wrap:anywhere}
+body.nova input,body.nova select,body.nova textarea{min-width:0;max-width:100%}
+body.nova .page [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+body.nova .page [style*="display:grid"]>*,body.nova .page [style*="display:flex"]>*{min-width:0}
+.seoLinks{margin:14px 0 0;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:13px;color:var(--muted)}
+.seoLinks nav{display:flex;flex-wrap:wrap;gap:8px 14px;margin:8px 0}
+.seoLinks b,.seoLinks summary{color:var(--text);font-weight:700;cursor:pointer}
+.seoLinks a{color:var(--gold);text-decoration:none;white-space:nowrap}
+.seoLinks small{display:block;line-height:1.7}
+
+/* ---------- رأس الهاتف: الجرس يميناً والوضع الليلي يساراً، والاسم في الوسط ---------- */
+@media(max-width:1023.98px){
+  body.nova .nvTools,body.nova .nvPill{display:contents}
+  body.nova .nvPill button{width:42px;height:42px;border-radius:50%;background:var(--hbg);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  body.nova .nvPill .nvBell{grid-column:1;grid-row:1;justify-self:start}
+  body.nova .nvPill .nvMoon{grid-column:3;grid-row:1;justify-self:end;background:var(--hbg);box-shadow:none}
+  body.nova .nvBrand{grid-column:2;grid-row:1}
+  body.nova .nvBack{display:none!important}
+}
+/* ---------- الشريط السفلي: ثابت اللون في الفاتح والداكن، والزر الأوسط بمستوى بقية الأزرار ---------- */
+body.nova nav.nav{background:#164e3e!important;color:#d9f4ec;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body.nova nav.nav>button{color:#d9f4ec!important}
+body.nova nav.nav>button.on{color:#f2c765!important}
+@media(max-width:1023.98px){
+  body.nova nav.nav>button.nvDx.nvMq{display:flex!important}
+  body.nova nav.nav>button[data-n=qibla]{order:5}
+  body.nova nav.nav>button.nvC{flex:0 0 66px;height:62px;margin-top:0;border-radius:50%;box-shadow:0 0 0 2.5px #e8b855,0 6px 18px rgba(232,184,85,.28)}
+  body.nova nav.nav>button.nvC .nvCi{width:38px;height:38px}
+}
+@media(max-height:500px) and (orientation:landscape) and (max-width:1023px){
+  body.nova nav.nav>button.nvC{flex-basis:52px;height:50px;margin-top:0}body.nova nav.nav>button.nvC .nvCi{width:30px;height:30px}
+}
+/* صفحة القارئ: الجنسية + العلم */
+.mNatP{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:calc(14px*var(--v105-fs,1))}
+.mNatP .mNatL{opacity:.75}.mNatP b{font-weight:800}
+@media(min-width:1024px){
+  body.nova nav.nav>button.on{color:#1a5242!important}
+}
+
+/* شاشات طولية: كل قسم في سطر مستقل بعرض كامل (لا أعمدة ضيقة تُحشر فيها الكلمات) */
+@media(max-width:1023.98px) and (orientation:portrait){
+  body.nova .nvMenu>.tile:not(.nf){grid-column:1/-1;min-height:60px;padding:12px 14px}
+  body.nova .nvMenu>.tile:not(.nf) small{display:block}
+  body.nova .nvMenu>.tile:not(.nf) b{font-size:calc(15.5px*var(--v105-fs,1))}
+  body.nova .menu.nvMenu{margin-top:22px}
+}
+body.nova .nvSbBrand .nvLogo{width:50px;height:50px;border-radius:14px;flex:none}
+/* في الداكن اللون الأساسي للعناصر ذهبي: نص داكن عليها ليبقى مقروءاً في الوضعين */
+body.nova.dark .calNow,body.nova.dark .v80StoryVideoBtn{color:#16352b!important}
+
+/* شبكة أمان: لا يُسحق نص بين أزرار — الصف يلتفّ، وللنص حدّ أدنى للعرض (يمنع تراصّ الحروف رأسياً) */
+body.nova .page :has(>[style*="flex:1"]){flex-wrap:wrap}
+body.nova .page [style*="flex:1"]{min-width:min(100%,9em)!important}
+body.nova .mqItem{flex-wrap:wrap}
+body.nova .mqItem>div:first-child{flex:1 1 11em!important;min-width:min(100%,11em)!important}
+body.nova .mqItem>.controls{flex:1 1 auto!important;flex-wrap:wrap;justify-content:flex-start}
+body.nova .page .controls{flex-wrap:wrap}
+body.nova .page b,body.nova .page small,body.nova .page .mini,body.nova .page h3{overflow-wrap:anywhere;word-break:normal}
+
+/* ---------- شريط التشغيل الموحّد: القرّاء والرقية والأذكار والأدعية والأوضاع بنفس الشكل ---------- */
+body.nova .globalMiniPlayer,body.nova .v43AudioBar{align-items:center;gap:10px;min-height:58px;padding:8px 10px!important;background:#164e3e!important;color:#e9faf5!important;border:1px solid rgba(232,184,85,.6)!important;border-radius:18px!important;box-shadow:0 8px 22px rgba(0,0,0,.35)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;margin:0 0 8px!important;box-sizing:border-box}
+body.nova .globalMiniPlayer .miniPlayerInfo,body.nova .v43AudioBar .miniPlayerInfo{flex:1 1 auto;min-width:0;gap:10px}
+body.nova .globalMiniPlayer .miniPlayerInfo>span,body.nova .v43AudioBar .miniPlayerInfo>span{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f6d78a,#d8a53f);color:#2b1d02}
+body.nova .globalMiniPlayer .miniPlayerInfo>span svg,body.nova .v43AudioBar .miniPlayerInfo>span svg{width:22px;height:22px}
+body.nova .globalMiniPlayer .miniPlayerInfo>div,body.nova .v43AudioBar .miniPlayerInfo>div{min-width:0;flex:1}
+body.nova .globalMiniPlayer .miniPlayerInfo b,body.nova .v43AudioBar .miniPlayerInfo b{max-width:none;color:#fff;font-size:calc(14px*var(--v105-fs,1));font-weight:800}
+body.nova .globalMiniPlayer .miniPlayerInfo small,body.nova .v43AudioBar .miniPlayerInfo small{max-width:none;color:#bfe3d8;font-size:calc(12px*var(--v105-fs,1))}
+body.nova .globalMiniPlayer .miniPlayerActions,body.nova .v43AudioBar .miniPlayerActions{display:flex;gap:7px;flex:none;align-items:center}
+body.nova .globalMiniPlayer .miniPlayerActions button,body.nova .v43AudioBar .miniPlayerActions button{width:40px;height:40px;min-height:0;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;font-size:0!important;line-height:0;overflow:hidden}
+body.nova .globalMiniPlayer .miniPlayerActions button svg,body.nova .v43AudioBar .miniPlayerActions button svg{width:19px;height:19px;margin:0}
+body.nova #miniPlayBtn,body.nova #v43AudioPlay{background:linear-gradient(135deg,#f6d78a,#d8a53f)!important;color:#2b1d02!important;border-color:transparent!important}
+body.nova #miniMuteBtn{display:none!important}
+body.nova .globalMiniPlayer .bgMiniBtn.on{background:rgba(232,184,85,.28);border-color:#e8b855}
+body.nova .globalMiniPlayer .miniPlayerActions .bgMiniBtn:not(.on),body.nova .v43AudioBar .miniPlayerActions .bgMiniBtn:not(.on){display:none!important}
+body.nova .globalMiniPlayer .miniPlayerActions .vi,body.nova .v43AudioBar .miniPlayerActions .vi{width:19px;height:19px}
+body.nova .globalMiniPlayer .miniPlayerInfo>span .vi,body.nova .v43AudioBar .miniPlayerInfo>span .vi{width:22px;height:22px}
+
+body.nova #nvNextBox .v107HeroNext *{color:#1a473a}
+body.nova #nvNextBox .v107HeroNext b{color:#1d6651}
+
+body.nova .ftG{border:1px solid var(--line,rgba(255,255,255,.2));border-radius:16px;margin:8px 0;background:var(--card,rgba(255,255,255,.08));overflow:hidden}
+body.nova .ftG>summary{list-style:none;cursor:pointer;padding:13px 16px;font-weight:800;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:8px}
+body.nova .ftG>summary::-webkit-details-marker{display:none}
+body.nova .ftG>summary::after{content:"";width:9px;height:9px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .2s;flex:none;margin-top:-3px}
+body.nova .ftG[open]>summary::after{transform:rotate(-135deg);margin-top:3px}
+body.nova .ftB{padding:0 16px 14px;color:var(--text);line-height:1.9;font-size:calc(14px*var(--v105-fs,1))}
+body.nova .ftB p{margin:0 0 6px;color:var(--muted)}
+body.nova .ftB h4{margin:12px 0 4px;color:var(--gold);font-size:calc(14px*var(--v105-fs,1))}
+body.nova .ftB ul,body.nova .ftB ol{margin:0;padding-inline-start:20px}
+body.nova .ftB li{margin:2px 0}
+body.nova #mpDlBtn{background:linear-gradient(135deg,var(--gold,#f0c25a),var(--gold2,#c8902f));color:#14463a;font-weight:800;border:0;border-radius:14px}
+body.nova .mpJuzRow button{min-width:64px;padding:0 10px;color:var(--text)}
+body.nova #mpHomeBack svg{width:22px;height:22px}
+
+/* أزرار المصحف: أشكال صلبة صريحة لا تعتمد على شفافية/متغيرات (تظهر بنفس الشكل على iOS) */
+body.nova #mushaf107 button,body.nova #mpSet button,body.nova #mpOv button{-webkit-appearance:none;appearance:none;font-family:inherit}
+body.nova #mushaf107 .mpBack,body.nova #mushaf107 .mpGear,body.nova #mpSetX{width:44px;height:44px;min-width:44px;padding:0;border-radius:50%;background:#1c6450;border:1px solid #bff0e2;color:#fff;display:flex;align-items:center;justify-content:center}
+body.nova #mushaf107 .mpNav>button,body.nova #mushaf107 .mpSel>button{background:#1c6450;border:1px solid #bff0e2;color:#fff;border-radius:14px;min-width:48px;height:46px;display:flex;align-items:center;justify-content:center;padding:0}
+body.nova #mpSetX{background:#7a2a2a;border-color:#f3b3b3}
+body.nova #mushaf107 svg,body.nova #mpSet svg,body.nova #mpOv svg,body.nova #mpSheet svg{width:22px;height:22px;flex:none;display:block;overflow:visible}
+body.nova #mpSheet button{background:#1c6450;color:#fff;border:1px solid #bff0e2;border-radius:12px;min-height:44px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+body.nova #mpSheet button.primary{background:linear-gradient(135deg,#f0c25a,#c8902f);color:#14463a;border:0;font-weight:800}
+body.nova #mpOv button{background:rgba(10,45,36,.92);color:#fff;border:1px solid rgba(255,255,255,.55);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+body.nova #mpOvExit{background:#7a2a2a;border-color:#f3b3b3}
+body.nova #mpOvExit span{font-size:14px;font-weight:700}
+body.nova #mpDlBtn,body.nova #mpSet .mpJuzRow button{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+body.nova #mpSet .mpJuzRow button{background:#1c6450;color:#fff;border:1px solid #bff0e2;min-width:64px;min-height:38px}
+body.nova #mpSet #mpMinus,body.nova #mpSet #mpPlus,body.nova #mpSet #mpGoalM,body.nova #mpSet #mpGoalP{background:#1c6450;color:#fff;border:1px solid #bff0e2}

@@ -1,81 +1,97 @@
 {
-  "id": "./",
-  "name": "المسلم",
-  "short_name": "المسلم",
-  "description": "قرّاء وتلاوات، تكرار الآيات، الأذكار والرقية، القبلة، المساجد القريبة وأكثر — يعمل بلا إنترنت.",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "display_override": [
-    "standalone",
-    "fullscreen"
-  ],
-  "orientation": "portrait",
-  "dir": "rtl",
-  "lang": "ar",
-  "categories": [
-    "lifestyle",
-    "education",
-    "utilities"
-  ],
-  "theme_color": "#1d624f",
-  "background_color": "#124f3e",
-  "icons": [
+ "id": "./",
+ "name": "المسلم",
+ "short_name": "المسلم",
+ "description": "قرّاء وتلاوات، تكرار الآيات، الأذكار والرقية، القبلة، المساجد القريبة وأكثر — يعمل بلا إنترنت.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "display_override": [
+  "standalone",
+  "fullscreen"
+ ],
+ "orientation": "portrait",
+ "dir": "rtl",
+ "lang": "ar",
+ "categories": [
+  "lifestyle",
+  "education",
+  "utilities"
+ ],
+ "theme_color": "#1d624f",
+ "background_color": "#124f3e",
+ "icons": [
+  {
+   "src": "ic-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "ic-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "ic-m512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "المصحف",
+   "short_name": "المصحف",
+   "description": "فتح المصحف الشريف",
+   "url": "./?open=mushaf107",
+   "icons": [
     {
-      "src": "ic-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "ic-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "ic-m512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+     "src": "ic-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
     }
-  ],
-  "shortcuts": [
+   ]
+  },
+  {
+   "name": "مواقيت الصلاة",
+   "short_name": "مواقيت الصلاة",
+   "description": "الصلاة القادمة والأوقات",
+   "url": "./?open=prayer",
+   "icons": [
     {
-      "name": "أذكار الصباح",
-      "short_name": "أذكار الصباح",
-      "url": "./?open=adhkar-morning",
-      "icons": [
-        {
-          "src": "ic-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "القبلة",
-      "short_name": "القبلة",
-      "url": "./?open=qibla",
-      "icons": [
-        {
-          "src": "ic-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "تثبيت ومشاركة",
-      "short_name": "تثبيت",
-      "url": "./?open=install",
-      "icons": [
-        {
-          "src": "ic-192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
+     "src": "ic-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
     }
-  ]
+   ]
+  },
+  {
+   "name": "القبلة",
+   "short_name": "القبلة",
+   "description": "اتجاه القبلة",
+   "url": "./?open=qibla",
+   "icons": [
+    {
+     "src": "ic-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "أذكار الصباح",
+   "short_name": "أذكار الصباح",
+   "description": "أذكار الصباح",
+   "url": "./?open=adhkar-morning",
+   "icons": [
+    {
+     "src": "ic-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  }
+ ]
 }
