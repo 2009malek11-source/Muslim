@@ -1,0 +1,433 @@
+{
+ "source": "المسلم (Al-Muslim)",
+ "license": "للجميع أخذ هذه القائمة وإعادة استخدامها مجانًا دون الحاجة إلى التواصل، بشرط ذكر «المصدر: موقع المسلم» بشكل ظاهر. الملفات الصوتية ملك لأصحابها وتُحمَّل من مصادرها الأصلية.",
+ "note": "قائمة القرّاء الإضافيين؛ بقية القرّاء تأتي من mp3quran.net",
+ "file_pattern": "{server}{NNN}.mp3 (NNN = رقم السورة من ثلاث خانات)",
+ "readers": [
+  {
+   "name": "عبد الرحمن مسعد",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://archive.org/download/010_20221110/"
+  },
+  {
+   "name": "حسام الدين عبادي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://archive.org/download/Abbadi-Houssem-Eddine/"
+  },
+  {
+   "name": "أحمد خضر",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://archive.org/download/012_20221105_202211/"
+  },
+  {
+   "name": "نور الدين المسلاتي",
+   "rewaya": "قالون عن نافع",
+   "server": "https://archive.org/download/20230906/"
+  },
+  {
+   "name": "صلاح الباجي",
+   "rewaya": "قالون عن نافع",
+   "server": "https://archive.org/download/Salah-Al-Baji/"
+  },
+  {
+   "name": "مفتاح السلطني",
+   "rewaya": "KH",
+   "server": "https://archive.org/download/khalladsaltani/"
+  },
+  {
+   "name": "يوسف نوح أحمد",
+   "rewaya": "KH",
+   "server": "https://archive.org/download/reeding-of--khallad-an--hamzah----------------by_______yousef-nouh-ahmad-mp3--/Khallad_"
+  },
+  {
+   "name": "نبيل الرفاعي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/nabil_rifa3i/"
+  },
+  {
+   "name": "عبد المحسن القاسم",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdul_muhsin_alqasim/"
+  },
+  {
+   "name": "فارس عباد",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/fares/"
+  },
+  {
+   "name": "عبد الباري الثبيتي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/thubaity/"
+  },
+  {
+   "name": "سهل ياسين",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/sahl_yaaseen/"
+  },
+  {
+   "name": "صلاح بو خاطر",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/salaah_bukhaatir/"
+  },
+  {
+   "name": "أحمد بن علي العجمي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ahmed_ibn_3ali_al-3ajamy/"
+  },
+  {
+   "name": "عبد العزيز الأحمد",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulazeez_al-ahmad/"
+  },
+  {
+   "name": "محمد أيوب",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_ayyoob/"
+  },
+  {
+   "name": "توفيق الصائغ",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/tawfeeq_bin_saeed-as-sawaaigh/"
+  },
+  {
+   "name": "محمد المحيسني",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mehysni/"
+  },
+  {
+   "name": "هاني الرفاعي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/rifai/"
+  },
+  {
+   "name": "إبراهيم الجبرين",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/jibreen/"
+  },
+  {
+   "name": "صالح الطالب",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/saleh_al_taleb/"
+  },
+  {
+   "name": "عبد الودود حنيف",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulwadood_haneef/"
+  },
+  {
+   "name": "صلاح البدير",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/salahbudair/"
+  },
+  {
+   "name": "عزيز عليلي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/aziz_alili/"
+  },
+  {
+   "name": "محمد اللحيدان",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_alhaidan/"
+  },
+  {
+   "name": "حمد سنان",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/hamad_sinan/"
+  },
+  {
+   "name": "عبد الرزاق الدليمي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulrazaq_bin_abtan_al_dulaimi/"
+  },
+  {
+   "name": "محمد عبد الكريم",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_abdulkareem/"
+  },
+  {
+   "name": "مصطفى العزاوي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mustafa_al3azzawi/"
+  },
+  {
+   "name": "عبد الله خياط",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/khayat/"
+  },
+  {
+   "name": "صلاح الهاشم",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/salah_alhashim/"
+  },
+  {
+   "name": "عادل الكلباني",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/adel_kalbani/"
+  },
+  {
+   "name": "حاتم فريد",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/hatem_farid/collection/"
+  },
+  {
+   "name": "مصطفى إسماعيل",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mostafa_ismaeel/"
+  },
+  {
+   "name": "محمد الطبلاوي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mohammad_altablawi/"
+  },
+  {
+   "name": "محمد إسماعيل المقدم",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mohammad_ismaeel_almuqaddim/"
+  },
+  {
+   "name": "عماد زهير حافظ",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/imad_zuhair_hafez/"
+  },
+  {
+   "name": "ياسر الدوسري",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/yasser_ad-dussary/"
+  },
+  {
+   "name": "إبراهيم الأخضر",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ibrahim_al_akhdar/"
+  },
+  {
+   "name": "ناصر القطامي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/nasser_bin_ali_alqatami/"
+  },
+  {
+   "name": "خالد الغامدي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/khalid_alghamdi/"
+  },
+  {
+   "name": "عبد الكريم الحازمي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulkareem_al_hazmi/"
+  },
+  {
+   "name": "عبد المنعم عبد المبدي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulmun3im_abdulmubdi2/"
+  },
+  {
+   "name": "أحمد الحذيفي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ahmad_alhuthayfi/"
+  },
+  {
+   "name": "إدريس أبكر",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/idrees_abkar/"
+  },
+  {
+   "name": "بندر بليلة",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/bandar_baleela/complete/"
+  },
+  {
+   "name": "محمد خليل",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_khaleel/"
+  },
+  {
+   "name": "عبد الله مطرود",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdullah_matroud/"
+  },
+  {
+   "name": "أحمد نعينع",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ahmad_nauina/"
+  },
+  {
+   "name": "أكرم العلاقمي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/akram_al_alaqmi/"
+  },
+  {
+   "name": "علي حجاج السويسي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ali_hajjaj_alsouasi/"
+  },
+  {
+   "name": "محمود علي البنا",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mahmood_ali_albana/"
+  },
+  {
+   "name": "وديع اليمني",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/wadee_hammadi_al-yamani/"
+  },
+  {
+   "name": "عاصم عبد العليم",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/asim_abdulaleem/"
+  },
+  {
+   "name": "خليفة الطنيجي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/khalifah_taniji/"
+  },
+  {
+   "name": "عبد الرحمن الشحات",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulrahman_al_shahat/"
+  },
+  {
+   "name": "عبد العزيز الزهراني",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulaziz_bin_saleh_alzahrani/"
+  },
+  {
+   "name": "أبو بكر الشاطري",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abu_bakr_ash-shaatree/"
+  },
+  {
+   "name": "سعد الغامدي",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (السوسي)",
+   "rewaya": "السوسي عن أبي عمرو",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_soosi_rec/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (خلف)",
+   "rewaya": "خلف عن حمزة",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_-_khalaf_3an_7amza_recitation/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (الدوري)",
+   "rewaya": "الدوري عن أبي عمرو",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_doori/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (شعبة)",
+   "rewaya": "شعبة عن عاصم",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_shu3ba/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (الكسائي)",
+   "rewaya": "أبو الحارث عن الكسائي",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_abi_al7arith/"
+  },
+  {
+   "name": "علي الحذيفي (قالون)",
+   "rewaya": "قالون عن نافع",
+   "server": "https://download.quranicaudio.com/quran/huthayfi_qaloon/"
+  },
+  {
+   "name": "محمود خليل الحصري (الدوري)",
+   "rewaya": "الدوري عن أبي عمرو",
+   "server": "https://download.quranicaudio.com/quran/mahmood_khaleel_al-husaree_doori/"
+  },
+  {
+   "name": "عبد الباسط عبد الصمد (ورش)",
+   "rewaya": "ورش عن نافع",
+   "server": "https://download.quranicaudio.com/quran/abdulbaset_warsh/"
+  },
+  {
+   "name": "نورين محمد صديق (الدوري)",
+   "rewaya": "الدوري عن أبي عمرو",
+   "server": "https://download.quranicaudio.com/quran/noreen_siddiq/"
+  },
+  {
+   "name": "محمد حسان",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/mu7ammad_7assan/"
+  },
+  {
+   "name": "عبد الله علي جابر",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/ali_jaber/"
+  },
+  {
+   "name": "ماهر المعيقلي (1440)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/maher_almu3aiqly/year1440/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (حفص)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi/"
+  },
+  {
+   "name": "عبد الرشيد صوفي (السوسي 2020)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdurrashid_sufi_soosi_2020/"
+  },
+  {
+   "name": "عبد الله عبدل",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdallah_abdal/"
+  },
+  {
+   "name": "محمد سليمان باتيل",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_patel/"
+  },
+  {
+   "name": "محمود خليل الحصري (المعلّم)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/husary_muallim/"
+  },
+  {
+   "name": "محمود خليل الحصري (مجوّد)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/generated/husary_mujawwad/"
+  },
+  {
+   "name": "الحسيني العزازي (مع الأطفال)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/alhusaynee_al3azazee_with_children/"
+  },
+  {
+   "name": "د. شوقي حامد (مرتّل)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/dr.shawqy_7amed/murattal/"
+  },
+  {
+   "name": "د. شوقي حامد (مجوّد)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/dr.shawqy_7amed/mujawwad/"
+  },
+  {
+   "name": "محمد صديق المنشاوي (مجوّد)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/minshawi_mujawwad/"
+  },
+  {
+   "name": "عبد الباسط عبد الصمد (مجوّد)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdulbaset_mujawwad/"
+  },
+  {
+   "name": "عبد الباسط عبد الصمد (مرتّل)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdul_basit_murattal/"
+  },
+  {
+   "name": "محمد جبريل",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/muhammad_jibreel/complete/"
+  },
+  {
+   "name": "عبد الله علي جابر (استوديو)",
+   "rewaya": "حفص عن عاصم - مرتل",
+   "server": "https://download.quranicaudio.com/quran/abdullaah_alee_jaabir_studio/"
+  }
+ ]
+}
